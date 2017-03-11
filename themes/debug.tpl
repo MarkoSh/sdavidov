@@ -41,6 +41,7 @@
                 margin: 1px;
                 padding: 0;
             }
+
             h1 {
                 margin: 0;
                 text-align: left;
