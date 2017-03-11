@@ -2,7 +2,6 @@
 
 global $_MODULE;
 $_MODULE = array();
-
 $_MODULE['<{bankwire}prestashop>bankwire_05adcee99142c1a60fb38bb1330bbbc1'] = 'Банковский перевод';
 $_MODULE['<{bankwire}prestashop>bankwire_a246a8e9907530c4c36b8b4c37bbc823'] = 'Приём оплаты товаров банковским переводом.';
 $_MODULE['<{bankwire}prestashop>bankwire_cbe0a99684b145e77f3e14174ac212e3'] = 'Вы точно хотите удалить эти данные?';
@@ -33,11 +32,11 @@ $_MODULE['<{bankwire}prestashop>payment_execution_b28be4c423d93e02081f4e79fe2434
 $_MODULE['<{bankwire}prestashop>payment_execution_a7a08622ee5c8019b57354b99b7693b2'] = 'Выберите одно из следующих действий:';
 $_MODULE['<{bankwire}prestashop>payment_execution_a854d894458d66d92cabf0411c499ef4'] = 'Мы принимаем переводы в следующих валютах:';
 $_MODULE['<{bankwire}prestashop>payment_execution_3dd021316505c0204989f984246c6ff1'] = 'Информация о банковском счете будет показана на следующей странице.';
-$_MODULE['<{bankwire}prestashop>payment_execution_edd87c9059d88fea45c0bd6384ce92b9'] = 'Пожалуйста подтвердите свой заказ, нажав "Я подтверждаю ​​заказ".';
+$_MODULE['<{bankwire}prestashop>payment_execution_edd87c9059d88fea45c0bd6384ce92b9'] = 'Пожалуйста подтвердите свой заказ, нажав \"Я подтверждаю ​​заказ\".';
 $_MODULE['<{bankwire}prestashop>payment_execution_46b9e3665f187c739c55983f757ccda0'] = 'Я подтверждаю заказ';
 $_MODULE['<{bankwire}prestashop>payment_execution_569fd05bdafa1712c4f6be5b153b8418'] = 'Другие способы оплаты';
 $_MODULE['<{bankwire}prestashop>infos_c1be305030739396775edaca9813f77d'] = 'Этот модуль позволяет принимать платежи банковским переводом.';
-$_MODULE['<{bankwire}prestashop>infos_60742d06006fde3043c77e6549d71a99'] = 'Если клиент выбирает оплату банковским переводом, статус заказа изменится на "В ожидании оплаты."';
+$_MODULE['<{bankwire}prestashop>infos_60742d06006fde3043c77e6549d71a99'] = 'Если клиент выбирает оплату банковским переводом, статус заказа изменится на \"В ожидании оплаты.\"';
 $_MODULE['<{bankwire}prestashop>infos_5fb4bbf993c23848433caf58e6b2816d'] = 'Вы должны вручную подтвердить заказ по факту зачисления перевода.';
 $_MODULE['<{bankwire}prestashop>payment_return_88526efe38fd18179a127024aba8c1d7'] = 'Ваш заказ на %s оформлен.';
 $_MODULE['<{bankwire}prestashop>payment_return_1f8cdc30326f1f930b0c87b25fdac965'] = 'Реквизиты для банковского перевода:';
@@ -54,7 +53,3 @@ $_MODULE['<{bankwire}prestashop>payment_return_66fcf4c223bbf4c7c886d4784e1f62e4'
 $_MODULE['<{bankwire}prestashop>payment_return_d15feee53d81ea16269e54d4784fa123'] = 'Мы обнаружили проблемы с вашим заказом. Если вы считаете, что это ошибка, свяжитесь с нашей';
 $_MODULE['<{bankwire}prestashop>payment_5e1695822fc5af98f6b749ea3cbc9b4c'] = 'Оплата банковским переводом';
 $_MODULE['<{bankwire}prestashop>payment_4e1fb9f4b46556d64db55d50629ee301'] = '(обработка заказа продлится дольше)';
-$_MODULE['<{bankwire}prestashop>payment_return_decce112a9e64363c997b04aa71b7cb8'] = 'клиентской службой.';
-
-
-return $_MODULE;
