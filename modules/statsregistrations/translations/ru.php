@@ -2,6 +2,7 @@
 
 global $_MODULE;
 $_MODULE = array();
+
 $_MODULE['<{statsregistrations}prestashop>statsregistrations_8b15fc6468c919d299f9a601b61b95fc'] = 'Учетные записи клиентов';
 $_MODULE['<{statsregistrations}prestashop>statsregistrations_f14056d6fef225c8aafd5a99d4c70fa8'] = 'На панель статистики добавляется вкладка с динамикой регистраций.';
 $_MODULE['<{statsregistrations}prestashop>statsregistrations_247b3bdef50a59d5a83f23c4f1c8fa47'] = 'Число посетителей, остановившихся на этапе регистрации:';
@@ -14,7 +15,10 @@ $_MODULE['<{statsregistrations}prestashop>statsregistrations_57a6f41a27c9baa5b40
 $_MODULE['<{statsregistrations}prestashop>statsregistrations_271ef73d55b8e3cc30963ca9413d4a52'] = 'Если магазин будет работать не меняясь, то число регистрациий обычно почти стабильно, с небольшим снижением.';
 $_MODULE['<{statsregistrations}prestashop>statsregistrations_bcabec23c8f36cecde037bd35ca4c709'] = 'Значительное увеличение/снижение числа регистраций обычно отражает изменения в магазине. Зная это, вы можете определить причину изменений, исправить ошибки, и - вперед, делать деньги!';
 $_MODULE['<{statsregistrations}prestashop>statsregistrations_ded9c8756dc14fd26e3150c4718cd9d0'] = 'Вот резюме того, что может повлиять на регистрации клиентов:';
-$_MODULE['<{statsregistrations}prestashop>statsregistrations_87c365f80449f43460a0567d3b24f29f'] = 'Рекламная кампания привлекает большее количество посетителей в магазин. Это, в свою очередь, приводит к увеличению числа регистраций и прибыльности, зависящей от \"качества\" клиентов. Правильно таргетированная реклама обычно более эффективна, чем \"стрельба по площадям\". Кроме того, она еще и гораздо дешевле!';
+$_MODULE['<{statsregistrations}prestashop>statsregistrations_87c365f80449f43460a0567d3b24f29f'] = 'Рекламная кампания привлекает большее количество посетителей в магазин. Это, в свою очередь, приводит к увеличению числа регистраций и прибыльности, зависящей от "качества" клиентов. Правильно таргетированная реклама обычно более эффективна, чем "стрельба по площадям". Кроме того, она еще и гораздо дешевле!';
 $_MODULE['<{statsregistrations}prestashop>statsregistrations_aa09be43df78c214e64ac3c3b255708e'] = 'Скидки, распродажи, промоушены и/или конкурсы служат для привлечения внимания покупателей. Такие предложения оживляют бизнес, увеличивают посещаемость, укрепляют лояльность клиентов, и даже могут повлиять на вашу е-коммерческую философию.';
 $_MODULE['<{statsregistrations}prestashop>statsregistrations_8cb5605d77d1d2f9eab6191c0e027747'] = 'Дизайн и удобство в мире электронной торговли более важны, чем когда-либо. Неудачное или неудобное оформление могут отпугнуть посетителей. Вы должны приложить много усилий, чтобы найти правильный баланс между красотой и функциональностью вашего магазина.';
 $_MODULE['<{statsregistrations}prestashop>statsregistrations_998e4c5c80f27dec552e99dfed34889a'] = 'Экспорт в CSV';
+
+
+return $_MODULE;

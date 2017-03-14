@@ -2,6 +2,7 @@
 
 global $_MODULE;
 $_MODULE = array();
+
 $_MODULE['<{gsitemap}prestashop>gsitemap_3aaaafde6f9b2701f9e6eb9292e95521'] = 'Карта сайта Google sitemap';
 $_MODULE['<{gsitemap}prestashop>gsitemap_935a6bc13704a117d22333c3155b5dae'] = 'Генерирует файл Google sitemap';
 $_MODULE['<{gsitemap}prestashop>gsitemap_b52bf50c73995780892b9945ddc98708'] = 'Ошибка проверки прав доступа к файлам. Пожалуйста, настройте разрешения, позволяющие PrestaShop записывать файлы в корневой каталог.';
@@ -40,3 +41,6 @@ $_MODULE['<{gsitemap}prestashop>configuration_957d27165d1dc5947fb00e57967ffcce']
 $_MODULE['<{gsitemap}prestashop>configuration_024d2d2f6d7fd575701fd1b30cc5c0c2'] = 'Попросите хостинг-провайдера настроить задание cron на загрузку следующего URL в нужное время:';
 $_MODULE['<{gsitemap}prestashop>configuration_8076be06e575e50c7f9585271c8842ad'] = 'Это автоматически сгенерирует XML карту сайта.';
 $_MODULE['<{gsitemap}prestashop>configuration_98a9d595be84a0687c4b26887977e0c3'] = 'снять все';
+
+
+return $_MODULE;

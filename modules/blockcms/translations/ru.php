@@ -2,6 +2,7 @@
 
 global $_MODULE;
 $_MODULE = array();
+
 $_MODULE['<{blockcms}prestashop>blockcms_ca3e06233b736d289df9f4580a4ab19a'] = 'Блок CMS (контент)';
 $_MODULE['<{blockcms}prestashop>blockcms_cdca12007979fc49008fd125cdb775fc'] = 'Добавляет блок со ссылками на страницы.';
 $_MODULE['<{blockcms}prestashop>blockcms_a82be0f551b8708bc08eb33cd9ded0cf'] = 'Информация';
@@ -15,13 +16,13 @@ $_MODULE['<{blockcms}prestashop>blockcms_c93efb366650d08e5827974c0ddec8d8'] = '�
 $_MODULE['<{blockcms}prestashop>blockcms_6f3ebe2ce8a7c3b873c1003b6ead60df'] = 'Ссылки на страницы';
 $_MODULE['<{blockcms}prestashop>blockcms_e363df19c685465bca24d0c06d9394c7'] = 'Отметьте все страницы , которые должны отображаться в футере блока CMS.';
 $_MODULE['<{blockcms}prestashop>blockcms_b0f8cd6eb22f287563dad544796b4118'] = 'Текстовая информация в футере';
-$_MODULE['<{blockcms}prestashop>blockcms_75cb29c17cf91bef81cc289b0dd1b1fa'] = 'Отображать ссылку \"Наши магазины\" в футере';
-$_MODULE['<{blockcms}prestashop>blockcms_0e5da791148c92be6eca8c537a47569e'] = 'Отображать ссылку \"Товары со скидкой\" в  футере';
-$_MODULE['<{blockcms}prestashop>blockcms_e995cfe1489190cf28799a16d23be91a'] = 'Отображать ссылку \"Новые товары\" в футере';
-$_MODULE['<{blockcms}prestashop>blockcms_edeab890c4f02138691d67eefcbfe7e8'] = 'Отображать ссылку \"Лидеры продаж\" в футере';
-$_MODULE['<{blockcms}prestashop>blockcms_45bc5fe3bf5717315e42a831ba7da748'] = 'Отображать ссылку \"Связаться с нами\" в футере';
-$_MODULE['<{blockcms}prestashop>blockcms_68b7b9e603633d155941fb1d665c3997'] = 'Отображать ссылку \"Карта сайта\" в футере';
-$_MODULE['<{blockcms}prestashop>blockcms_573a06e2ae339eeb4fb19e7f689bd3d8'] = 'Отображать в футере надпись \"Работает на PrestaShop\"';
+$_MODULE['<{blockcms}prestashop>blockcms_75cb29c17cf91bef81cc289b0dd1b1fa'] = 'Отображать ссылку "Наши магазины" в футере';
+$_MODULE['<{blockcms}prestashop>blockcms_0e5da791148c92be6eca8c537a47569e'] = 'Отображать ссылку "Товары со скидкой" в  футере';
+$_MODULE['<{blockcms}prestashop>blockcms_e995cfe1489190cf28799a16d23be91a'] = 'Отображать ссылку "Новые товары" в футере';
+$_MODULE['<{blockcms}prestashop>blockcms_edeab890c4f02138691d67eefcbfe7e8'] = 'Отображать ссылку "Лидеры продаж" в футере';
+$_MODULE['<{blockcms}prestashop>blockcms_45bc5fe3bf5717315e42a831ba7da748'] = 'Отображать ссылку "Связаться с нами" в футере';
+$_MODULE['<{blockcms}prestashop>blockcms_68b7b9e603633d155941fb1d665c3997'] = 'Отображать ссылку "Карта сайта" в футере';
+$_MODULE['<{blockcms}prestashop>blockcms_573a06e2ae339eeb4fb19e7f689bd3d8'] = 'Отображать в футере надпись "Работает на PrestaShop"';
 $_MODULE['<{blockcms}prestashop>blockcms_c9cc8cce247e49bae79f15173ce97354'] = 'Сохранить';
 $_MODULE['<{blockcms}prestashop>blockcms_be58fccb15fb119b8c3d485e3a8561c4'] = 'Настройка блока CMS';
 $_MODULE['<{blockcms}prestashop>blockcms_0eb46571f3ff926d8b2408cafcfc17e3'] = 'Редактирование блока CMS';
@@ -35,7 +36,7 @@ $_MODULE['<{blockcms}prestashop>blockcms_feb6cc332459769fe15570bf332a6b50'] = '�
 $_MODULE['<{blockcms}prestashop>blockcms_ef0e9df97eac6e978e72eeaf5abb8b0e'] = 'Добавить ссылку на локатор магазинов';
 $_MODULE['<{blockcms}prestashop>blockcms_93cba07454f06a4a960172bbd6e2a435'] = 'Да';
 $_MODULE['<{blockcms}prestashop>blockcms_bafd7322c6e97d25b6299b5d6fe8920b'] = 'Нет';
-$_MODULE['<{blockcms}prestashop>blockcms_9a8d463045dc8c2ad89bcd455fd937e8'] = 'Ссылка \"Наши магазины\" в конце блока.';
+$_MODULE['<{blockcms}prestashop>blockcms_9a8d463045dc8c2ad89bcd455fd937e8'] = 'Ссылка "Наши магазины" в конце блока.';
 $_MODULE['<{blockcms}prestashop>blockcms_bbfdbbf61a22c160c5498b6ae08cb356'] = 'Страницы CMS';
 $_MODULE['<{blockcms}prestashop>blockcms_04313a11bf4a501b7cf2273ea7b32862'] = 'Пометьте все страницы, которые должны отображаться в блоке';
 $_MODULE['<{blockcms}prestashop>blockcms_0d6d7a7c758cd16507d4aebf18305691'] = 'Недопустимое значение отображения магазина';
@@ -69,3 +70,8 @@ $_MODULE['<{blockcms}prestashop>form_7dce122004969d56ae2e0245cb754d35'] = 'Пр�
 $_MODULE['<{blockcms}prestashop>form_f2a6c498fb90ee345d997f888fce3b18'] = 'Удалить';
 $_MODULE['<{blockcms}prestashop>form_49ee3087348e8d44e1feda1917443987'] = 'Имя';
 $_MODULE['<{blockcms}prestashop>form_f7c68d40f8727c658e821c6e6d56af07'] = 'Страницы не созданы';
+$_MODULE['<{blockcms}prestashop>blockcms_3cb29f0ccc5fd220a97df89dafe46290'] = 'Популярные товары';
+$_MODULE['<{blockcms}prestashop>blockcms_8be39233fce812574e94aa277f5a2e32'] = '[1] %3$s %2$s - Интернет магазин разработан %1$s [/1]';
+
+
+return $_MODULE;

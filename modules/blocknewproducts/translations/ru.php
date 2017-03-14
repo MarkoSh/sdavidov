@@ -2,9 +2,10 @@
 
 global $_MODULE;
 $_MODULE = array();
+
 $_MODULE['<{blocknewproducts}prestashop>blocknewproducts_f7c34fc4a48bc683445c1e7bbc245508'] = 'Новые товары';
 $_MODULE['<{blocknewproducts}prestashop>blocknewproducts_d3ee346c7f6560faa13622b6fef26f96'] = 'Показывает блок, показывающий недавно добавленные товары.';
-$_MODULE['<{blocknewproducts}prestashop>blocknewproducts_1cd777247f2a6ed79534d4ace72d78ce'] = 'Пожалуйста, заполните поле \"Отображать товаров\".';
+$_MODULE['<{blocknewproducts}prestashop>blocknewproducts_1cd777247f2a6ed79534d4ace72d78ce'] = 'Пожалуйста, заполните поле "Отображать товаров".';
 $_MODULE['<{blocknewproducts}prestashop>blocknewproducts_73293a024e644165e9bf48f270af63a0'] = 'Неверный номер.';
 $_MODULE['<{blocknewproducts}prestashop>blocknewproducts_c888438d14855d7d96a2724ee9c306bd'] = 'Настройки обновлены';
 $_MODULE['<{blocknewproducts}prestashop>blocknewproducts_f4f70727dc34561dfde1a3c529b6205c'] = 'Настройки';
@@ -22,3 +23,6 @@ $_MODULE['<{blocknewproducts}prestashop>blocknewproducts_43340e6cc4e88197d57f8d6
 $_MODULE['<{blocknewproducts}prestashop>blocknewproducts_60efcc704ef1456678f77eb9ee20847b'] = 'Все новые товары';
 $_MODULE['<{blocknewproducts}prestashop>blocknewproducts_18cc24fb12f89c839ab890f8188febe8'] = 'Не показывать новинки.';
 $_MODULE['<{blocknewproducts}prestashop>tab_a0d0ebc37673b9ea77dd7c1a02160e2d'] = 'Новые поступления';
+
+
+return $_MODULE;
