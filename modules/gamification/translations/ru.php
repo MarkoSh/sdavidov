@@ -2,8 +2,7 @@
 
 global $_MODULE;
 $_MODULE = array();
-$_MODULE['<{gamification}prestashop>gamification_3d4aafb2eedeba2fbf92e852f0af745a'] = 'Торговое мастерство';
-$_MODULE['<{gamification}prestashop>gamification_bacc1bf300527bad9c6ac2d3b875a8d8'] = 'Станьте экспертом в области электронной коммерции в мгновение ока!';
+
 $_MODULE['<{gamification}prestashop>admingamificationcontroller_ca96b4f8d13722aac99da25f94ea1711'] = 'Ваше торговое мастерство';
 $_MODULE['<{gamification}prestashop>admingamificationcontroller_7258e7251413465e0a3eb58094430bde'] = 'Администрирование';
 $_MODULE['<{gamification}prestashop>admingamificationcontroller_3d4aafb2eedeba2fbf92e852f0af745a'] = 'Торговое мастерство';
@@ -16,6 +15,8 @@ $_MODULE['<{gamification}prestashop>admingamificationcontroller_38f7af7416ffcd15
 $_MODULE['<{gamification}prestashop>admingamificationcontroller_e7613fe56cdbeddfc9bb6276fd0f0d12'] = '4. Чародей';
 $_MODULE['<{gamification}prestashop>admingamificationcontroller_8d03eaad7ff7babdd33c2c74fe479ed0'] = '5. Гуру';
 $_MODULE['<{gamification}prestashop>admingamificationcontroller_e4be4f3e3ae4ee9dda6b60815bf774c1'] = '6. Легенда';
+$_MODULE['<{gamification}prestashop>gamification_3d4aafb2eedeba2fbf92e852f0af745a'] = 'Торговое мастерство';
+$_MODULE['<{gamification}prestashop>gamification_bacc1bf300527bad9c6ac2d3b875a8d8'] = 'Станьте экспертом в области электронной коммерции в мгновение ока!';
 $_MODULE['<{gamification}prestashop>filters_bt_e659b52eba1f0299b2d8ca3483919e72'] = 'Тип:';
 $_MODULE['<{gamification}prestashop>filters_bt_b1c94ca2fbc3e78fc30069c8d0f01680'] = 'Все';
 $_MODULE['<{gamification}prestashop>filters_bt_24a23d787190f2c4812ff9ab11847a72'] = 'Статус:';
@@ -61,3 +62,6 @@ $_MODULE['<{gamification}prestashop>notification_ca96b4f8d13722aac99da25f94ea171
 $_MODULE['<{gamification}prestashop>notification_16a1daea9e8873542aec1e820798aa44'] = 'Предыдущий значок:';
 $_MODULE['<{gamification}prestashop>notification_15377177c0259c6f79341cc57da13f19'] = 'Следующий значок:';
 $_MODULE['<{gamification}prestashop>notification_f8978f781f97e6f851e9c8f7059c37b2'] = 'Посмотреть все данные моего профиля';
+
+
+return $_MODULE;

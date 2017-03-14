@@ -2,6 +2,7 @@
 
 global $_MODULE;
 $_MODULE = array();
+
 $_MODULE['<{statsstock}prestashop>statsstock_96ca47f429c269b85e31be9fb17df6d4'] = 'Доступное количество';
 $_MODULE['<{statsstock}prestashop>statsstock_7782fb19c81ec8a47e39f9c073b7da59'] = 'На пульт статистики добавляется вкладка, показывающая количество имеющегося товара для продажи.';
 $_MODULE['<{statsstock}prestashop>statsstock_c49b42f642c62f20a3640f20ca132840'] = 'Оценка количества товаров к продаже';
@@ -18,3 +19,6 @@ $_MODULE['<{statsstock}prestashop>statsstock_347cbf03d737b02a70a96ff204c22fbc'] 
 $_MODULE['<{statsstock}prestashop>statsstock_844c29394eea07066bb2efefc35784ec'] = 'Средняя цена';
 $_MODULE['<{statsstock}prestashop>statsstock_62668f75fc6977f3d09df632d1585d07'] = 'Общая стоимость';
 $_MODULE['<{statsstock}prestashop>statsstock_a9873f90f06f9e2cfa3d048298ecca8c'] = 'Соответствие оптовой цены с ценой поставщика товара. Средняя цена используется, когда у товара есть атрибуты.';
+
+
+return $_MODULE;

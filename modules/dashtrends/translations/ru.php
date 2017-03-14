@@ -2,6 +2,7 @@
 
 global $_MODULE;
 $_MODULE = array();
+
 $_MODULE['<{dashtrends}prestashop>dashtrends_ee653ade5f520037ef95e9dc2a42364c'] = 'Панель трендов';
 $_MODULE['<{dashtrends}prestashop>dashtrends_f2d0efa68eb71bfd5209abeb9f4b0943'] = 'Блок графического представления прогресса вашего магазина(ов) на основе выбранных ключевых данных.';
 $_MODULE['<{dashtrends}prestashop>dashtrends_2d125dc25b158f28a1960bd96a9fa8d1'] = 'пунктов: %s';
@@ -28,3 +29,6 @@ $_MODULE['<{dashtrends}prestashop>dashboard_zone_two_7a6e858f8c7c0b78fb4d43cefcb
 $_MODULE['<{dashtrends}prestashop>dashboard_zone_two_e4c3da18c66c0147144767efeb59198f'] = 'Конверсия';
 $_MODULE['<{dashtrends}prestashop>dashboard_zone_two_8dedc1b3ee3a92212fb5b5acad7f207f'] = 'Чистая прибыль — это мера доходности предприятия после учета всех расходов . Вы можете предоставить информацию по затратам, кликнув на иконку конфигурации чуть выше.';
 $_MODULE['<{dashtrends}prestashop>dashboard_zone_two_43d729c7b81bfa5fc10e756660d877d1'] = 'Чистая прибыль';
+
+
+return $_MODULE;
