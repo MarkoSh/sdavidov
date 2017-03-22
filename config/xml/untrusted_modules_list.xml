@@ -1,2 +1,2 @@
 <?xml version="1.0"?>
-<modules_list><modules type="untrusted"><module name="blockreinsurance"/><module name="trackingfront"/><module name="wtbanner"/><module name="wtbannerspecial"/><module name="wtblog"/><module name="wtbloglatestnews"/><module name="wtcountdown"/><module name="wtcustomhtml"/><module name="wtmanufacture"/><module name="wtmegamenu"/><module name="wtproductcategory"/><module name="wtproductfilter"/><module name="wtsearchpopular"/><module name="wtslideshow"/><module name="wtthemeconfigurator"/><module name="wtverticalmegamenu"/></modules></modules_list>
+<modules_list><modules type="untrusted"><module name="blockreinsurance"/><module name="trackingfront"/></modules></modules_list>
