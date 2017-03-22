@@ -124,7 +124,6 @@
 		<module name="bpostshm"/>
 		<module name="brainify"/>
 		<module name="cartsguru"/>
-		<module name="ccbill"/>
 		<module name="chargeback"/>
 		<module name="chronopost"/>
 		<module name="correos"/>
