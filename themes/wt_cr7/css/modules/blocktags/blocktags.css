@@ -1,0 +1,15 @@
+.tags_block .block_content {
+  overflow: hidden; }
+  .tags_block .block_content a {
+    display: inline-block;
+    font-size: 13px;
+    text-transform: capitalize;
+    padding-right: 10px;
+    float: left;
+    line-height: 25px;
+    font-family: "Roboto Condensed", sans-serif; }
+    .tags_block .block_content a:hover {
+      text-decoration: none;
+      font-weight: 600; }
+
+/*# sourceMappingURL=blocktags.css.map */

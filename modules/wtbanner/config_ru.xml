@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>wtbanner</name>
+	<displayName><![CDATA[WT Banners Block]]></displayName>
+	<version><![CDATA[2.0.0]]></version>
+	<description><![CDATA[Add the banners with the information specified by the user.]]></description>
+	<author><![CDATA[waterthemes]]></author>
+	<tab><![CDATA[front_office_features]]></tab>
+	<is_configurable>1</is_configurable>
+	<need_instance>1</need_instance>
+	<limited_countries></limited_countries>
+</module>

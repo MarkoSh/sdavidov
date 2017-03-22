@@ -1,0 +1,144 @@
+@import "compass";
+@import "theme_variables";
+
+/* ************************************************************************************************
+								Categories Page Styles
+************************************************************************************************ */
+.content_scene_cat {
+	
+	color:$description-color;
+	margin: 0 0 26px 0;
+	
+	
+	.cat_desc
+	{
+	 border:$main_border;
+	 border-top:none;
+	 padding:30px;
+	}
+	span.category-name {
+		font: 500 26px/30px $font-family;
+		color:$base-text-color;
+		margin-bottom: 15px;
+		display:inline-block;
+		
+	}
+	p {
+		margin-bottom: 0;
+		color:$base-body-color;
+		line-height:25px;
+		margin-bottom:15px;
+		font-weight:500;
+	}
+	a {
+		
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	.content_scene {
+		color: $base-body-color;
+		.cat_desc {
+			padding-top: 20px;
+			a {
+				color: $link-color;
+				&:hover {
+					color: $link-hover-color;
+				}
+			}
+		}
+	}
+}
+
+/* ************************************************************************************************
+									Sub Categories Styles
+************************************************************************************************ */
+
+#subcategories {
+	border:$main_border;margin-bottom:20px;
+	p.subcategory-heading {
+		font-weight: bold;
+		color:$light-text-color;
+		padding:15px;
+		text-transform:uppercase;
+		background:$bg-title-heading;
+		margin: 0 0 15px 0;
+	}
+	.out_sub
+	{
+	 padding:0 15px;
+	}
+	ul {
+		margin: 0 0 0 -15px;
+		li {
+			float: left;
+			width: 145px;
+			padding:0 15px;
+			text-align: left;
+			/* height: 202px; */
+			.subcategory-image {
+				padding: 0 0 8px 0;
+				a {
+					display: block;
+					
+					img {
+						max-width: 100%;
+						vertical-align: top;
+					}
+				}
+			}
+			
+			.subcategory-name {
+				font: 400 14px/16px $font-family;
+				color: $base-heading-color;
+				text-align:left;
+				&:hover {
+					color: $link-hover-color;
+				}
+			}
+			
+			.cat_desc {
+				display: none;
+			}
+			
+		}
+	}
+}
+/**bx-slider***/
+#subcategories
+{
+div.bx-wrapper .bx-controls-direction a
+{
+width:auto;height:auto;
+top:-40px;
+ &.bx-prev:before,&.bx-next:before
+ {
+  font-size: 13px;
+  color:$light-text-color;
+  content: "\f053";
+  font-family: "FontAwesome";
+ 
+ }
+  &:hover:before
+  {
+  color:$link-hover-color;
+  }
+ &.bx-prev
+ {
+ right:15px;
+ left:auto;
+  &:before 
+  {
+     content: "\f053";
+  }
+ }
+ &.bx-next
+ {
+ right:-5px;
+  &:before 
+  {
+  content: "\f054";
+  }
+ }
+}
+}

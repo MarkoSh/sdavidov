@@ -1,0 +1,122 @@
+@import 'bootstrap_lib/_variables';
+
+//------- FONTS
+$font-family:				  		Didact Gothic, Helvetica, sans-serif;
+$font:						  		normal 14px/18px $font-family;
+$font-custom:                 		'Roboto Condensed', sans-serif;
+$font-icon:                   		"FontAwesome";
+$fa-css-prefix:       				icon !default;
+
+
+//-------- BORDERS
+$base-border-color:					#dadada;
+$main_border:						1px solid $base-border-color;
+$dark-border-color:					#4c4c4c;
+$light-border-color:				#fff;
+$homepage-footer-border:            #d9d9d9;
+$border-button:#000;
+$border-button-hover:#d21717;
+$border-free-shippng:#dadada;
+$blue-border: #31a5ff;
+$border-layered: #efefef;
+$border-red:#d21717;
+//--------- BACKGROUNDS
+$base-box-bg:                       #fbfbfb;
+$table-background:                  #efefef;
+$dark-background:                   #333;
+$light-background:                  #fff;
+$homepage-footer-bg:                #000; 
+$menu-ver-bg: #2b2b2b;
+$blue-bg: #31a5ff;
+$green-bg:#a7d992;
+$bg-head-top:#313131;
+$bg-head-menu:#0f0f0f;
+$bg-button:#000;
+$bg-hover-button:#2b2b2b;
+$bg-title-heading:#2b2b2b; 
+$main-bg:#d21717;
+$bg-block:#f6f6f6;
+$bg-hover-control:#000;
+
+//--------- COLORS
+$base-body-color:                  #666;
+$base-text-color:                   #333;
+$base-heading-color:				$base-text-color;
+$base-title-color:					$base-text-color;
+$light-text-color:                  #fff;
+$link-color:					#333;;
+$link-hover-color:                  #d21717;
+$description-color:					#666;
+$color-dark: #000;
+$color-red:#d21717;
+$blue-color:#31a5ff;
+$order-color:#999;
+$header-color:#999;
+$link-footer-color:$order-color;
+
+//--------- Indents
+$base-page-indent:                 	$grid-gutter-width;
+$base-box-padding:                  14px 18px 13px;
+$base-box-indent:                  	0 0 30px 0;
+
+//---------- Product Elements
+$product-name-color:                #333;
+$product-name-hover-color:          $color-red;
+$price-color:						$color-red;
+$product-price-color:				$color-red;
+$product-reduced-price:				#f00;
+$product-special-price-color:		#333;
+$product-old-price-color:			#6f6f6f;
+
+//---------- Buttons
+$button-text-color:					#333;
+
+		//------ Buttons +/- ---
+		$button-pm-color:			#c0c0c0;
+		$button-pm-hover-color:		$base-text-color;
+
+		//------ Button Small --
+		$button-small-bg:			#fff;
+		$button-small-hover-bg:		#575757;
+
+		//-------Button exclusive-medium
+		$button-em-color:			$base-text-color;
+
+//---------- Product Listing
+$base-listing-border-color:					$base-border-color;
+$base-listing-grid-padding:					$base-box-padding;
+
+		//-------------- Grid/List vars
+		$GL-text-color:								#808080;
+		$GL-title-color:							$base-text-color;
+		$GL-icon-color:								#e1e0e0;
+		$GL-icon-color-hover:						$base-text-color;
+
+		//-------------- Pagination vars
+		$pagination-prevnext-color:					#777676;
+		$pagination-bgcolor:	               		$base-box-bg;
+		$pagination-hover-bg:						#f6f6f6;
+
+//---------- Product Info
+$top-line-color:									#C4C4C4;
+$product-image-border:								#dbdbdb;
+$scroll-button-color:								#c0c0c0;
+$list-info-bg:										#f6f6f6;
+$scroll-button-hover-color:							$base-text-color;
+$tr-even-bg:										#fdfdfd;
+
+//sub heading (h2,h3) define
+@mixin sub-heading {
+	color: $base-heading-color;
+	text-transform: uppercase;
+	font-family: $font-custom;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 20px;
+	padding: 14px 20px 17px;
+	margin: 0 0 20px;
+	position: relative;
+	border: 1px solid $base-border-color;
+	border-bottom: none;
+	background: $base-box-bg;
+}

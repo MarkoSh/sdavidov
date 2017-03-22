@@ -1,0 +1,63 @@
+
+.wt-prod-cat .out-wt-prod
+{display: inline-block;width: 100%;text-align:center;margin-bottom:60px;}
+.wt-prod-cat .icon_cat{display:none;float:left;vertical-align:top;}
+.out-wt-prod h3{display:inline-block;margin:0;margin-left:15px;font-size:36px;text-transform:uppercase; }
+.out-wt-prod h3 a{}
+.wt-prod-cat .sub-cat-ul li {margin-top:15px;} 
+.sub-cat .sub-cat-ul{}
+.sub-cat{padding-left:15px;}
+.sub-cat .wt-sub-cat-title{background:#000000;position:relative;display: block;overflow:hidden;}
+.sub-cat .wt-sub-cat-title:after{content:"";position:absolute;width:0px; height:0px; border-left:26px solid transparent; border-right:26px solid transparent; border-bottom:38px solid #fff; right:-26px;top:0;}
+.sub-cat .wt-sub-cat-title span{padding:10px 15px ;color:#fff;display:block;}
+.sub-cat .sub-cat-ul li { padding: 0 15px;}
+.cat-banner{  position: relative;
+  overflow: hidden;
+  display: block;text-align:center;
+  }  
+ .cat-banner img {  -webkit-transition: all .25s ease-out; -moz-transition: all .25s ease-out;-ms-transition: all .25s ease-out;
+  -o-transition: all .25s ease-out;
+  transition: all .25s ease-out;}
+  .cat-banner img:hover{opacity: 0.7;filter: alpha(opacity=70);}
+
+.wt-prod-cat .cat-img{margin-top:10px; position: relative;}
+.wt-prod-cat .cat-img:before 
+{  background-color: rgba(255, 255, 255, 0.15);
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  -webkit-transition: all 0.6s ease-in-out;
+  transition: all 0.6s ease-in-out;
+  -moz-transition: all 0.6s ease-in-out;
+  -ms-transition: all 0.6s ease-in-out;
+  -o-transition: all 0.6s ease-in-out;}
+.wt-prod-cat .cat-img:after 
+{
+content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  -webkit-transition: all 0.6s ease-in-out;
+  transition: all 0.6s ease-in-out;
+  -moz-transition: all 0.6s ease-in-out;
+  -ms-transition: all 0.6s ease-in-out;
+  -o-transition: all 0.6s ease-in-out;
+}  
+.wt-prod-cat .cat-img:hover:before {
+  right: 50%;
+  left: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+.wt-prod-cat .cat-img:hover:after {
+  top: 50%;
+  bottom: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+.wt-prod-cat .owl-carousel .owl-controls .owl-nav{width:auto;right:30%;}
+.wt-prod-cat  .product-container{margin-top:30px;}
+.wt-prod-cat  .product-container.first{margin-top:0;}

@@ -1,0 +1,31 @@
+/* BLOCK #reinsurance_block ******************************************************************** */
+#reinsurance_block li {position:relative;
+	float:left;
+	overflow:hidden;
+	text-align:center;
+	position:relative;margin-bottom:18px; }
+#reinsurance_block li:hover{transition:all 300ms ease-in-out 0s;-moz-transition:all 300ms ease-in-out 0s;-webkit-transition:all 300ms ease-in-out 0s;-o-transition:all 300ms ease-in-out 0s;}
+#reinsurance_block li a img{max-width:100%;}
+#reinsurance_block ul li.first{}
+#reinsurance_block a.button{padding-left:13px;padding-right:11px;position:absolute;bottom:28px;left:30%}
+#reinsurance_block a.btn{display:none} 
+#reinsurance_block li a img:hover 
+{
+-webkit-animation: pulse ease-in-out 1 normal 800ms;
+	-moz-animation: pulse ease-in-out 1 normal 800ms;
+	-o-animation: pulse ease-in-out 1 normal 800ms;
+	animation: pulse ease-in-out 1 normal 800ms;
+	
+}
+
+.banner-content + .banner-content{
+	margin-top:15px;
+}
+.cs-background-reinsurance{
+	background-repeat:repeat!important;
+	background-position:center;
+}
+.cs-bg-banner-boxed{
+	max-width:1200px;
+	margin:0 auto;
+}

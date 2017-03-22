@@ -1,0 +1,42 @@
+@import "compass";
+@import "theme_variables";
+.header_user_info {
+	float: right; margin-top:5px;
+	
+	a {
+	    
+		color:$header-color;
+		display: block;
+		margin-left:30px;
+		cursor: pointer;
+		line-height:22px;
+		float:left;
+		text-transform:capitalize;font-family:$font-custom;
+		&:hover, &.active {
+			color:$link-hover-color;
+		}
+		@media (min-width: $screen-sm) 
+		{
+		&.icon-account, &.account{margin-right:0;}
+		}
+	}
+	i 
+	{
+	margin-right:10px;
+	text-align:center;
+	line-height:20px;
+	
+	font-size:13px;
+	font-weight:500;
+	}
+	@media (max-width: $screen-xs-max)
+	{
+	 
+	  float: none;display:inline-block;
+	   a
+	   {
+	    display:inline-block;
+		float:none;
+	   }
+	}
+}

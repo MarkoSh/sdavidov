@@ -1,0 +1,22 @@
+@import '../../_theme_variables';
+.tags_block {
+
+	.block_content {
+		overflow:hidden;
+
+		a {
+			display:inline-block;
+			font-size:13px;
+			text-transform:capitalize;
+			padding-right:10px;
+			float:left;
+			line-height:25px;font-family:$font-custom;
+
+			&:hover {
+				text-decoration:none;
+				font-weight:600;
+				
+			}
+		}
+	}
+}

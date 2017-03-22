@@ -1,0 +1,79 @@
+.wt-prod-filter .type-tab {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -moz-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap; }
+
+.wt-prod-filter {
+  margin-top: 55px; }
+  @media (max-width: 767px) {
+    .wt-prod-filter {
+      margin-top: 25px; } }
+  .wt-prod-filter .block-content .block-title {
+    text-align: center;
+    margin-bottom: 40px;
+    display: inline-block;
+    width: 100%; }
+    .wt-prod-filter .block-content .block-title .icon-wt-bestseller-prod {
+      display: none; }
+    .wt-prod-filter .block-content .block-title h3 {
+      margin: 0;
+      display: inline-block;
+      text-transform: uppercase;
+      font-size: 36px; }
+
+.out-prod-filter {
+  padding: 15px 25px 0px 25px; }
+  .out-prod-filter .product_img_link {
+    margin-bottom: 20px; }
+  .out-prod-filter .button.ajax_add_to_cart_button {
+    width: 100%; }
+
+.wt-prod-filter .ajax_block_product {
+  transition: all 0.4s ease 0s;
+  -moz-transition: all 0.4s ease 0s;
+  -webkit-transition: all 0.4s ease 0s;
+  margin: 0 10px 3px 10px;
+  position: relative;
+  background: #fff; }
+  .wt-prod-filter .ajax_block_product .comments_note {
+    display: inline-block; }
+  .wt-prod-filter .ajax_block_product .comments_note {
+    margin-bottom: 5px; }
+  .wt-prod-filter .ajax_block_product .wt-prod-filter-hover .button-container {
+    text-align: left; }
+
+@media (min-width: 1200px) {
+  .wt-bestseller-prod .owl-carousel.owl-loaded {
+    height: 245px; }
+
+  .wt-prod-filter .ajax_block_product {
+    padding: 10px;
+    border: 1px solid transparent; }
+    .wt-prod-filter .ajax_block_product .wt-prod-filter-hover {
+      display: none;
+      opacity: 0;
+      z-index: 99;
+      filter: alpha(opacity=0); }
+    .wt-prod-filter .ajax_block_product.hovered {
+      border: 1px solid #dadada; }
+      .wt-prod-filter .ajax_block_product.hovered .wt-prod-filter-hover {
+        display: block;
+        opacity: 1;
+        filter: alpha(opacity=100); } }
+/****prod-filter-topcolumn***/
+@media (min-width: 768px) and (max-width: 1199px) {
+  .wt-prod-filter-topcolumn .block-content {
+    border: none; }
+    .wt-prod-filter-topcolumn .block-content .product-container {
+      width: 50%;
+      float: left;
+      border: 1px solid #dadada; }
+      .wt-prod-filter-topcolumn .block-content .product-container:first-child {
+        border: 1px solid #dadada; } }
+
+/*# sourceMappingURL=front.css.map */

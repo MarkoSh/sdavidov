@@ -1,0 +1,110 @@
+/********************************************************
+			Right to Left Styles
+********************************************************/
+* {
+  direction: rtl !important; }
+
+#page {
+  text-align: right !important; }
+
+.footer-container #footer #block_contact_infos > div ul li i {
+  padding-right: 0;
+  padding-left: 8px; }
+
+.content-left {
+  text-align: left; }
+
+#wt-menu-ver-left .category-left li.level-1 > a {
+  text-align: left; }
+
+#wt-menu-ver-left .category-left li.level-1 > a > img {
+  float: left; }
+
+.shiping ul li img {
+  margin-right: 0;
+  margin-left: 10px; }
+
+.wt-block-manu h3 {
+  margin-left: 0;
+  margin-right: 20px; }
+
+.wt-block-manu .top-brand h3 {
+  margin-left: 20px;
+  margin-right: 0;
+  float: left; }
+
+.owl-carousel .owl-controls .owl-nav, .wt-prod-cat .owl-carousel .owl-controls .owl-nav {
+  direction: ltr !important; }
+
+.block_popular_word_search, .functional-buttons, #cart_summary tbody td, .product-container .right-block {
+  text-align: right; }
+
+#search_block_top #search_query_top {
+  padding-left: 0;
+  padding-right: 30px; }
+
+#footer #newsletter_block_left .form-group .form-control {
+  padding-right: 53px; }
+
+.wishlist {
+  margin-left: 2px;
+  margin-right: 0; }
+
+#header_logo, #subcategories p.subcategory-heading, p.payment_module a {
+  text-align: left; }
+
+.header_user_info i {
+  margin-right: 0;
+  margin-left: 10px; }
+
+#categories_block_left li span.grower {
+  left: 0;
+  right: auto; }
+
+.table tbody > tr > td.cart_quantity .cart_quantity_button {
+  margin-right: 3px; }
+
+ul.product_list.list .button.ajax_add_to_cart_button {
+  margin-right: -4px; }
+
+#languages-block-top ul li.selected > img {
+  margin-left: 0;
+  margin-right: 12px; }
+
+.owl-stage-outer, body {
+  direction: ltr !important; }
+
+#wt-menu-ver-left ul.menu-content {
+  direction: ltr !important; }
+
+.sub-cat .sub-cat-ul {
+  padding-left: 0;
+  padding-right: 15px; }
+
+.wt-prod-hover {
+  left: auto;
+  right: 0; }
+
+.star {
+  float: right; }
+
+.sub-cat .wt-sub-cat-title span {
+  padding-right: 30px; }
+
+/***reponsive***/
+@media (min-width: 768px) {
+  .wt-menu-horizontal ul li.level-1 ul li.parent > a {
+    padding-right: 10px; } }
+@media (max-width: 767px) {
+  .title-menu-mobile span:after {
+    float: left; }
+
+  .icon-drop-mobile:after {
+    right: auto;
+    left: 18px; }
+
+  .footer-container #footer h4:after {
+    left: 0;
+    right: auto; } }
+
+/*# sourceMappingURL=rtl.css.map */

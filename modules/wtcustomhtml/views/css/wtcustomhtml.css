@@ -1,0 +1,11 @@
+.left_video {margin:0 25px 0 14px;float:left;width:560px;}
+.top_block_footer {clear:both;}
+.right_sample_block ul li {margin-bottom : 20px !important;}
+.right_sample_block ul li img {float:left;margin:0 15px 15px 0}
+.col {width:50%;float:left;}
+.col p:first-child{padding-bottom:0 !important;text-align:center;}
+#mini ul li {display:inline-block;list-style:none;margin-right:10px;margin-top:6px;}
+#mini {float:right;}
+#freeship,#gifts {display:inline-block;margin:0 20px 0 0}
+.free_shipping {padding:5px 0 10px 0;background-color:#eee;clear:both;margin-bottom:20px;}
+#wrapp_free {display:block;margin: 0 auto;}

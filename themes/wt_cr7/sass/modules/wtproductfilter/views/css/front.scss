@@ -1,0 +1,127 @@
+@import "compass";
+@import "theme_variables";
+
+.wt-prod-filter .type-tab{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-flex-flow: row wrap;
+	-moz-flex-flow: row wrap;
+	-ms-flex-flow: row wrap;
+	flex-flow: row wrap;
+}
+.wt-prod-filter
+{
+  margin-top:55px;
+  @media (max-width: $screen-xs-max)
+  {
+	  margin-top:25px;
+  }
+ .block-content
+ {
+  
+	 .block-title 
+	 {
+	  text-align:center;margin-bottom:40px;
+		display: inline-block;
+	  width: 100%;
+	  .icon-wt-bestseller-prod
+	  {
+		display:none;
+		  
+	  }
+	  h3 
+	   {
+	   margin: 0;
+	  display: inline-block;
+	  text-transform: uppercase;
+	  font-size: 36px;
+
+	  }
+	 }
+	}
+}
+.out-prod-filter
+{
+ padding:15px 25px 0px 25px;
+  .product_img_link
+  
+  {
+   margin-bottom:20px;
+  }
+  .button.ajax_add_to_cart_button{width:100%;}
+}
+.wt-prod-filter
+{
+ .ajax_block_product
+ {
+  transition: all 0.4s ease 0s;  -moz-transition: all 0.4s ease 0s;-webkit-transition: all 0.4s ease 0s;margin:0 10px 3px 10px;position:relative;background:$light-background;
+   .comments_note
+  {
+  display:inline-block;
+  }
+  .comments_note{margin-bottom:5px;}
+  
+  .wt-prod-filter-hover {
+			 .button-container
+			  {
+			  text-align:left;
+			  }
+	
+  }
+  
+  
+ }
+}
+@media (min-width: $screen-lg)
+{
+.wt-bestseller-prod  .owl-carousel.owl-loaded
+{
+ height:245px;
+}
+.wt-prod-filter
+{
+ .ajax_block_product
+ {
+  padding:10px; border: 1px solid transparent;
+.wt-prod-filter-hover {
+           display:none;opacity:0;z-index:99;
+			  filter: alpha(opacity=0);
+	
+    }
+	&.hovered 
+                           {
+						   border:$main_border;
+	          .wt-prod-filter-hover {display:block; opacity:1;
+			  filter: alpha(opacity=100);}
+              }
+			  
+	
+  }
+}
+}
+
+/****prod-filter-topcolumn***/
+@media (min-width: $screen-sm) and (max-width: $screen-md-max) 
+ {
+		.wt-prod-filter-topcolumn
+		{
+		.block-content
+		 {
+		   border:none;
+			
+			 .product-container
+			 {
+			  
+			   width:50%;
+			   float:left;border:$main_border; 
+			   &:first-child 
+			   {
+				 border:$main_border; 
+			   }
+			  }
+			 }
+			
+		 }
+}

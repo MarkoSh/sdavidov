@@ -1,0 +1,128 @@
+@import "compass";
+@import "theme_variables";
+/* BLOCK #reinsurance_block ******************************************************************** */
+.manu-bar
+{
+float:left;
+width:100%;
+}
+.wt-block-manu
+{
+ margin-top:40px;
+ .top-brand
+ {
+  background:$main-bg;
+   .icon-brand
+   {
+    float:left;
+	width:43px;
+	height:42px;
+	background:$menu-ver-bg url(../img/topbrand.png) no-repeat;
+	
+   }
+  
+ }
+  .best-brand
+   {
+    background:$bg-head-menu; 
+	
+  }
+   h3 
+    {
+	  margin:0;
+	  display:inline-block;
+	  line-height:42px;
+	  color:$light-text-color;
+	  text-transform:uppercase;
+	  font-size:13px;
+	  margin-left:20px;
+	  @media (min-width: $screen-sm ) and (max-width: $screen-sm-max ) 
+	  {
+	  font-size:11px;
+	  }
+   }
+   @media (min-width: $screen-sm ) and (max-width: $screen-md-max)  
+   {
+     border:$main_border;
+   }
+}
+#ul_manu
+{
+ padding:0 35px;
+}
+.list_manu
+{
+position:relative;
+
+    .owl-stage-outer
+	{
+		max-height:65px;
+	}
+    .owl-carousel .owl-controls .owl-nav 
+	 {
+	  position:static;
+	  .owl-prev, .owl-next
+	  {
+	   position:absolute;
+	   left:0;
+	   top:50%;
+	   margin-top:-15px;
+	  }
+	   .owl-next
+	   {
+	   left:auto;
+	   right:0;
+	  }
+	   
+	 }
+	 
+	 img:hover  {
+		 opacity: 0.7;
+         filter: alpha(opacity=70);
+		} 
+}
+.wt-block-manu .banner-content
+{
+ position: relative;
+ &:before 
+ {
+ background-color: rgba(255, 255, 255, 0.15);
+    content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  -webkit-transition: all 0.6s ease-in-out;
+  transition: all 0.6s ease-in-out;
+  -moz-transition: all 0.6s ease-in-out;
+  -ms-transition: all 0.6s ease-in-out;
+  -o-transition: all 0.6s ease-in-out;
+ }
+ &:after 
+ {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  -webkit-transition: all 0.6s ease-in-out;
+  transition: all 0.6s ease-in-out;
+  -moz-transition: all 0.6s ease-in-out;
+  -ms-transition: all 0.6s ease-in-out;
+  -o-transition: all 0.6s ease-in-out;
+ }
+  &:hover:before
+   {
+   right: 50%;
+  left: 50%;
+  background: rgba(255,255,255,0.2);
+  }
+  &:hover:after 
+   {
+   top: 50%;
+  bottom: 50%;
+  background: rgba(255,255,255,0.2);
+  }
+}

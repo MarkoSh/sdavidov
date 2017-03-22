@@ -1,0 +1,154 @@
+@import "compass";
+@import "theme_variables";
+.search_hover:before {
+    content: "\f002";
+    font-family: "FontAwesome";
+    color:$light-text-color;
+    cursor: pointer;
+    font-size: 14px;
+	@media (max-width: $screen-xs-max)
+	{
+	 display:none;
+	}
+}
+.drop_search {
+    position: absolute;
+    top: -15px;
+    right: 0;
+    z-index: 1002;
+	background:$light-background;
+	border:1px solid #d0d0d0;
+	@media (max-width: $screen-xs-max)
+	{
+	 top:0;padding:3px;
+	 position:static;
+	 display:inline-block;
+	}
+}
+@media (min-width: 768px)
+{
+.drop_search {
+    display:none;
+}
+}
+#search_block_top {
+    float: right;
+    margin-right: 20px;
+    position: relative;
+	&:hover 
+	{
+	 .search_hover:before
+	 {
+	    color:$link-hover-color;
+	 }
+	}
+	@media (max-width: $screen-xs-max) 
+	{
+	 float:none !important;
+	}
+}
+#search_block_top {
+	
+	#searchbox {
+		float: left;
+		width: 100%;
+	}
+	.btn.button-search {
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		border: none;
+		color:$link-hover-color;
+		width:40px;
+		text-align: center;
+		height:40px;
+		span {
+			font-size:0;
+			 &:before
+			 {
+			  content: "\f002";
+			font-family: "FontAwesome";
+			cursor: pointer;
+			font-size: 14px;
+			 }
+			
+		}
+		@media (max-width: $screen-xs-max)
+		{
+		height:30px;width:72px;
+		}
+		
+	}
+	#search_query_top {
+		display: inline;
+		padding: 13px 60px 13px 13px;
+		height: 40px;
+		background:$light-background;
+		margin-right: 1px;
+		border:none;
+		width:465px;
+		&:focus{
+			border:none;
+			box-shadow:none;
+		}
+		@media (min-width: $screen-xs) and (max-width: $screen-xs-max)
+		{
+		 width:380px;
+		 padding: 5px 60px 5px 13px;
+		 height: 30px;
+		}
+		@media (max-width: $screen-xs - 1) 
+		{
+		 width:230px;
+		padding: 5px 60px 5px 13px;
+		height: 30px;
+		}
+	}
+}
+
+.ac_results {
+	background: $light-background;
+	border: 1px solid $base-border-color !important;
+	width: 475px !important;
+	
+	
+	li {
+		padding: 6px 10px !important;
+		font-weight: normal;
+		color: #686666;
+		font-size: 13px;
+		line-height: 22px;
+		&.ac_odd {
+			background: $light-background;
+		}
+		&:hover, &.ac_over {
+			background: $bg-hover-button;color:$light-text-color;
+			
+		}
+	}
+	@media (max-width: $screen-xs-max) 
+	{
+	width:240px !important;
+	}
+}
+
+form#searchbox {
+	position: relative;
+	label {
+		color: $base-text-color;
+	}
+	input#search_query_block {
+		margin-right:10px;
+		max-width:222px;
+		margin-bottom:10px;
+		display:inline-block;
+		float:left;
+	}
+	.button.button-small {
+		float:left;
+		i {
+			margin-right:0;
+		}
+	}
+}

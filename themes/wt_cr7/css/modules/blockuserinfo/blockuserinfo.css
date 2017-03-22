@@ -1,0 +1,32 @@
+.header_user_info {
+  float: right;
+  margin-top: 5px; }
+  .header_user_info a {
+    color: #999;
+    display: block;
+    margin-left: 30px;
+    cursor: pointer;
+    line-height: 22px;
+    float: left;
+    text-transform: capitalize;
+    font-family: "Roboto Condensed", sans-serif; }
+    .header_user_info a:hover, .header_user_info a.active {
+      color: #d21717; }
+    @media (min-width: 768px) {
+      .header_user_info a.icon-account, .header_user_info a.account {
+        margin-right: 0; } }
+  .header_user_info i {
+    margin-right: 10px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 13px;
+    font-weight: 500; }
+  @media (max-width: 767px) {
+    .header_user_info {
+      float: none;
+      display: inline-block; }
+      .header_user_info a {
+        display: inline-block;
+        float: none; } }
+
+/*# sourceMappingURL=blockuserinfo.css.map */

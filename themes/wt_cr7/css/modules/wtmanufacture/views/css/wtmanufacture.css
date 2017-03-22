@@ -1,0 +1,87 @@
+/* BLOCK #reinsurance_block ******************************************************************** */
+.manu-bar {
+  float: left;
+  width: 100%; }
+
+.wt-block-manu {
+  margin-top: 40px; }
+  .wt-block-manu .top-brand {
+    background: #d21717; }
+    .wt-block-manu .top-brand .icon-brand {
+      float: left;
+      width: 43px;
+      height: 42px;
+      background: #2b2b2b url(../img/topbrand.png) no-repeat; }
+  .wt-block-manu .best-brand {
+    background: #0f0f0f; }
+  .wt-block-manu h3 {
+    margin: 0;
+    display: inline-block;
+    line-height: 42px;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 13px;
+    margin-left: 20px; }
+    @media (min-width: 768px) and (max-width: 991px) {
+      .wt-block-manu h3 {
+        font-size: 11px; } }
+ 
+
+#ul_manu {
+  padding: 0 35px; }
+
+.list_manu {
+  position: relative; }
+  .list_manu .owl-stage-outer {
+    max-height: 65px; }
+  .list_manu .owl-carousel .owl-controls .owl-nav {
+    position: static; }
+    .list_manu .owl-carousel .owl-controls .owl-nav .owl-prev, .list_manu .owl-carousel .owl-controls .owl-nav .owl-next {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      margin-top: -15px; }
+    .list_manu .owl-carousel .owl-controls .owl-nav .owl-next {
+      left: auto;
+      right: 0; }
+  .list_manu img:hover {
+    opacity: 0.7;
+    filter: alpha(opacity=70); }
+
+.wt-block-manu .banner-content {
+  position: relative; }
+  .wt-block-manu .banner-content:before {
+    background-color: rgba(255, 255, 255, 0.15);
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    -webkit-transition: all 0.6s ease-in-out;
+    transition: all 0.6s ease-in-out;
+    -moz-transition: all 0.6s ease-in-out;
+    -ms-transition: all 0.6s ease-in-out;
+    -o-transition: all 0.6s ease-in-out; }
+  .wt-block-manu .banner-content:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    -webkit-transition: all 0.6s ease-in-out;
+    transition: all 0.6s ease-in-out;
+    -moz-transition: all 0.6s ease-in-out;
+    -ms-transition: all 0.6s ease-in-out;
+    -o-transition: all 0.6s ease-in-out; }
+  .wt-block-manu .banner-content:hover:before {
+    right: 50%;
+    left: 50%;
+    background: rgba(255, 255, 255, 0.2); }
+  .wt-block-manu .banner-content:hover:after {
+    top: 50%;
+    bottom: 50%;
+    background: rgba(255, 255, 255, 0.2); }
+
+/*# sourceMappingURL=wtmanufacture.css.map */

@@ -1,0 +1,63 @@
+/******************************************************************
+					Sitemap Page Styles
+*******************************************************************/
+#sitemap .sitemap_block .page-subheading {
+  margin-bottom: 16px; }
+#sitemap .sitemap_block li {
+  line-height: 16px;
+  padding-bottom: 11px; }
+  #sitemap .sitemap_block li a:before {
+    content: "\f105";
+    display: inline-block;
+    font-family: "FontAwesome";
+    padding-right: 10px; }
+  #sitemap .sitemap_block li a:hover {
+    font-weight: bold; }
+
+#listpage_content div.tree_top {
+  padding: 5px 0 0 27px; }
+  #listpage_content div.tree_top a:before {
+    content: "\f015";
+    display: inline-block;
+    font-family: "FontAwesome";
+    font-size: 20px;
+    color: #333; }
+  #listpage_content div.tree_top a:hover:before {
+    color: #d21717; }
+
+ul.tree {
+  padding-left: 24px; }
+  ul.tree li {
+    margin: 0 0 0 21px;
+    padding: 5px 0 0 33px;
+    border-left: 1px solid #dadada;
+    background: url(../img/sitemap-horizontal.png) no-repeat left 15px transparent; }
+    ul.tree li a:hover {
+      font-weight: bold; }
+  ul.tree > li {
+    margin: 0 0 0 11px; }
+  ul.tree li.last {
+    border: medium none;
+    background: url(../img/sitemap-last.png) no-repeat 0px -4px transparent; }
+
+#categories_block_left ul.tree, .category_footer ul.tree {
+  padding-left: 0; }
+  #categories_block_left ul.tree li, .category_footer ul.tree li {
+    margin: 0;
+    border-left: none;
+    background: none; }
+    #categories_block_left ul.tree li a:hover, .category_footer ul.tree li a:hover {
+      font-weight: bold; }
+  #categories_block_left ul.tree > li, .category_footer ul.tree > li {
+    margin: 0;
+    padding: 0; }
+  #categories_block_left ul.tree li.last, .category_footer ul.tree li.last {
+    border: none;
+    background: none; }
+
+.box .page-subheading {
+  border: none;
+  padding: 0;
+  font-size: 13px; }
+
+/*# sourceMappingURL=sitemap.css.map */
