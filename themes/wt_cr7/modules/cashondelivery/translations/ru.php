@@ -3,8 +3,10 @@
 global $_MODULE;
 $_MODULE = array();
 $_MODULE['<{cashondelivery}wt_cr7>cashondelivery_1f9497d3e8bac9b50151416f04119cec'] = 'Оплата при получении';
-$_MODULE['<{cashondelivery}wt_cr7>validation_644818852b4dd8cf9da73543e30f045a'] = 'Вернуться на страницу оплаты';
-$_MODULE['<{cashondelivery}wt_cr7>validation_6ff063fbc860a79759a7369ac32cee22'] = 'Оплата';
+$_MODULE['<{cashondelivery}wt_cr7>cashondelivery_7a3ef27eb0b1895ebf263ad7dd949fb6'] = 'Принимать оплату при получении';
+$_MODULE['<{cashondelivery}wt_cr7>cashondelivery_b7ada96a0da7ee7fb5371cca0b036d5c'] = 'Оплатить при получении';
+$_MODULE['<{cashondelivery}wt_cr7>validation_644818852b4dd8cf9da73543e30f045a'] = 'Вернуться к параметрам оплаты';
+$_MODULE['<{cashondelivery}wt_cr7>validation_6ff063fbc860a79759a7369ac32cee22'] = 'Оплатить';
 $_MODULE['<{cashondelivery}wt_cr7>validation_d538c5b86e9a71455ba27412f4e9ab51'] = 'Оплата наличными при получении';
 $_MODULE['<{cashondelivery}wt_cr7>validation_f1d3b424cd68795ecaa552883759aceb'] = 'Сводка по заказу';
 $_MODULE['<{cashondelivery}wt_cr7>validation_ad2f6328c24caa7d25dd34bfc3e7e25a'] = 'Вы выбрали оплату наличными при получении.';

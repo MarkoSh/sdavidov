@@ -20,4 +20,4 @@ $_MODULE['<{blockspecials}wt_cr7>blockspecials_d1aa22a3126f04664e0fe3f598994014'
 $_MODULE['<{blockspecials}wt_cr7>blockspecials_b4f95c1ea534936cc60c6368c225f480'] = 'Все скидки';
 $_MODULE['<{blockspecials}wt_cr7>blockspecials_3c9f5a6dc6585f75042bd4242c020081'] = 'В данный момент нет скидок.';
 $_MODULE['<{blockspecials}wt_cr7>tab_d1aa22a3126f04664e0fe3f598994014'] = 'Скидки';
-$_MODULE['<{blockspecials}wt_cr7>blockspecials_e420850bc0f6c94eff7edb2041b206bd'] = 'Нет специальных предложений';
+$_MODULE['<{blockspecials}wt_cr7>blockspecials_e420850bc0f6c94eff7edb2041b206bd'] = 'Пока нет товаров со скидками.';

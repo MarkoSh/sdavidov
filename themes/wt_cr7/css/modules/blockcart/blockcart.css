@@ -310,7 +310,6 @@ dl.products {
   position: absolute;
   display: none;
   z-index: 99;
-  width: 84%;
   margin-right: 8%;
   margin-left: 8%;
   -moz-border-radius: 4px;

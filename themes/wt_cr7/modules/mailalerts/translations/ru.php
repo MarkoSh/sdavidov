@@ -5,6 +5,7 @@ $_MODULE = array();
 $_MODULE['<{mailalerts}wt_cr7>mailalerts-account_36c94bd456cf8796723ad09eac258aef'] = 'Управление учётной записью';
 $_MODULE['<{mailalerts}wt_cr7>mailalerts-account_d95cf4ab2cbf1dfb63f066b50558b07d'] = 'Моя учетная запись';
 $_MODULE['<{mailalerts}wt_cr7>mailalerts-account_4edfd10d0bb5f51e0fd2327df608b5a8'] = 'Мои оповещения';
+$_MODULE['<{mailalerts}wt_cr7>mailalerts-account_1063e38cb53d94d386f21227fcd84717'] = 'Удалить';
 $_MODULE['<{mailalerts}wt_cr7>mailalerts-account_8bb23c2ae698681ebb650f43acb54dab'] = 'Нет почтовых оповещений.';
 $_MODULE['<{mailalerts}wt_cr7>mailalerts-account_0b3db27bc15f682e92ff250ebb167d4b'] = 'Вернуться к учетной записи';
 $_MODULE['<{mailalerts}wt_cr7>my-account_4edfd10d0bb5f51e0fd2327df608b5a8'] = 'Мои оповещения';
