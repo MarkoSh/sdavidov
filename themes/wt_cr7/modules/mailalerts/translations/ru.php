@@ -2,6 +2,7 @@
 
 global $_MODULE;
 $_MODULE = array();
+$_MODULE['<{mailalerts}wt_cr7>mailalerts_c9cc8cce247e49bae79f15173ce97354'] = 'Сохранить';
 $_MODULE['<{mailalerts}wt_cr7>mailalerts-account_36c94bd456cf8796723ad09eac258aef'] = 'Управление учётной записью';
 $_MODULE['<{mailalerts}wt_cr7>mailalerts-account_d95cf4ab2cbf1dfb63f066b50558b07d'] = 'Моя учетная запись';
 $_MODULE['<{mailalerts}wt_cr7>mailalerts-account_4edfd10d0bb5f51e0fd2327df608b5a8'] = 'Мои оповещения';
