@@ -5,6 +5,7 @@ $_MODULE = array();
 $_MODULE['<{sendtoafriend}wt_cr7>product_page_2107f6398c37b4b9ee1e1b5afb5d3b2a'] = 'Отправить другу';
 $_MODULE['<{sendtoafriend}wt_cr7>sendtoafriend_ajax_22c4733a9ceb239bf825a0cecd1cfaec'] = 'Друг';
 $_MODULE['<{sendtoafriend}wt_cr7>sendtoafriend-extra_11cbd9ec2e4b628c371094b6361b9c96'] = 'Ваше письмо отправлено';
+$_MODULE['<{sendtoafriend}wt_cr7>sendtoafriend-extra_6cec0d7f95fa3a4b3254ff11c15df8c3'] = 'Ваше письмо не может быть отправлено. Проверьте имя и электронный ящик и попробуйте снова.';
 $_MODULE['<{sendtoafriend}wt_cr7>sendtoafriend-extra_2107f6398c37b4b9ee1e1b5afb5d3b2a'] = 'Отправить другу';
 $_MODULE['<{sendtoafriend}wt_cr7>sendtoafriend-extra_d1f092e79827eaffce4a33fa011fde24'] = 'Вы заполнили не все обязательные поля';
 $_MODULE['<{sendtoafriend}wt_cr7>sendtoafriend-extra_5d6103b662f41b07e10687f03aca8fdc'] = 'Получатель:';
