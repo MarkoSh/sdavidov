@@ -64,6 +64,7 @@
 	}
 	input.form-control {
 		max-width: 270px;
+		width: 100%;
 	}
 	@media (min-width: $screen-md) and (max-width: $screen-md-max) {// min 992px max 1199px
 		div.uploader span.filename {
