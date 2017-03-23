@@ -20,3 +20,5 @@ $_MODULE['<{blockcontact}wt_cr7>blockcontact_736c5a7e834b7021bfa97180fc453115'] 
 $_MODULE['<{blockcontact}wt_cr7>nav_02d4482d332e1aef3437cd61c9bcc624'] = 'Свяжитесь с нами';
 $_MODULE['<{blockcontact}wt_cr7>nav_320abee94a07e976991e4df0d4afb319'] = 'Звоните нам:';
 $_MODULE['<{blockcontact}wt_cr7>blockcontact_9cfc9b74983d504ec71db33967591249'] = 'Связаться с нами';
+$_MODULE['<{blockcontact}wt_cr7>nav_9a843f20677a52ca79af903123147af0'] = 'Привет';
+$_MODULE['<{blockcontact}wt_cr7>nav_6c61f7abf9e27ab42d0acc1226a5a7c8'] = 'Наш номер';

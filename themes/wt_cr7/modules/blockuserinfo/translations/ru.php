@@ -21,3 +21,4 @@ $_MODULE['<{blockuserinfo}wt_cr7>nav_4b877ba8588b19f1b278510bf2b57ebb'] = 'Вы�
 $_MODULE['<{blockuserinfo}wt_cr7>nav_c87aacf5673fada1108c9f809d354311'] = 'Выход';
 $_MODULE['<{blockuserinfo}wt_cr7>nav_d4151a9a3959bdd43690735737034f27'] = 'Войти в учетную запись';
 $_MODULE['<{blockuserinfo}wt_cr7>nav_b6d4223e60986fa4c9af77ee5f7149c5'] = 'Войти';
+$_MODULE['<{blockuserinfo}wt_cr7>nav_9f7b857dbd2834e6dbae6d8de2611789'] = 'Избранное';

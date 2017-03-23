@@ -70,4 +70,3 @@ $_MODULE['<{blockcms}wt_cr7>form_f2a6c498fb90ee345d997f888fce3b18'] = 'Удал�
 $_MODULE['<{blockcms}wt_cr7>form_49ee3087348e8d44e1feda1917443987'] = 'Имя';
 $_MODULE['<{blockcms}wt_cr7>form_f7c68d40f8727c658e821c6e6d56af07'] = 'Страницы не созданы';
 $_MODULE['<{blockcms}wt_cr7>blockcms_3cb29f0ccc5fd220a97df89dafe46290'] = 'Популярные товары';
-$_MODULE['<{blockcms}wt_cr7>blockcms_8be39233fce812574e94aa277f5a2e32'] = '[1] %3$s %2$s - Интернет магазин разработан %1$s [/1]';
