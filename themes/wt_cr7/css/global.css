@@ -8363,7 +8363,7 @@ div.star.star_hover:after {
   background: #fff; }
   @media (min-width: 768px) {
     .footer-container {
-      background: url(../img/footer-bg.png) repeat-x #fff; } }
+       } }
 
 .mod_head {
   padding: 30px 0; }
