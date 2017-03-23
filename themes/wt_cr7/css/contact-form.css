@@ -41,12 +41,13 @@
   .contact-form-box .form-group {
     margin-bottom: 7px; }
   .contact-form-box textarea {
-    height: 257px; }
+    height: 257px;
+    max-width: 100%;
+  }
   .contact-form-box .submit {
     margin-top: 13px; }
   .contact-form-box select.form-control {
-    max-width: 270px;
-    width: 100%; }
+    max-width: 270px; }
   .contact-form-box input.form-control {
     max-width: 270px; }
   @media (min-width: 992px) and (max-width: 1199px) {

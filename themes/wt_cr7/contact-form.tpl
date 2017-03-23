@@ -141,7 +141,7 @@
 				<div class="col-xs-12 col-md-9">
 					<div class="form-group">
 						<label for="message">{l s='Message'}</label>
-						<textarea class="form-control" id="message" name="message">{if isset($message)}{$message|escape:'html':'UTF-8'|stripslashes}{/if}</textarea>
+						<textarea class="form-textarea" id="message" name="message">{if isset($message)}{$message|escape:'html':'UTF-8'|stripslashes}{/if}</textarea>
 					</div>
 				</div>
 			</div>
