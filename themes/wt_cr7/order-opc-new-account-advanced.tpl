@@ -249,7 +249,7 @@
                     {if isset($one_phone_at_least) && $one_phone_at_least}
                         <p class="inline-infos required is_customer_param">{l s='You must register at least one phone number.'}</p>
                     {/if}
-                    <div class="form-group is_customer_param">
+                    <div class="hidden form-group is_customer_param">
                         <label for="phone">{l s='Home phone'}</label>
                         <input type="text" class="text form-control validate" name="phone" id="phone"  data-validate="isPhoneNumber" value="{if isset($guestInformations) && isset($guestInformations.phone) && $guestInformations.phone}{$guestInformations.phone}{/if}" />
                     </div>
@@ -369,7 +369,7 @@
                         {if isset($one_phone_at_least) && $one_phone_at_least}
                             <p class="inline-infos required is_customer_param">{l s='You must register at least one phone number.'}</p>
                         {/if}
-                        <div class="form-group is_customer_param">
+                        <div class="hidden form-group is_customer_param">
                             <label for="phone_invoice">{l s='Home phone'}</label>
                             <input type="text" class="form-control validate" name="phone_invoice" id="phone_invoice" data-validate="isPhoneNumber" value="{if isset($guestInformations) && isset($guestInformations.phone_invoice) && $guestInformations.phone_invoice}{$guestInformations.phone_invoice}{/if}" />
                         </div>

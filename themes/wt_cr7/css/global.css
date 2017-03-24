@@ -7659,6 +7659,14 @@ p.cheque-indent {
   margin: 0;
   background: #2b2b2b;
   color: #fff; }
+#address .page-subheading.invert,
+#identity .page-subheading.invert,
+#account-creation_form .page-subheading.invert,
+#new_account_form .page-subheading.invert,
+#opc_account_form .page-subheading.invert,
+#authentication .page-subheading.invert {
+  color: inherit;
+}
 #address .account_creation,
 #identity .account_creation,
 #account-creation_form .account_creation,
