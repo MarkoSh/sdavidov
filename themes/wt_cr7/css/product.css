@@ -574,9 +574,8 @@ table.table-product-discounts {
       #quantity_wanted_p .btn.product_quantity_up {
         -moz-border-radius: 4px;
         -webkit-border-radius: 4px;
-        border-radius: 4px;
-        border: 1px solid #dadada;
-        margin-top: 5px; } }
+        border-radius: 0 4px 4px 0;
+        border: 1px solid #dadada; } }
   #quantity_wanted_p .btn.product_quantity_down {
     border-right: none;
     -moz-border-radius: 4px 0 0 4px;
@@ -586,9 +585,8 @@ table.table-product-discounts {
       #quantity_wanted_p .btn.product_quantity_down {
         -moz-border-radius: 4px;
         -webkit-border-radius: 4px;
-        border-radius: 4px;
-        border: 1px solid #dadada;
-        margin-bottom: 5px; } }
+        border-radius: 4px 0 0 4px;
+        border: 1px solid #dadada; } }
 #quantity_wanted_p label {
   display: block;
   margin-bottom: 4px; }
