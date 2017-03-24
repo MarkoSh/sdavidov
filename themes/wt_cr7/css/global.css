@@ -8302,8 +8302,7 @@ div.star.star_hover:after {
 #product_comparison #social-share-compare {
   margin-bottom: 50px; }
 
-.btn-facebook, .btn-twitter, .btn-google-plus, .btn-pinterest {
-  font-size: 13px;
+.btn-facebook, .btn-twitter, .btn-google-plus, .btn-pinterest, .btn-vk {
   border: none;
   margin-bottom: 3px;
   font-size: 0px;
@@ -8313,12 +8312,12 @@ div.star.star_hover:after {
   line-height: 28px;
   text-align: center;
   background: #efefef; }
-  .btn-facebook:hover, .btn-twitter:hover, .btn-google-plus:hover, .btn-pinterest:hover {
+  .btn-facebook:hover, .btn-twitter:hover, .btn-google-plus:hover, .btn-pinterest:hover, .btn-vk:hover {
     border-color: white; }
-  .btn-facebook i, .btn-twitter i, .btn-google-plus i, .btn-pinterest i {
+  .btn-facebook i, .btn-twitter i, .btn-google-plus i, .btn-pinterest i, .btn-vk i {
     font-size: 13px;
     color: #666; }
-    .btn-facebook i:before, .btn-twitter i:before, .btn-google-plus i:before, .btn-pinterest i:before {
+    .btn-facebook i:before, .btn-twitter i:before, .btn-google-plus i:before, .btn-pinterest i:before, .btn-vk i:before {
       line-height: 28px; }
 
 .btn-facebook:hover {
@@ -8342,8 +8341,14 @@ div.star.star_hover:after {
 .btn-pinterest:hover {
   color: white;
   background-color: #ce1f21; }
-  .btn-pinterest:hover i {
-    color: white; }
+.btn-pinterest:hover i {
+  color: white; }
+
+.btn-vk:hover {
+  color: white;
+  background-color: #45668e; }
+.btn-vk:hover i {
+  color: white; }
 
 .footer-top {
   padding: 24px 0;
