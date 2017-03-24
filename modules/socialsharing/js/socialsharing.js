@@ -37,7 +37,7 @@ $(document).ready(function(){
 					window.open('http://www.facebook.com/sharer.php?u=' + sharing_url, 'sharer', 'toolbar=0,status=0,width=660,height=445');
 					break;
 				case 'google-plus':
-					window.open('https://plus.google.com/share?url=' + sharing_url, 'sharer', 'toolbar=0,status=0,width=660,height=445');
+					window.open('https://plus.google.com/share?url=' + sharing_url, 'sharer', 'toolbar=0,status=0,width=395,height=625');
 					break;
 				case 'pinterest':
 					var img_url = sharing_img;
@@ -45,6 +45,9 @@ $(document).ready(function(){
 						img_url = $("#bigpic").attr('src');
 					}
 					window.open('http://www.pinterest.com/pin/create/button/?media=' + img_url + '&url=' + sharing_url, 'sharerpinterest', 'toolbar=0,status=0,width=660,height=445');
+					break;
+				case 'vk':
+					window.open('http://vk.com/share.php?url=' + sharing_url, 'sharer', 'toolbar=0,status=0,width=660,height=445');
 					break;
 			}
 		}
