@@ -129,7 +129,7 @@
 						<label for="lastname">{l s='Last name'} <sup>*</sup></label>
 						<input type="text" class="is_required validate form-control" data-validate="isName" id="lastname" name="lastname" value="{if isset($smarty.post.lastname)}{$smarty.post.lastname}{/if}" />
 					</div>
-					<div class="form-group date-select">
+					<div class="hidden form-group date-select">
 						<label>{l s='Date of Birth'}</label>
 						<div class="row">
 							<div class="col-xs-4">
@@ -384,7 +384,7 @@
 						{if isset($one_phone_at_least) && $one_phone_at_least}
 							<p class="inline-infos required is_customer_param">{l s='You must register at least one phone number.'}</p>
 						{/if}
-						<div class="form-group is_customer_param">
+						<div class="hidden form-group is_customer_param">
 							<label for="phone_invoice">{l s='Home phone'}</label>
 							<input type="text" class="form-control" name="phone_invoice" id="phone_invoice" value="{if isset($smarty.post.phone_invoice) && $smarty.post.phone_invoice}{$smarty.post.phone_invoice}{/if}" />
 						</div>
@@ -459,7 +459,7 @@
 				<input type="password" class="is_required validate form-control" data-validate="isPasswd" name="passwd" id="passwd" />
 				<span class="form_info">{l s='(Five characters minimum)'}</span>
 			</div>
-			<div class="form-group">
+			<div class="hidden form-group">
 				<label>{l s='Date of Birth'}</label>
 				<div class="row">
 					<div class="col-xs-4">
@@ -632,7 +632,7 @@
 					<label for="other">{l s='Additional information'}</label>
 					<textarea class="form-control" name="other" id="other" cols="26" rows="3">{if isset($smarty.post.other)}{$smarty.post.other}{/if}</textarea>
 				</p>
-				<p class="form-group">
+				<p class="hidden form-group">
 					<label for="phone">{l s='Home phone'}{if isset($one_phone_at_least) && $one_phone_at_least} <sup>**</sup>{/if}</label>
 					<input type="text" class="form-control" name="phone" id="phone" value="{if isset($smarty.post.phone)}{$smarty.post.phone}{/if}" />
 				</p>
