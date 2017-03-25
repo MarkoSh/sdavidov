@@ -109,6 +109,8 @@ $(document).ready(function(){
 		if (e.offsetX >= 16 && e.offsetX <= 39 && e.offsetY >= 16 && e.offsetY <= 34)
 			$(this).fadeOut();
 	});
+
+	$("[name^=phone]").inputmask("+7 (999) 999-99-99");
 });
 
 function highdpiInit()
