@@ -189,7 +189,7 @@
 					<h3 class="page-heading bottom-indent top-indent">{l s='Delivery address'}</h3>
 					{foreach from=$dlv_all_fields item=field_name}
 						{if $field_name eq "company"}
-							<div class="form-group">
+							<div class="hidden form-group">
 								<label for="company">{l s='Company'}{if in_array($field_name, $required_fields)} <sup>*</sup>{/if}</label>
 								<input type="text" class="form-control" id="company" name="company" value="{if isset($smarty.post.company)}{$smarty.post.company}{/if}" />
 							</div>

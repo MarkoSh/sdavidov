@@ -50,7 +50,7 @@
 		{assign var="atLeastOneExists" value=false}
 		{foreach from=$ordered_adr_fields item=field_name}
 			{if $field_name eq 'company'}
-				<div class="form-group">
+				<div class="hidden form-group">
 					<label for="company">{l s='Company'}{if isset($required_fields) && in_array($field_name, $required_fields)} <sup>*</sup>{/if}</label>
 					<input class="form-control validate" data-validate="{$address_validation.$field_name.validate}" type="text" id="company" name="company" value="{if isset($smarty.post.company)}{$smarty.post.company}{else}{if isset($address->company)}{$address->company|escape:'html':'UTF-8'}{/if}{/if}" />
 				</div>
