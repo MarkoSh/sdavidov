@@ -236,7 +236,7 @@
                                        value="{if isset($guestInformations) && isset($guestInformations.address1) && isset($guestInformations) && isset($guestInformations.address1) && $guestInformations.address1}{$guestInformations.address1}{/if}"/>
                             </div>
                         {elseif $field_name eq "address2"}
-                            <div class="text{if !in_array($field_name, $required_fields)} is_customer_param{/if} form-group">
+                            <div class="hidden text{if !in_array($field_name, $required_fields)} is_customer_param{/if} form-group">
                                 <label for="address2">{l s='Address (Line 2)'}{if in_array($field_name, $required_fields)}
                                         <sup>*</sup>
                                     {/if}</label>
