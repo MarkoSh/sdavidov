@@ -187,7 +187,7 @@
                     {$dniExist = false}
                     {foreach from=$dlv_all_fields item=field_name}
                         {if $field_name eq "company"}
-                            <div class="text form-group">
+                            <div class="hidden text form-group">
                                 <label for="company">{l s='Company'}{if in_array($field_name, $required_fields)}
                                         <sup>*</sup>
                                     {/if}</label>
