@@ -213,7 +213,7 @@
 								<input type="text" class="form-control" name="address1" id="address1" value="{if isset($smarty.post.address1)}{$smarty.post.address1}{/if}" />
 							</div>
 						{elseif $field_name eq "address2"}
-							<div class="form-group is_customer_param">
+							<div class="hidden form-group is_customer_param">
 								<label for="address2">{l s='Address (Line 2)'}{if in_array($field_name, $required_fields)} <sup>*</sup>{/if}</label>
 								<input type="text" class="form-control" name="address2" id="address2" value="{if isset($smarty.post.address2)}{$smarty.post.address2}{/if}" />
 							</div>
@@ -577,7 +577,7 @@
 							<span class="inline-infos">{l s='Street address, P.O. Box, Company name, etc.'}</span>
 						</p>
 					{elseif $field_name eq "address2"}
-						<p class="form-group is_customer_param">
+						<p class="hidden form-group is_customer_param">
 							<label for="address2">{l s='Address (Line 2)'}{if in_array($field_name, $required_fields)} <sup>*</sup>{/if}</label>
 							<input type="text" class="form-control" name="address2" id="address2" value="{if isset($smarty.post.address2)}{$smarty.post.address2}{/if}" />
 							<span class="inline-infos">{l s='Apartment, suite, unit, building, floor, etc...'}</span>

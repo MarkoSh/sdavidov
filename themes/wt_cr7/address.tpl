@@ -92,7 +92,7 @@
 				</div>
 			{/if}
 			{if $field_name eq 'address2'}
-				<div class="required form-group">
+				<div class="hidden required form-group">
 					<label for="address2">{l s='Address (Line 2)'}{if isset($required_fields) && in_array($field_name, $required_fields)} <sup>*</sup>{/if}</label>
 					<input class="validate form-control" data-validate="{$address_validation.$field_name.validate}" type="text" id="address2" name="address2" value="{if isset($smarty.post.address2)}{$smarty.post.address2}{else}{if isset($address->address2)}{$address->address2|escape:'html':'UTF-8'}{/if}{/if}" />
 				</div>
