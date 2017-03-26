@@ -111,6 +111,13 @@ $(document).ready(function(){
 	});
 
 	$("[name^=phone]").inputmask("+7 (999) 999-99-99");
+
+	if (!inIframe()) {
+		(function(w,d,u,b){
+			s=d.createElement('script');r=(Date.now()/1000|0);s.async=1;s.src=u+'?'+r;
+			h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
+		})(window,document,'https://cdn.bitrix24.ru/b3726477/crm/site_button/loader_2_7vyyzo.js');
+	}
 });
 
 function highdpiInit()
@@ -419,6 +426,14 @@ function bindUniform()
 		$("select.form-control,input[type='radio'],input[type='checkbox']").not(".not_unifrom").uniform();
 }
 /*index.js*/
+
+function inIframe () {
+	try {
+		return window.self !== window.top;
+	} catch (e) {
+		return true;
+	}
+}
 
 $(document).ready(function(){
 	$('#home-page-tabs li:first, #index .tab-content ul:first').addClass('active');
