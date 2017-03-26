@@ -25,7 +25,8 @@
 
 $(document).ready(function(){
 	var pageTitle = document.title,
-		content = $("#short_description_content").html(),
+		contentHTML = $("#short_description_content").html(),
+		contentText = $("#short_description_content").text(),
 		img = $("#bigpic").prop('src');
 	$('button.social-sharing').on('click', function(){
 		type = $(this).attr('data-type');
@@ -38,13 +39,10 @@ $(document).ready(function(){
 					break;
 				case 'facebook':
 					var data = {
-						s: 100,
-						p: {
-							title: pageTitle,
-							summary: content,
-							images: [img],
-							url: sharing_url
-						}
+						u: sharing_url,
+						title: pageTitle,
+						description: contentText,
+						picture: img
 					};
 					window.open('http://www.facebook.com/sharer.php?' + $.param(data), 'sharer', 'toolbar=0,status=0,width=660,height=445');
 					break;
@@ -62,7 +60,7 @@ $(document).ready(function(){
 					var data = {
 						url: sharing_url,
 						title: pageTitle,
-						description: content,
+						description: contentHTML,
 						image: img,
 						noparse: true
 					};
