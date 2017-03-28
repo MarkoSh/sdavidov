@@ -2,7 +2,6 @@
 
 global $_MODULE;
 $_MODULE = array();
-
 $_MODULE['<{blockadvertising}prestashop>blockadvertising_bedd646b07e65f588b06f275bd47be07'] = 'Блок рекламы';
 $_MODULE['<{blockadvertising}prestashop>blockadvertising_dc23a0e1424eda56d0700f7ebe628c78'] = 'Добавляет рекламный блок к выбранным секциям вашего интернет-магазина.';
 $_MODULE['<{blockadvertising}prestashop>blockadvertising_33476c93475bba83cdcaac18e09b95ec'] = 'Этот модуль должен быть закреплен в колонке, но в вашем шаблоне она не предусмотрена';
@@ -14,6 +13,3 @@ $_MODULE['<{blockadvertising}prestashop>blockadvertising_4163f94824da4886254e88d
 $_MODULE['<{blockadvertising}prestashop>blockadvertising_24c28ef67324898298e45026d8efabaf'] = 'Название ссылки';
 $_MODULE['<{blockadvertising}prestashop>blockadvertising_78315dd2b27ef8037115b9f66351c155'] = 'Это название будет отображаться при наведении указателя мыши на рекламный блок в вашем магазине.';
 $_MODULE['<{blockadvertising}prestashop>blockadvertising_c9cc8cce247e49bae79f15173ce97354'] = 'Сохранить';
-
-
-return $_MODULE;

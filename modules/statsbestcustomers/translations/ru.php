@@ -2,7 +2,6 @@
 
 global $_MODULE;
 $_MODULE = array();
-
 $_MODULE['<{statsbestcustomers}prestashop>statsbestcustomers_4f29d8c727dcf2022ac241cb96c31083'] = 'Вернулась пустая запись';
 $_MODULE['<{statsbestcustomers}prestashop>statsbestcustomers_f5c493141bb4b2508c5938fd9353291a'] = 'Показано %1$s из %2$s';
 $_MODULE['<{statsbestcustomers}prestashop>statsbestcustomers_77587239bf4c54ea493c7033e1dbf636'] = 'Фамилия';
@@ -22,6 +21,3 @@ $_MODULE['<{statsbestcustomers}prestashop>statsbestcustomers_397a5e109a5897ee7d6
 $_MODULE['<{statsbestcustomers}prestashop>statsbestcustomers_4bc24eed56e0ba89fc3ab4e094d18d8a'] = 'Постоянные акции: накопительные карты или баллы, позволяющие не только укрепить отношения с клиентом, но и предложить ему преимущества в виде персональных скидок и предложений.';
 $_MODULE['<{statsbestcustomers}prestashop>statsbestcustomers_2f408c42912e3afe23a0e4adcbe34b96'] = 'Эти мероприятия побуждают клиентов чаще посещать ваш магазин и совершать покупки.';
 $_MODULE['<{statsbestcustomers}prestashop>statsbestcustomers_998e4c5c80f27dec552e99dfed34889a'] = 'Экспорт в CSV';
-
-
-return $_MODULE;

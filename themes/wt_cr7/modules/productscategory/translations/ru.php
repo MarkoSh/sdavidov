@@ -15,5 +15,5 @@ $_MODULE['<{productscategory}wt_cr7>productscategory_f55e0a28b86c2ab66ac632ab9dd
 $_MODULE['<{productscategory}wt_cr7>productscategory_bebb44f38b03407098d48198c1d0aaa5'] = 'В этой категории %s товаров:';
 $_MODULE['<{productscategory}wt_cr7>productscategory_dd1f775e443ff3b9a89270713580a51b'] = 'Назад';
 $_MODULE['<{productscategory}wt_cr7>productscategory_10ac3d04253ef7e1ddc73e6091c0cd55'] = 'Вперед';
-$_MODULE['<{productscategory}wt_cr7>productscategory_4aae87211f77aada2c87907121576cfe'] = 'других товаров в этой категории:';
+$_MODULE['<{productscategory}wt_cr7>productscategory_4aae87211f77aada2c87907121576cfe'] = 'товаров в этой категории:';
 $_MODULE['<{productscategory}wt_cr7>productscategory_2d0f6b8300be19cf35e89e66f0677f95'] = 'В корзину';
