@@ -2,7 +2,6 @@
 
 global $_MODULE;
 $_MODULE = array();
-
 $_MODULE['<{dashactivity}prestashop>dashactivity_0369e7f54bf8a30b2766e6a9a708de0b'] = 'Панель активности';
 $_MODULE['<{dashactivity}prestashop>dashactivity_02b5205ddff3073efc5c8b5b9cc165ba'] = '(с %s по %s)';
 $_MODULE['<{dashactivity}prestashop>dashactivity_14542f5997c4a02d4276da364657f501'] = 'Прямая ссылка';
@@ -41,6 +40,3 @@ $_MODULE['<{dashactivity}prestashop>dashboard_zone_one_1a4aeb4ca6cd736a4a7b25d86
 $_MODULE['<{dashactivity}prestashop>dashboard_zone_one_d7e637a6e9ff116de2fa89551240a94d'] = 'Посещений';
 $_MODULE['<{dashactivity}prestashop>dashboard_zone_one_945f170a18e4894c90381a3d01bdef8b'] = 'Уникальных посетителей';
 $_MODULE['<{dashactivity}prestashop>dashboard_zone_one_0fcff541ec15c6ed895d5dec49436488'] = 'Источники трафика';
-
-
-return $_MODULE;

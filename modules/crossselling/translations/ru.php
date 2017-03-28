@@ -2,9 +2,8 @@
 
 global $_MODULE;
 $_MODULE = array();
-
 $_MODULE['<{crossselling}prestashop>crossselling_46532f43e161343763ff815e5208f7e9'] = 'Перекрестные продажи';
-$_MODULE['<{crossselling}prestashop>crossselling_83bcd48a4b3938f7cd10c898ece01adf'] = 'На страницу каждого товара добавляется раздел "С этим товаром также покупают..."';
+$_MODULE['<{crossselling}prestashop>crossselling_83bcd48a4b3938f7cd10c898ece01adf'] = 'На страницу каждого товара добавляется раздел \"С этим товаром также покупают...\"';
 $_MODULE['<{crossselling}prestashop>crossselling_462390017ab0938911d2d4e964c0cab7'] = 'Настройки обновлены';
 $_MODULE['<{crossselling}prestashop>crossselling_f4f70727dc34561dfde1a3c529b6205c'] = 'Настройки';
 $_MODULE['<{crossselling}prestashop>crossselling_b6bf131edd323320bac67303a3f4de8a'] = 'Отображать цены товаров';
@@ -18,8 +17,3 @@ $_MODULE['<{crossselling}prestashop>crossselling_ef2b66b0b65479e08ff0cce29e19d00
 $_MODULE['<{crossselling}prestashop>crossselling_dd1f775e443ff3b9a89270713580a51b'] = 'Назад';
 $_MODULE['<{crossselling}prestashop>crossselling_4351cfebe4b61d8aa5efa1d020710005'] = 'Просмотр';
 $_MODULE['<{crossselling}prestashop>crossselling_10ac3d04253ef7e1ddc73e6091c0cd55'] = 'Вперед';
-$_MODULE['<{crossselling}prestashop>crossselling_0f169d3dc0db47a4074489a89cb034b5'] = 'Мы рекомендуем';
-$_MODULE['<{crossselling}prestashop>crossselling_2d0f6b8300be19cf35e89e66f0677f95'] = 'В корзину';
-
-
-return $_MODULE;
