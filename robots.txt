@@ -79,3 +79,5 @@ Disallow: /*order
 Disallow: /*search
 Disallow: /*quick-order
 Disallow: /*guest-tracking
+# Sitemap
+Sitemap: https://fdtactical.ru/1_index_sitemap.xml
