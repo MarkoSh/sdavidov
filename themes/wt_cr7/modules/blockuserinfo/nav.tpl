@@ -10,7 +10,6 @@
 			<i class="icon-unlock"></i>{l s='Sign out' mod='blockuserinfo'}
 		</a>
 	{else}
-		<a href="{$link->getPageLink('mywishlist', true)|escape:'html':'UTF-8'}" title="{l s='Wish List' mod='blockuserinfo'}" class="icon-account" rel="nofollow"><i class="icon-star"></i><span>{l s='Wish List' mod='blockuserinfo'}</span></a>
 		<a class="login" href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Log in to your customer account' mod='blockuserinfo'}">
 			<i class="icon-unlock-alt"></i>{l s='Sign in' mod='blockuserinfo'}
 		</a>

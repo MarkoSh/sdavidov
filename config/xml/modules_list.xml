@@ -164,6 +164,7 @@
 		<module name="ogone"/>
 		<module name="onehopsmsservice"/>
 		<module name="openpayprestashop"/>
+		<module name="oyst"/>
 		<module name="packlinkpro"/>
 		<module name="pagseguro"/>
 		<module name="paygreen"/>

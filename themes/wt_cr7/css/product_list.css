@@ -100,6 +100,7 @@ ul.product_list .functional-buttons div a, ul.product_list .functional-buttons d
 Product list(Grid) Styles
 ********************************************************/
 ul.product_list.grid > li {
+  min-height: 310px;
   padding-bottom: 10px;
   text-align: center; }
   @media (min-width: 480px) and (max-width: 767px) {
