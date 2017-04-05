@@ -23,7 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 <div>
-	<div class="col-xs-12 col-md-6">
+	<div class="col-xs-12 col-md-12">
 		<p class="payment_module">
 			<a class="bankwire" href="{$link->getModuleLink('bankwire', 'payment')|escape:'html':'UTF-8'}" title="{l s='Pay by bank wire' mod='bankwire'}">
 				 <span class="payment-first">{l s='Pay by bank wire' mod='bankwire'}</span> <span>{l s='(order processing will be longer)' mod='bankwire'}</span>
