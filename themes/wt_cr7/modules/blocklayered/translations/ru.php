@@ -37,7 +37,7 @@ $_MODULE['<{blocklayered}wt_cr7>blocklayered_9b569fa0e7896f0e96164b954265eac5'] 
 $_MODULE['<{blocklayered}wt_cr7>blocklayered_cf4c997f944b08d0eff346a32272998c'] = '%1$s: %2$s %4$s - %3$s %4$s';
 $_MODULE['<{blocklayered}wt_cr7>blocklayered_6c03a470e52036813f268bbfa0873529'] = '%1$s: %2$s';
 $_MODULE['<{blocklayered}wt_cr7>blocklayered_b47b72ddf8a3fa1949a7fb6bb5dbc60c'] = 'Без фильтров';
-$_MODULE['<{blocklayered}wt_cr7>blocklayered_75954a3c6f2ea54cb9dff249b6b5e8e6'] = 'Диапазон:';
+$_MODULE['<{blocklayered}wt_cr7>blocklayered_75954a3c6f2ea54cb9dff249b6b5e8e6'] = 'Цена:';
 $_MODULE['<{blocklayered}wt_cr7>blocklayered_5da618e8e4b89c66fe86e32cdafde142'] = 'С';
 $_MODULE['<{blocklayered}wt_cr7>blocklayered_01b6e20344b68835c5ed1ddedf20d531'] = 'по';
 $_MODULE['<{blocklayered}wt_cr7>blocklayered_146ffe2fd9fa5bec3b63b52543793ec7'] = 'Показать больше';
