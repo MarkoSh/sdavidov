@@ -92,7 +92,7 @@ class AdminAddLayerImageController extends ModuleAdminController
 			'list_images' => $list_images,
 			'id_lang' => $id_lang,
 			'image_path'  => _MODULE_DIR_.'wtslideshow/views/img/layers/',
-			'cs_ajax_link' => _PS_BASE_URL_.__PS_BASE_URI__.'modules/wtslideshow/ajax_wtslideshow.php'
+			'cs_ajax_link' => _PS_BASE_URL_SSL_.__PS_BASE_URI__.'modules/wtslideshow/ajax_wtslideshow.php'
 		));
 		$this->smartyOutputContent(_PS_MODULE_DIR_.'wtslideshow/views/templates/admin/layermedia.tpl');
 		return true;

@@ -27,6 +27,7 @@
 /***reponsive***/
 @media (min-width: 768px ) 
 {
+    .title-menu-mobile,.icon-drop-mobile{display:none;}
 #index #wt-menu-ver-left ul.menu-content{display:block !important; height: auto !important}
 #wt-menu-ver-left .menu-dropdown
 {

@@ -31,11 +31,6 @@
                             <label class="col-lg-3">{if {l s='SKRILL_BACKEND_ORDER_STATUS' mod='skrill'} == "SKRILL_BACKEND_ORDER_STATUS"}Payment status{else}{l s='SKRILL_BACKEND_ORDER_STATUS' mod='skrill'}{/if}</label>
                             <label class="control-label col-lg-9">{$paymentInfo.status|escape:'htmlall':'UTF-8'}</label>
                         </div>
-                        {if isset($paymentInfo.fraudPayment)}
-                            <label class="col-lg-3">&nbsp;</label>
-                            <label class="control-label col-lg-9">{if {l s='BACKEND_TT_FRAUD' mod='skrill'} == "BACKEND_TT_FRAUD"}was considered fraudulent{else}{l s='BACKEND_TT_FRAUD' mod='skrill'}{/if}</label>
-
-                        {/if}
                         <div class="form-group">
                             <label class="col-lg-3">{if {l s='SKRILL_BACKEND_ORDER_PM' mod='skrill'} == "SKRILL_BACKEND_ORDER_PM"}Used payment method{else}{l s='SKRILL_BACKEND_ORDER_PM' mod='skrill'}{/if}</label>
                             <label class="control-label col-lg-9">{$paymentInfo.method|escape:'htmlall':'UTF-8'}</label>
@@ -77,7 +72,7 @@
                         {/if}
                         {if $buttonRefundOrder}
                             <input type="hidden" name='id_order' value="{$orderId|escape:'htmlall':'UTF-8'}">
-                            <button type="submit" style="display:none" name="skrillRefundOrder" id="skrillRefundOrder">Refund</button>
+                            <button type="submit" class="btn btn-primary pull-right" name="skrillRefundOrder" id="skrillRefundOrder">{if {l s='BACKEND_BT_REFUND' mod='skrill'} == "BACKEND_BT_REFUND"}Refund{else}{l s='BACKEND_BT_REFUND' mod='skrill'}{/if}</button>
                         {/if}
                     </div>
                 </form>

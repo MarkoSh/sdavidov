@@ -25,148 +25,186 @@ class SkrillPaymentCore
     protected static $skrillRefundUrl = 'https://www.moneybookers.com/app/refund.pl';
 
     public static $paymentMethods = array (
-            'FLEXIBLE' => array(
-                 'name' => 'Pay By Skrill',
-                 'countries'  => 'ALL'
+        'FLEXIBLE' => array(
+            'name' => 'Pay By Skrill',
+            'countries' => 'ALL'
+        ),
+        'WLT' => array(
+            'name' => 'Skrill Wallet',
+            'countries' => 'ALL'
+        ),
+        'PSC' => array(
+            'name' => 'Paysafecard',
+            'countries' => array(
+                'ASM','AUT','BEL','CAN','HRV','CYP','CZE','DNK','FIN','FRA','DEU','GUM','HUN','IRL','ITA','LVA','LUX',
+                'MLT','MEX','NLD','MNP','NOR','POL','PRT','PRI','ROU','SVK','SVN','ESP','SWE','CHE','TUR','GBR','USA',
+                'VIR'
+            )
+        ),
+        'ACC' => array(
+            'name' => 'Credit Card / Visa, Mastercard, AMEX, JCB, Diners',
+            'countries' => 'ALL'
+        ),
+        'VSA' => array(
+            'name' => 'Visa',
+            'countries' => 'ALL'
+        ),
+        'MSC' => array(
+            'name' => 'MasterCard',
+            'countries' => 'ALL'
+        ),
+        'VSE' => array(
+            'name' => 'Visa Electron',
+            'countries' => array(
+                'AFG','ALB','DZA','ASM','AND','AGO','AIA','ATA','ATG','ARG','ARM','ABW','AUS','AUT','AZE','BHS','BHR',
+                'BGD','BRB','BLR','BEL','BLZ','BEN','BMU','BTN','BOL','BIH','BWA','BVT','BRA','IOT','VGB','BRN','BGR',
+                'BFA','BDI','KHM','CMR','CAN','CPV','CYM','CAF','TCD','CHL','CHN','CXR','CCK','COL','COM','COG','COD',
+                'COK','CRI','HRV','CUB','CYP','CZE','CIV','DNK','DJI','DMA','DOM','ECU','EGY','SLV','GNQ','ERI','EST',
+                'ETH','FLK','FRO','FJI','FIN','FRA','GUF','PYF','ATF','GAB','GMB','GEO','DEU','GHA','GIB','GRC','GRL',
+                'GRD','GLD','GUM','GTM','GGY','HTI','HMD','VAT','GIN','GNB','HND','HKG','HUN','ISL','IND','IDN','IRN',
+                'IRQ','IRL','IMN','ISR','ITA','JAM','JPN','JEY','JOR','KAZ','KEN','KIR','KWT','KGZ','LAO','LVA','LBN',
+                'LSO','LBR','LBY','LIE','LTU','LUX','MAC','MKD','MDG','MWI','MYS','MDV','MLI','MLT','MHL','MTQ','MRT',
+                'MUS','MYT','MEX','FSM','MDA','MCO','MNG','MNE','MSR','MAR','MOZ','MMR','NAM','NRU','NPL','NLD','ANT',
+                'NCL','NZL','NIC','NER','NGA','NIU','NFK','PRK','MNP','NOR','OMN','PAK','PLW','PSE','PAN','PNG','PRY',
+                'PER','PHL','PCN','POL','PRT','PRI','QAT','ROU','RUS','RWA','REU','BLM','SHN','KNA','LCA','MAF','SPM',
+                'WSM','SMR','SAU','SEN','SRB','SYC','SLE','SGP','SVK','SVN','SLB','SOM','ZAF','SGS','KOR','ESP','LKA',
+                'VCT','SDN','SUR','SJM','SWZ','SWE','CHE','SYR','STP','TWN','TJK','TZA','THA','TLS','TGO','TKL','TON',
+                'TTO','TUN','TUR','TKM','TCA','TUV','UMI','VIR','UGA','UKR','ARE','GBR','USA','URY','UZB','VUT','GUY',
+                'VEN','VNM','WLF','ESH','YEM','ZMB','ZWE','ALA','SSD'
+            )
+        ),
+        'MAE' => array(
+            'name' => 'Maestro',
+            'countries' => array('GBR','ESP','IRL','AUT')
+        ),
+        'AMX' => array(
+            'name' => 'American Express',
+            'countries' => 'ALL'
+        ),
+        'DIN' => array(
+            'name' => 'Diners',
+            'countries' => 'ALL'
+        ),
+        'JCB' => array(
+            'name' => 'JCB',
+            'countries' => 'ALL'
+        ),
+        'GCB' => array(
+            'name' => 'Carte Bleue by Visa',
+            'countries' => array('FRA')
+        ),
+        'DNK' => array(
+            'name' => 'Dankort by Visa',
+            'countries' => array('DNK')
+        ),
+        'PSP' => array(
+            'name' => 'PostePay by Visa',
+            'countries' => array('ITA')
+        ),
+        'CSI' => array(
+            'name' => 'CartaSi by Visa',
+            'countries' => array('ITA')
+        ),
+        'OBT' => array(
+            'name' => 'Rapid Transfer',
+            'countries' => array('DEU','GBR','FRA','ITA','ESP','HUN',
+                                 'AUT','PRT','SWE','FIN','DNK'
+            )
+        ),
+        'GIR' => array(
+            'name' => 'Giropay',
+            'countries' => array('DEU')
+        ),
+        'DID' => array(
+            'name' => 'Direct Debit / SEPA',
+            'countries' => array('DEU')
+        ),
+        'SFT' => array(
+            'name' => 'Sofortueberweisung',
+            'countries' => array('DEU','AUT','BEL','NLD','ITA','FRA','POL','GBR')
+        ),
+        'EBT' => array(
+            'name' => 'Nordea Solo',
+            'countries' => array('SWE')
+        ),
+        'IDL' => array(
+            'name' => 'iDEAL',
+            'countries' => array('NLD')
+        ),
+        'NPY' => array(
+            'name' => 'EPS (Netpay)',
+            'countries' => array('AUT')
+        ),
+        'PLI' => array(
+            'name' => 'POLi',
+            'countries' => array('AUS')
+        ),
+        'PWY' => array(
+            'name' => 'Przelewy24',
+            'countries' => array('POL')
+        ),
+        'EPY' => array(
+            'name' => 'ePay.bg',
+            'countries' => array('BGR')
+        ),
+        'GLU' => array(
+            'name' => 'Trustly',
+            'countries' => array('SWE','FIN','EST','DNK','ESP','POL',
+                                 'ITA','FRA','DEU','PRT','AUT','LVA',
+                                 'LTU','NLD','NOR','GBR'
+            )
+        ),
+        'ALI' => array(
+            'name' => 'Alipay',
+            'countries' => array('CHN')
+        ),
+        'NTL' => array(
+            'name' => 'Neteller',
+            'countries' => array(
+                'ALA','ALB','DZA','ASM','AND','AGO','AIA','ATA','ATG','ARG','ABW','AUS','AUT','AZE','BHS','BHR','BGD',
+                'BRB','BLR','BEL','BLZ','BEN','BMU','BOL','BIH','BWA','BRA','BRN','BGR','BFA','BDI','KHM','CMR','CAN',
+                'CPV','CYM','CAF','TCD','CHL','CXR','CRI','COL','COM','COG','HRV','CYP','CZE','DNK','DJI','DMA','DOM',
+                'ECU','EGY','SLV','GNQ','EST','ETH','FLK','FRO','FJI','FIN','GGY','FRA','GUF','PYF','ATF','GAB','GMB',
+                'GEO','DEU','GHA','GIB','GRC','GRL','GRD','GLP','GTM','HMD','VAT','GIN','GUY','HND','HKG','HUN','ISL',
+                'IND','IDN','IRL','IMN','ISR','ITA','JAM','JPN','JEY','JOR','KEN','KIR','KOR','KWT','LAO','LVA','LBN',
+                'LSO','LIE','LTU','LUX','MAC','MKD','MDG','MWI','MYS','MDV','MLI','MLT','MTQ','MRT','MUS','MYT','MEX',
+                'MDA','MCO','MNE','MSR','MAR','MOZ','NAM','NPL','NLD','ANT','NCL','NZL','NIC','NER','NGA','NIU','NFK',
+                'NOR','OMN','PSE','PAN','PNG','PRY','PER','PHL','PCN','POL','PRT','QAT','REU','ROU','RUS','RWA','SHN',
+                'KNA','LCA','SPM','VCT','WSM','SMR','STP','SAU','SEN','SRB','SYC','SGP','SVK','SVN','SLB','ZAF','ESP',
+                'LKA','SUR','SJM','SWZ','SWE','CHE','TWN','TZA','THA','TGO','TKL','TON','TTO','TUN','TUR','TCA','TUV',
+                'UKR','ARE','GBR','URY','VUT','VEN','VNM','VGB','WLF','ESH','ZMB'
+            )
+        ),
+        'ACI' => array(
+            'name' => 'Cash / Invoice',
+            'countries' => array('ARG','BRA','CHL','COL','MEX','PER','URY'),
+            'logos' => array(
+                'red-link.png','pago-facil.png','boleto-bancario.png','servi-pag.png','efecty.png','davivienda.png',
+                'exito.png','banco-de-occidente.png','carulla.png','edeq.png','surtimax.png','bancomer_m.png',
+                'oxxo.png','banamex.png','santander.png','red-pagos.png'
             ),
-            'WLT' => array(
-                 'name' => 'Skrill Wallet',
-                 'countries'  => 'ALL'
-            ),
-            'PSC' => array(
-                 'name' => 'Paysafecard',
-                 'countries'  => 'ASM,AUT,BEL,CAN,HRV,CYP,CZE,DNK,FIN,FRA,DEU,
-                 GUM,HUN,IRL,ITA,LVA,LUX,MLT,MEX,NLD,MNP,NOR,POL,PRT,PRI,ROU,
-                 SVK,SVN,ESP,SWE,CHE,TUR,GBR,USA,VIR'
-            ),
-            'ACC' => array(
-                 'name' => 'Credit Cards',
-                 'countries'  => 'ALL'
-            ),
-            'VSA' => array(
-                 'name' => 'Visa',
-                 'countries'  => 'ALL'
-            ),
-            'MSC' => array(
-                 'name' => 'MasterCard',
-                 'countries'  => 'ALL'
-            ),
-            'VSE' => array(
-                 'name' => 'Visa Electron',
-                 'countries'  => 'AFG,ALB,DZA,ASM,AND,AGO,AIA,ATA,ATG,ARG,ARM,ABW,AUS,AUT,
-                 AZE,BHS,BHR,BGD,BRB,BLR,BEL,BLZ,BEN,BMU,BTN,BOL,BIH,BWA,BVT,BRA,IOT,VGB,
-                 BRN,BGR,BFA,BDI,KHM,CMR,CAN,CPV,CYM,CAF,TCD,CHL,CHN,CXR,CCK,COL,COM,COG,
-                 COD,COK,CRI,HRV,CUB,CYP,CZE,CIV,DNK,DJI,DMA,DOM,ECU,EGY,SLV,GNQ,ERI,EST,
-                 ETH,FLK,FRO,FJI,FIN,FRA,GUF,PYF,ATF,GAB,GMB,GEO,DEU,GHA,GIB,GRC,GRL,GRD,
-                 GLD,GUM,GTM,GGY,HTI,HMD,VAT,GIN,GNB,HND,HKG,HUN,ISL,IND,IDN,IRN,IRQ,IRL,
-                 IMN,ISR,ITA,JAM,JPN,JEY,JOR,KAZ,KEN,KIR,KWT,KGZ,LAO,LVA,LBN,LSO,LBR,LBY,
-                 LIE,LTU,LUX,MAC,MKD,MDG,MWI,MYS,MDV,MLI,MLT,MHL,MTQ,MRT,MUS,MYT,MEX,FSM,
-                 MDA,MCO,MNG,MNE,MSR,MAR,MOZ,MMR,NAM,NRU,NPL,NLD,ANT,NCL,NZL,NIC,NER,NGA,
-                 NIU,NFK,PRK,MNP,NOR,OMN,PAK,PLW,PSE,PAN,PNG,PRY,PER,PHL,PCN,POL,PRT,PRI,
-                 QAT,ROU,RUS,RWA,REU,BLM,SHN,KNA,LCA,MAF,SPM,WSM,SMR,SAU,SEN,SRB,SYC,SLE,
-                 SGP,SVK,SVN,SLB,SOM,ZAF,SGS,KOR,ESP,LKA,VCT,SDN,SUR,SJM,SWZ,SWE,CHE,SYR,
-                 STP,TWN,TJK,TZA,THA,TLS,TGO,TKL,TON,TTO,TUN,TUR,TKM,TCA,TUV,UMI,VIR,UGA,
-                 UKR,ARE,GBR,USA,URY,UZB,VUT,GUY,VEN,VNM,WLF,ESH,YEM,ZMB,ZWE,ALA,SSD'
-            ),
-            'MAE' => array(
-                 'name' => 'Maestro',
-                 'countries'  => 'GBR,ESP,IRL,AUT'
-            ),
-            'AMX' => array(
-                 'name' => 'American Express',
-                 'countries'  => 'ALL'
-            ),
-            'DIN' => array(
-                 'name' => 'Diners',
-                 'countries'  => 'ALL'
-            ),
-            'JCB' => array(
-                 'name' => 'JCB',
-                 'countries'  => 'ALL'
-            ),
-            'GCB' => array(
-                 'name' => 'Carte Bleue by Visa',
-                 'countries'  => 'FRA'
-            ),
-            'DNK' => array(
-                 'name' => 'Dankort by Visa',
-                 'countries'  => 'DNK'
-            ),
-            'PSP' => array(
-                 'name' => 'PostePay by Visa',
-                 'countries'  => 'ITA'
-            ),
-            'CSI' => array(
-                 'name' => 'CartaSi by Visa',
-                 'countries'  => 'ITA'
-            ),
-            'OBT' => array(
-                 'name' => 'Rapid Transfer',
-                 'countries'  => 'DEU,GBR,FRA,ITA,ESP,HUN,AUT'
-            ),
-            'GIR' => array(
-                 'name' => 'Giropay',
-                 'countries'  => 'DEU'
-            ),
-            'DID' => array(
-                 'name' => 'Direct Debit / SEPA',
-                 'countries'  => 'DEU'
-            ),
-            'SFT' => array(
-                 'name' => 'Sofortueberweisung',
-                 'countries'  => 'DEU,AUT,BEL,NLD,ITA,FRA,POL,GBR'
-            ),
-            'EBT' => array(
-                 'name' => 'Nordea Solo',
-                 'countries'  => 'SWE'
-            ),
-            'IDL' => array(
-                 'name' => 'iDEAL',
-                 'countries'  => 'NLD'
-            ),
-            'NPY' => array(
-                 'name' => 'EPS (Netpay)',
-                 'countries'  => 'AUT'
-            ),
-            'PLI' => array(
-                 'name' => 'POLi',
-                 'countries'  => 'AUS'
-            ),
-            'PWY' => array(
-                 'name' => 'Przelewy24',
-                 'countries'  => 'POL'
-            ),
-            'EPY' => array(
-                 'name' => 'ePay.bg',
-                 'countries'  => 'BGR'
-            ),
-            'GLU' => array(
-                 'name' => 'Trustly',
-                 'countries'  => 'SWE,FIN,EST,DNK,ESP,POL,ITA,FRA,DEU,PRT,AUT,LVA,LTU,NLD'
-            ),
-            'ALI' => array(
-                 'name' => 'Alipay',
-                 'countries'  => 'CHN'
-            ),
-            'NTL' => array(
-                 'name' => 'Neteller',
-                 'countries'  => 'ALA,ALB,DZA,ASM,AND,AGO,AIA,ATA,ATG,ARG,ABW,AUS,AUT,AZE,
-                 BHS,BHR,BGD,BRB,BLR,BEL,BLZ,BEN,BMU,BOL,BIH,BWA,BRA,BRN,BGR,BFA,BDI,KHM,
-                 CMR,CAN,CPV,CYM,CAF,TCD,CHL,CXR,CRI,COL,COM,COG,HRV,CYP,CZE,DNK,DJI,DMA,
-                 DOM,ECU,EGY,SLV,GNQ,EST,ETH,FLK,FRO,FJI,FIN,GGY,FRA,GUF,PYF,ATF,GAB,GMB,
-                 GEO,DEU,GHA,GIB,GRC,GRL,GRD,GLP,GTM,HMD,VAT,GIN,GUY,HND,HKG,HUN,ISL,IND,
-                 IDN,IRL,IMN,ISR,ITA,JAM,JPN,JEY,JOR,KEN,KIR,KOR,KWT,LAO,LVA,LBN,LSO,LIE,
-                 LTU,LUX,MAC,MKD,MDG,MWI,MYS,MDV,MLI,MLT,MTQ,MRT,MUS,MYT,MEX,MDA,MCO,MNE,
-                 MSR,MAR,MOZ,NAM,NPL,NLD,ANT,NCL,NZL,NIC,NER,NGA,NIU,NFK,NOR,OMN,PSE,PAN,
-                 PNG,PRY,PER,PHL,PCN,POL,PRT,QAT,REU,ROU,RUS,RWA,SHN,KNA,LCA,SPM,VCT,WSM,
-                 SMR,STP,SAU,SEN,SRB,SYC,SGP,SVK,SVN,SLB,ZAF,ESP,LKA,SUR,SJM,SWZ,SWE,CHE,
-                 TWN,TZA,THA,TGO,TKL,TON,TTO,TUN,TUR,TCA,TUV,UKR,ARE,GBR,URY,VUT,VEN,VNM,
-                 VGB,WLF,ESH,ZMB'
-            )/*,
-            'ADB' => array(
-                 'name' => 'Astropay',
-                 'countries'  => 'ALL'
-            )*/
+            'banks' => array(
+                'RedLink','Pago Facil','Boleto Bancario','Servi Pag','Efecty','Davivienda',
+                'Éxito','Banco de Occidente','Carulla','EDEQ','SurtiMax','BBVA Bancomer',
+                'OXXO','Banamex','Banco Santander','Redpagos'
+            )
+        ),
+        'ADB' => array(
+            'name' => 'Direct Bank Transfer',
+            'countries' => array('ARG','BRA'),
+            'logos' => array('santander-rio.png','itau.png','banco-do-brasil.png','bradesco.png'),
+            'banks' => array('Banco Santander Rio','Banco Itau','Banco do Brasil','Banco Bradesco')
+        ),
+        'AOB' => array(
+            'name' => 'Manual Bank Transfer',
+            'countries' => array('BRA','CHL','COL'),
+            'logos' => array('hsbc.png','caixa.png','santander.png','PSEi.png','webpaylogo.png','bancolombia.jpg'),
+            'banks' => array('HSBC','Caixa','Santander','PSEi','WebPay','Bancolombia')
+        ),
+        'AUP' => array(
+            'name' => 'Unionpay',
+            'countries' => array('CHN')
+        )
     );
 
     /**
@@ -359,8 +397,7 @@ class SkrillPaymentCore
             if ($value['countries'] == 'ALL') {
                 $supportedPayments[] =  $key;
             } else {
-                $countryList = explode(',', $value['countries']);
-                if (in_array($countryCode, $countryList)) {
+                if (in_array($countryCode, $value['countries'])) {
                     $supportedPayments[] =  $key;
                 }
             }
@@ -437,6 +474,12 @@ class SkrillPaymentCore
                 break;
             case '-6':
                 $status = 'BACKEND_TT_REFUNDED_PENDING';
+                break;
+            case '-7':
+                $status = 'BACKEND_TT_INVALID_CREDENTIAL';
+                break;
+            case '-8':
+                $status = 'BACKEND_TT_FRAUD';
                 break;
             default:
                 $status = 'ERROR_GENERAL_ABANDONED_BYUSER';

@@ -30,6 +30,7 @@ class SkrillPaymentStatusModuleFrontController extends ModuleFrontController
             PrestaShopLogger::addLog('Skrill - use status_url', 1, null, 'Cart', $cartId, true);
             PrestaShopLogger::addLog('Skrill - get payment response from status_url', 1, null, 'Cart', $cartId, true);
             $paymentResponse = $this->getPaymentResponse();
+
             $messageLog = 'Skrill - payment response from status_url : ' . print_r($paymentResponse, true);
             PrestaShopLogger::addLog($messageLog, 1, null, 'Cart', $cartId, true);
 
@@ -61,11 +62,6 @@ class SkrillPaymentStatusModuleFrontController extends ModuleFrontController
                 }
                 die('ok');
             }
-
-            PrestaShopLogger::addLog('Skrill - get version tracker parameters', 1, null, 'Cart', $cartId, true);
-            $versionData = $this->module->getVersionData();
-            $messageLog = 'Skrill - version tracker parameters : ' . print_r($versionData, true);
-            PrestaShopLogger::addLog($messageLog, 1, null, 'Cart', $cartId, true);
 
             $this->validatePayment($cartId, $paymentResponse);
         }
@@ -103,22 +99,28 @@ class SkrillPaymentStatusModuleFrontController extends ModuleFrontController
 
         if ($paymentResponse['status'] == $this->module->processedStatus
             || $paymentResponse['status'] == $this->module->pendingStatus) {
+            $generatedMd5Sig = $this->module->generateMd5sig($paymentResponse);
+            $isPaymentSignatureEqualsGeneratedSignature = $this->module->isPaymentSignatureEqualsGeneratedSignature(
+                $paymentResponse['md5sig'],
+                $generatedMd5Sig
+            );
 
-            PrestaShopLogger::addLog('Skrill - validate fraud payment', 1, null, 'Cart', $cartId, true);
-            $isFraud = $this->module->isFraud($paymentResponse);
-            $convertedIsFraud = ($isFraud) ? 'true' : 'false';
-            $messageLog = 'Skrill - fraud : '. $convertedIsFraud;
-            PrestaShopLogger::addLog($messageLog, 1, null, 'Cart', $cartId, true);
+            $generatedAntiFraudHash = $this->module->generateAntiFraudHash(
+                $cartId,
+                Tools::getValue('payment_method'),
+                $cart->date_add
+            );
+            $isFraud = $this->module->isFraud($generatedAntiFraudHash, Tools::getValue('secure_payment'));
 
-            if ($isFraud) {
-                $fraudStatus = $this->module->processFraudPayment($paymentResponse);
-                if ($fraudStatus == $this->module->failedStatus) {
-                    $paymentResponse['status'] = $this->module->refundFailedStatus;
-                } else {
-                    $paymentResponse['status'] = $this->module->refundedStatus;
-                }
+            if (!$isPaymentSignatureEqualsGeneratedSignature) {
+                $paymentResponse['status'] = $this->module->invalidCredentialStatus;
+                $messageLog = 'Skrill - invalid credential detected';
+                PrestaShopLogger::addLog($messageLog, 1, null, 'Cart', $cartId, true);
+            } elseif ($isFraud) {
+                $paymentResponse['status'] = $this->module->fraudStatus;
+                $messageLog = 'Skrill - fraud detected';
+                PrestaShopLogger::addLog($messageLog, 1, null, 'Cart', $cartId, true);
             }
-
         } else {
             $errorMessage = 'SKRILL_ERROR_99_GENERAL';
             if ($paymentResponse['status'] == $this->module->failedStatus
@@ -130,7 +132,7 @@ class SkrillPaymentStatusModuleFrontController extends ModuleFrontController
             PrestaShopLogger::addLog($messageLog, 3, null, 'Cart', $cartId, true);
         }
 
-        $orderTotal = (float)$cart->getOrderTotal(true, Cart::BOTH);
+        $orderTotal = $paymentResponse['amount'];
         $transactionLog = $this->setTransactionLog($orderTotal, $paymentResponse);
         PrestaShopLogger::addLog('Skrill - get payment status', 1, null, 'Cart', $cartId, true);
         $paymentStatus = $this->getPaymentStatus($paymentResponse);
@@ -152,7 +154,7 @@ class SkrillPaymentStatusModuleFrontController extends ModuleFrontController
         $this->context->cookie->skrill_paymentName = $transactionLog['payment_name'];
 
         $additionalInformation =
-            $this->getAdditionalInformation($paymentResponse, $isFraud);
+            $this->getAdditionalInformation($paymentResponse, $isPaymentSignatureEqualsGeneratedSignature, $isFraud);
         $this->saveTransactionLog($transactionLog, $orderId, $additionalInformation);
 
         $messageLog = 'Skrill - order ('. $orderId .') has been successfully created';
@@ -177,6 +179,10 @@ class SkrillPaymentStatusModuleFrontController extends ModuleFrontController
                 return Configuration::get('SKRILL_PAYMENT_STATUS_PENDING');
             case $this->module->failedStatus:
                 return Configuration::get('SKRILL_PAYMENT_STATUS_FAILED');
+            case $this->module->invalidCredentialStatus:
+                return Configuration::get('SKRILL_PAYMENT_STATUS_INVALID');
+            case $this->module->fraudStatus:
+                return Configuration::get('SKRILL_PAYMENT_STATUS_FRAUD');
             case $this->module->refundedStatus:
                 return Configuration::get('PS_OS_REFUND');
             default:
@@ -245,7 +251,7 @@ class SkrillPaymentStatusModuleFrontController extends ModuleFrontController
         return $orderTotal;
     }
 
-    protected function getAdditionalInformation($paymentResponse, $isFraud)
+    protected function getAdditionalInformation($paymentResponse, $isPaymentSignatureEqualsGeneratedSignature, $isFraud)
     {
         $additionalInfo = array();
         if (isset($paymentResponse['ip_country']) && isset($paymentResponse['payment_instrument_country'])) {
@@ -256,8 +262,12 @@ class SkrillPaymentStatusModuleFrontController extends ModuleFrontController
             $additionalInfo[2] =
                 'SKRILL_BACKEND_EMAIL_ACCOUNT=>' . $paymentResponse['pay_from_email'];
         }
-        if ($isFraud) {
+        if (!$isPaymentSignatureEqualsGeneratedSignature) {
             $additionalInfo[3] =
+                'BACKEND_TT_INVALID_CREDENTIAL=>' . $paymentResponse['status'];
+        }
+        if ($isFraud) {
+            $additionalInfo[4] =
                 'BACKEND_TT_FRAUD=>' . $paymentResponse['status'];
         }
 

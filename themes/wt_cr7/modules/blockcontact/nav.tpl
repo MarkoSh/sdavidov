@@ -24,6 +24,6 @@
 *}
 {if $telnumber}
 	<span class="shop-phone">
-		{l s='Welcome!' mod='blockcontact'} {l s='Phone Shopping' mod='blockcontact'} {$telnumber|escape:'html':'UTF-8'}
+		{$telnumber|escape:'html':'UTF-8'}
 	</span>
 {/if}

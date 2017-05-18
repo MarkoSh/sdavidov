@@ -23,7 +23,14 @@
 		<div class="col-xs-12">
 			<p class="payment_module">
 				<a href="{$link->getModuleLink('skrill', $payment_link, [], true)|escape:'htmlall':'UTF-8'}" id="skrill-{$payment.name|escape:'htmlall':'UTF-8'}" onmouseover="this.style.textDecoration='none';">
-						<img src="{$this_path|escape:'htmlall':'UTF-8'}views/img/{$payment.name|escape:'htmlall':'UTF-8'}.png" alt="" height="49"/>
+					{if $payment.logos }
+						{foreach from=$payment.logos key=i item=logo}
+							<img src="{$this_path|escape:'htmlall':'UTF-8'}views/img/{$logo|escape:'htmlall':'UTF-8'}" alt="{$payment.label|escape:'htmlall':'UTF-8'}" height="28"/>
+						{/foreach}
+						{$payment.label|escape:'htmlall':'UTF-8'}
+					{else}
+						<img src="{$this_path|escape:'htmlall':'UTF-8'}views/img/{$payment.name|escape:'htmlall':'UTF-8'}.png" alt="{$payment.label|escape:'htmlall':'UTF-8'}" height="49"/>
+					{/if}
 				</a>
 			</p>
 		</div>

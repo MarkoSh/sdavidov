@@ -32,17 +32,21 @@ class Skrill extends PaymentModule
     public $refundedStatus = '-4';
     public $refundFailedStatus = '-5';
     public $refundPendingStatus = '-6';
+    public $invalidCredentialStatus = '-7';
+    public $fraudStatus = '-8';
     protected $selectedTab = false;
     protected $skrillSignUpUrl = 'https://signup.skrill.com/business/#/?lang=EN&rid=21445510';
     protected $skrillGuideUrl = 'https://www.skrill.com/fileadmin/content/pdf/Skrill_Prestashop_Module_Guide.pdf';
+    protected $paymentMethodShowTitleLogo = array();
 
     public function __construct()
     {
         $this->name = 'skrill';
         $this->tab = 'payments_gateways';
-        $this->version = '1.0.24';
+        $this->version = '1.0.31';
         $this->author = 'Skrill';
         $this->module_key = '6f71ca0e0e3465122dfdfeb5d3a43a19';
+        $this->paymentMethodShowTitleLogo = array( 'ADB', 'AOB', 'ACI' );
 
         $this->bootstrap = true;
         parent::__construct();
@@ -113,6 +117,7 @@ class Skrill extends PaymentModule
         Configuration::updateValue('SKRILL_GENERAL_APIPASS', '');
         Configuration::updateValue('SKRILL_GENERAL_SECRETWORD', '');
         Configuration::updateValue('SKRILL_GENERAL_DISPLAY', '');
+        Configuration::updateValue('SKRILL_GENERAL_MERCHANTEMAIL', '');
 
         // default skrill flexible
         Configuration::updateValue('SKRILL_FLEXIBLE_ACTIVE', '0');
@@ -146,6 +151,7 @@ class Skrill extends PaymentModule
             || !Configuration::deleteByName('SKRILL_GENERAL_APIPASS')
             || !Configuration::deleteByName('SKRILL_GENERAL_SECRETWORD')
             || !Configuration::deleteByName('SKRILL_GENERAL_DISPLAY')
+            || !Configuration::deleteByName('SKRILL_GENERAL_MERCHANTEMAIL')
 
             || !Configuration::deleteByName('SKRILL_FLEXIBLE_ACTIVE')
             || !Configuration::deleteByName('SKRILL_WLT_ACTIVE')
@@ -176,6 +182,9 @@ class Skrill extends PaymentModule
             || !Configuration::deleteByName('SKRILL_ALI_ACTIVE')
             || !Configuration::deleteByName('SKRILL_NTL_ACTIVE')
             || !Configuration::deleteByName('SKRILL_ADB_ACTIVE')
+            || !Configuration::deleteByName('SKRILL_AOB_ACTIVE')
+            || !Configuration::deleteByName('SKRILL_ACI_ACTIVE')
+            || !Configuration::deleteByName('SKRILL_AUP_ACTIVE')
 
             || !Configuration::deleteByName('SKRILL_WLT_MODE')
             || !Configuration::deleteByName('SKRILL_PSC_MODE')
@@ -205,6 +214,9 @@ class Skrill extends PaymentModule
             || !Configuration::deleteByName('SKRILL_ALI_MODE')
             || !Configuration::deleteByName('SKRILL_NTL_MODE')
             || !Configuration::deleteByName('SKRILL_ADB_MODE')
+            || !Configuration::deleteByName('SKRILL_AOB_MODE')
+            || !Configuration::deleteByName('SKRILL_ACI_MODE')
+            || !Configuration::deleteByName('SKRILL_AUP_MODE')
 
             || !$this->unregisterHook('payment')
             || !$this->unregisterHook('paymentReturn')
@@ -230,8 +242,8 @@ class Skrill extends PaymentModule
             `ref_id` VARCHAR(32) NOT NULL,
             `payment_code` VARCHAR(8) NOT NULL,
             `currency` VARCHAR(3) NOT NULL,
-			`amount` decimal(17,2) NOT NULL,
-			`add_information` LONGTEXT NULL)";
+            `amount` decimal(17,2) NOT NULL,
+            `add_information` LONGTEXT NULL)";
 
         if (!Db::getInstance()->Execute($sql)) {
             return false;
@@ -302,6 +314,18 @@ class Skrill extends PaymentModule
                 'Failed',
                 $stateConfig
             );
+            $stateConfig['color'] = 'red';
+            $this->addOrderStatus(
+                'SKRILL_PAYMENT_STATUS_INVALID',
+                'Invalid credential',
+                $stateConfig
+            );
+            $stateConfig['color'] = 'red';
+            $this->addOrderStatus(
+                'SKRILL_PAYMENT_STATUS_FRAUD',
+                'Suspected Fraud',
+                $stateConfig
+            );
             return true;
         } catch (Exception $exception) {
             return false;
@@ -315,21 +339,6 @@ class Skrill extends PaymentModule
         $credentials['password'] = Configuration::get('SKRILL_GENERAL_APIPASS');
 
         return $credentials;
-    }
-
-    public function getVersionData()
-    {
-        $versionData = array();
-        $versionData['transaction_mode'] = 'LIVE';
-        $versionData['ip_address'] = $_SERVER['SERVER_ADDR'];
-        $versionData['shop_version'] = _PS_VERSION_;
-        $versionData['plugin_version'] = $this->version;
-        $versionData['client'] = 'Skrill';
-        $versionData['email'] = Configuration::get('SKRILL_GENERAL_MERCHANTACCOUNT');
-        $versionData['merchant_id'] = Configuration::get('SKRILL_GENERAL_MERCHANTID');
-        $versionData['shop_system'] = 'Prestashop';
-        $versionData['shop_url'] = Configuration::get('SKRILL_GENERAL_SHOPURL');
-        return $versionData;
     }
 
     public function hookdisplayAdminOrder()
@@ -363,6 +372,9 @@ class Skrill extends PaymentModule
                 $orderCountryId = $this->getCountryIdByIso($getCountryIso2);
                 $paymentInfo['orderCountry'] = Country::getNameById($langId, $orderCountryId);
             }
+            if (isset($additionalInformation['BACKEND_TT_INVALID_CREDENTIAL'])) {
+                $paymentInfo['invalidCredentialPayment'] = true;
+            }
             if (isset($additionalInformation['BACKEND_TT_FRAUD'])) {
                 $paymentInfo['fraudPayment'] = true;
             }
@@ -373,19 +385,21 @@ class Skrill extends PaymentModule
             }
 
             $buttonUpdateOrder = false;
-            if ($row['order_status'] == $this->processedStatus
-                || $row['order_status'] == $this->pendingStatus) {
+            if ($row['order_status'] == $this->pendingStatus
+                || $row['order_status'] == $this->invalidCredentialStatus) {
                 $buttonUpdateOrder = true;
             }
+
             $buttonRefundOrder = false;
-            if ($row['order_status'] == $this->processedStatus || $row['order_status'] == $this->refundFailedStatus) {
+            if ($row['order_status'] == $this->processedStatus
+                || $row['order_status'] == $this->refundFailedStatus) {
                 $buttonRefundOrder = true;
             }
 
             $this->context->smarty->assign(array(
-                'orderId'		=> (int)$orderId,
+                'orderId'       => (int)$orderId,
                 'paymentInfo' => $paymentInfo,
-                'buttonUpdateOrder'	=> $buttonUpdateOrder,
+                'buttonUpdateOrder'     => $buttonUpdateOrder,
                 'buttonRefundOrder' => $buttonRefundOrder
             ));
 
@@ -433,6 +447,8 @@ class Skrill extends PaymentModule
             $orderStatusId = Configuration::get('SKRILL_PAYMENT_STATUS_PENDING');
         } elseif ($orderStatus == $this->failedStatus) {
             $orderStatusId = Configuration::get('SKRILL_PAYMENT_STATUS_FAILED');
+        } elseif ($orderStatus == $this->invalidCredentialStatus) {
+            $orderStatusId = Configuration::get('SKRILL_PAYMENT_STATUS_INVALID');
         }
 
         $messageLog = 'Skrill - update payment status : ' . $orderStatusId;
@@ -477,7 +493,7 @@ class Skrill extends PaymentModule
         } else {
             $notificationMessage['error'] = "refund";
         }
-        unset ($this->context->cookie->skrill_status_refund);
+        unset($this->context->cookie->skrill_status_refund);
 
         return $notificationMessage;
     }
@@ -485,24 +501,26 @@ class Skrill extends PaymentModule
     protected function getUpdatedOrderNotificationMessage()
     {
         $notificationMessage = array();
-        if ($this->context->cookie->skrill_status_update) {
+        if ($this->context->cookie->skrill_status_update == $this->processedStatus) {
             $notificationMessage['success'] = "updateOrder";
-        } else {
+        } elseif ($this->context->cookie->skrill_status_update == $this->pendingStatus) {
+            $notificationMessage['warning'] = "updateOrder";
+        } elseif ($this->context->cookie->skrill_status_update == $this->failedStatus) {
             $notificationMessage['error'] = "updateOrder";
         }
-        unset ($this->context->cookie->skrill_status_update);
+        unset($this->context->cookie->skrill_status_update);
 
         return $notificationMessage;
     }
 
-    protected function processUpdatedOrder($orderId, $trasanctionLog, $redirect = true)
+    protected function processUpdatedOrder($orderId, $transactionLog)
     {
         PrestaShopLogger::addLog('Skrill - start update order process', 1, null, 'Order', $orderId, true);
 
         PrestaShopLogger::addLog('Skrill - get update order parameters', 1, null, 'Order', $orderId, true);
         $fieldParams = $this->getSkrillCredentials();
-        $fieldParams['type'] = 'mb_trn_id';
-        $fieldParams['id'] = $trasanctionLog['ref_id'];
+        $fieldParams['type'] = 'trn_id';
+        $fieldParams['id'] = $transactionLog['transaction_id'];
         $logParams = $fieldParams;
         $logParams['password'] = '*****';
         $messageLog = 'Skrill - update order parameters : '. print_r($logParams, true);
@@ -513,38 +531,46 @@ class Skrill extends PaymentModule
         $messageLog = 'Skrill - update order response : '. print_r($paymentResponse, true);
         PrestaShopLogger::addLog($messageLog, 1, null, 'Order', $orderId, true);
 
-        if ($paymentResponse) {
-            $this->updateTransactionLogStatus($trasanctionLog['ref_id'], $paymentResponse['status'], $orderId);
-            if ($trasanctionLog['order_status'] != $this->processedStatus) {
+        $generatedMd5Sig = $this->generateMd5sig($paymentResponse);
+        $isPaymentSignatureEqualsGeneratedSignature = $this->isPaymentSignatureEqualsGeneratedSignature(
+            $paymentResponse['md5sig'],
+            $generatedMd5Sig
+        );
+
+        if ($paymentResponse && $isPaymentSignatureEqualsGeneratedSignature) {
+            $this->updateTransactionLogStatus($transactionLog['ref_id'], $paymentResponse['status'], $orderId);
+            if ($transactionLog['order_status'] != $this->processedStatus) {
                 $this->updatePaymentStatus($orderId, $paymentResponse['status']);
             }
-            $trasanctionLog = $this->getTransactionLogByOrderId($orderId);
-            $this->context->cookie->skrill_status_update = true;
+            $transactionLog = $this->getTransactionLogByOrderId($orderId);
+            $this->context->cookie->skrill_status_update = $this->processedStatus;
             PrestaShopLogger::addLog('Skrill - order has been successfully updated', 1, null, 'Order', $orderId, true);
-        } else {
-            $this->context->cookie->skrill_status_update = false;
+        } elseif (!$paymentResponse) {
+            $this->context->cookie->skrill_status_update = $this->failedStatus;
             $messageLog = 'Skrill - order has not been successfully updated';
+            PrestaShopLogger::addLog($messageLog, 3, null, 'Order', $orderId, true);
+        } else {
+            $this->context->cookie->skrill_status_update = $this->pendingStatus;
+            $messageLog = 'Skrill - order has not been successfully updated because of invalid credential';
             PrestaShopLogger::addLog($messageLog, 3, null, 'Order', $orderId, true);
         }
 
-        if ($redirect) {
-            $this->redirectOrderDetail($orderId);
-        } else {
-            return $paymentResponse;
-        }
+        return $paymentResponse;
     }
 
-    protected function processRefundOrder($order, $orderId)
+    protected function processRefundOrder($order)
     {
         $order->setCurrentState(Configuration::get('PS_OS_REFUND'));
         $order->save();
-        $this->redirectOrderDetail($orderId);
     }
 
-    protected function redirectOrderDetail($orderId)
+    protected function redirectOrderDetail($orderId, $message = '')
     {
         $getAdminLink = $this->context->link->getAdminLink('AdminOrders');
         $getViewOrder = $getAdminLink.'&vieworder&id_order='.$orderId;
+        if ($message) {
+            $getViewOrder .= '&'.$message;
+        }
         Tools::redirectAdmin($getViewOrder);
     }
 
@@ -557,44 +583,51 @@ class Skrill extends PaymentModule
         $tplVars['successMessage'] = '';
         $tplVars['errorMessage'] = '';
 
-        if (isset($this->context->cookie->skrill_status_refund)) {
-            $notificationMessage = $this->getRefundedNotificationMessage();
-        } elseif (isset($this->context->cookie->skrill_status_update)) {
-            $notificationMessage = $this->getUpdatedOrderNotificationMessage();
-        }
-
-        $trasanctionLog = $this->getTransactionLogByOrderId($orderId);
-        if ($trasanctionLog) {
+        $transactionLog = $this->getTransactionLogByOrderId($orderId);
+        if ($transactionLog) {
             if (Tools::isSubmit('skrillUpdateOrder')
-                && $trasanctionLog['order_status'] != $this->failedStatus
-                && $trasanctionLog['order_status'] != $this->refundPendingStatus
-                && $trasanctionLog['order_status'] != $this->refundedStatus
+                && $transactionLog['order_status'] != $this->failedStatus
+                && $transactionLog['order_status'] != $this->refundPendingStatus
+                && $transactionLog['order_status'] != $this->refundedStatus
             ) {
-                $notificationMessage = $this->processUpdatedOrder($orderId, $trasanctionLog);
+                $this->processUpdatedOrder($orderId, $transactionLog);
             } elseif (Tools::isSubmit('skrillRefundOrder')
-                && ($trasanctionLog['order_status'] == $this->processedStatus
-                || $trasanctionLog['order_status'] == $this->refundFailedStatus)
+                && ($transactionLog['order_status'] == $this->processedStatus
+                || $transactionLog['order_status'] == $this->refundFailedStatus
+                || $transactionLog['order_status'] == $this->fraudStatus)
             ) {
-                $this->processRefundOrder($order, $orderId);
+                $this->processRefundOrder($order);
             }
 
-            if ($trasanctionLog['order_status'] == $this->processedStatus
-                || $trasanctionLog['order_status'] == $this->refundFailedStatus
+            if ($transactionLog['order_status'] == $this->processedStatus
+                || $transactionLog['order_status'] == $this->refundFailedStatus
             ) {
                 $tplVars['refundButton'] = true;
             }
         }
 
+        if (isset($this->context->cookie->skrill_status_refund)) {
+            $notificationMessage = $this->getRefundedNotificationMessage();
+        } elseif (isset($this->context->cookie->skrill_status_update)) {
+            $notificationMessage = $this->getUpdatedOrderNotificationMessage();
+        }
+        if (isset($notificationMessage)) {
+            foreach ($notificationMessage as $k => $v) {
+                $notificationMessage = $k.'='.$v;
+            }
+            $this->redirectOrderDetail($orderId, $notificationMessage);
+        }
+
         $tplVars['module'] = $order->module;
 
-        if (isset($notificationMessage['warning'])) {
-            $tplVars['warningMessage'] = $notificationMessage['warning'];
+        if (Tools::getValue('warning')) {
+            $tplVars['warningMessage'] = Tools::getValue('warning');
         }
-        if (isset($notificationMessage['success'])) {
-            $tplVars['successMessage'] = $notificationMessage['success'];
+        if (Tools::getValue('success')) {
+            $tplVars['successMessage'] = Tools::getValue('success');
         }
-        if (isset($notificationMessage['error'])) {
-            $tplVars['errorMessage'] = $notificationMessage['error'];
+        if (Tools::getValue('error')) {
+            $tplVars['errorMessage'] = Tools::getValue('error');
         }
 
         $this->context->smarty->assign($tplVars);
@@ -620,13 +653,13 @@ class Skrill extends PaymentModule
         $countryCode = $country->iso_code;
 
         $this->context->smarty->assign(array(
-           'payments'			=> $this->getEnabledPayment($countryCode),
-           'this_path' 		=> $this->_path,
-           'this_path_ssl' 	=> Tools::getShopDomainSsl(true, true).__PS_BASE_URI__.'modules/'.$this->name.'/'
+           'payments'       => $this->getEnabledPayment($countryCode),
+           'this_path'      => $this->_path,
+           'this_path_ssl'  => Tools::getShopDomainSsl(true, true).__PS_BASE_URI__.'modules/'.$this->name.'/'
         ));
         return $this->display(__FILE__, 'payment.tpl');
     }
-    
+
     /**
      * the PrestaShop hook to display payment methods list with the EU mode
      * @param  array $parameters
@@ -641,24 +674,42 @@ class Skrill extends PaymentModule
         if (!$this->isCartCurrencyAllowed($parameters['cart'])) {
             return;
         }
-        
+
         $this->context->controller->addCSS(($this->_path) . 'views/css/payment_eu.css', 'all');
+
         $address = new Address((int) $this->context->cart->id_address_delivery);
         $country = new Country($address->id_country);
         $countryCode = $country->iso_code;
         $paymentMethods = $this->getEnabledPayment($countryCode);
         $paymentOptions = array();
-        
+
         foreach ($paymentMethods as $value) {
             $controller = 'payment' . Tools::ucfirst($value['name']);
             $logo = Media::getMediaPath(_PS_MODULE_DIR_ . $this->name . '/views/img/' . $value['name'] . '.png');
-            $paymentOptions[] = array(
+            $paymentOption = array(
                 'cta_text' => '',
                 'logo' => $logo,
                 'action' => $this->context->link->getModuleLink($this->name, $controller, array(), true)
             );
+            if (in_array(Tools::strtoupper($value['name']), $this->paymentMethodShowTitleLogo)) {
+                $paymentOption['logo'] = '#" style="display:none';
+                $paymentOption['cta_text'] = $this->getFrontendPaymentLocale(
+                    'SKRILL_FRONTEND_PM_'.Tools::strtoupper($value['name'])
+                );
+                $form_html = "<form action='".$paymentOption['action']."' method='post'></form>";
+                $logo_html = '<div class="well">';
+                foreach ($value['logos'] as $val) {
+                    $logo = Media::getMediaPath(_PS_MODULE_DIR_ . $this->name . '/views/img/' . $val);
+                    $logo_html .= "<img src='".$logo."' height='25' style='margin: 10px' title='".
+                        $paymentOption['cta_text']."'/>";
+                }
+                $logo_html .= '</div>';
+                $paymentOption['form'] = $form_html.$logo_html;
+            }
+
+            $paymentOptions[] = $paymentOption;
         }
-        
+
         return $paymentOptions;
     }
 
@@ -697,7 +748,8 @@ class Skrill extends PaymentModule
         }
 
         $defaultPaymentSort = 1000;
-        foreach (array_keys(SkrillPaymentCore::getPaymentMethods()) as $paymentType) {
+        $paymentMethods = SkrillPaymentCore::getPaymentMethods();
+        foreach (array_keys($paymentMethods) as $paymentType) {
             if ($paymentType == 'FLEXIBLE') {
                 continue;
             }
@@ -708,8 +760,13 @@ class Skrill extends PaymentModule
             if ($paymentActive && $paymentShowSeparatly && $notSupportCountries == false && $supportedPayment) {
                 $paymentsConfig[$defaultPaymentSort] = array(
                    'name' => Tools::strtolower($paymentType),
-                   'enabled' => $paymentActive
+                   'enabled' => $paymentActive,
+                   'label' => $this->getFrontendPaymentLocale('SKRILL_FRONTEND_PM_'.$paymentType)
                 );
+
+                if (isset($paymentMethods[$paymentType]['logos'])) {
+                    $paymentsConfig[$defaultPaymentSort]['logos'] = $paymentMethods[$paymentType]['logos'];
+                }
             }
             $defaultPaymentSort++;
         }
@@ -719,8 +776,8 @@ class Skrill extends PaymentModule
     }
 
     /**
-	 * @return string
-	 */
+     * @return string
+     */
     public function hookdisplayPaymentTop()
     {
         if (!$this->active || !Tools::getValue('skrillerror')) {
@@ -746,7 +803,9 @@ class Skrill extends PaymentModule
         $state = $params['objOrder']->getCurrentState();
         $template = '';
         if ($state == Configuration::get('PS_OS_PAYMENT')
-            || $state == Configuration::get('SKRILL_PAYMENT_STATUS_PENDING')) {
+            || $state == Configuration::get('SKRILL_PAYMENT_STATUS_PENDING')
+            || $state == Configuration::get('SKRILL_PAYMENT_STATUS_INVALID')
+            || $state == Configuration::get('SKRILL_PAYMENT_STATUS_FRAUD')) {
             $this->smarty->assign(array(
                'total_to_pay' => Tools::displayPrice($params['total_to_pay'], $params['currencyObj'], false),
                'status' => 'ok',
@@ -759,13 +818,11 @@ class Skrill extends PaymentModule
             $template='order_successful';
 
             $this->mailAlert($params['objOrder'], $this->context->cookie->skrill_paymentName, $status, $template);
-
         }
 
         unset($this->context->cookie->skrill_paymentName);
 
         return $this->display(__FILE__, 'payment_return.tpl');
-
     }
 
     public function refundOrder($params, &$refId, $isFraud = false)
@@ -818,7 +875,8 @@ class Skrill extends PaymentModule
         $order = new Order((int)($params['id_order']));
 
         if ($order->module == "skrill"
-            && $order->current_state == Configuration::get('PS_OS_PAYMENT')
+            && ($order->current_state == Configuration::get('PS_OS_PAYMENT')
+            || $order->current_state == Configuration::get('SKRILL_PAYMENT_STATUS_FRAUD'))
             && $params['newOrderStatus']->id == Configuration::get('PS_OS_REFUND')
         ) {
             $refId = '';
@@ -849,11 +907,9 @@ class Skrill extends PaymentModule
         } elseif ($order->module == "skrill"
             && $order->current_state == Configuration::get('SKRILL_PAYMENT_STATUS_PENDING')
             && $params['newOrderStatus']->id == Configuration::get('PS_OS_PAYMENT')) {
-
             if (Tools::isSubmit('submitState')) {
-                $trasanctionLog = $this->getTransactionLogByOrderId($params['id_order']);
-                $redirect = false;
-                $updatedOrder = $this->processUpdatedOrder($params['id_order'], $trasanctionLog, $redirect);
+                $transactionLog = $this->getTransactionLogByOrderId($params['id_order']);
+                $updatedOrder = $this->processUpdatedOrder($params['id_order'], $transactionLog);
                 if ($updatedOrder['status'] == $this->processedStatus) {
                     $status = 'CONFIRMED';
                     $template = 'order_confirmed';
@@ -895,9 +951,19 @@ class Skrill extends PaymentModule
         return number_format($number, 2, '.', '');
     }
 
-    public function isFraud($paymentResponse)
+    public function isPaymentSignatureEqualsGeneratedSignature($paymentSignature, $generatedSignature)
     {
-        return !($paymentResponse['md5sig'] == $this->generateMd5sig($paymentResponse));
+        return ($paymentSignature == $generatedSignature);
+    }
+
+    public function isFraud($generatedAntiFraudHash, $antiFraudHash)
+    {
+        return !($generatedAntiFraudHash == $antiFraudHash);
+    }
+
+    public function generateAntiFraudHash($cartId, $paymentMethod, $dateAdd)
+    {
+        return md5($cartId . $paymentMethod . $dateAdd);
     }
 
     /**
@@ -929,25 +995,6 @@ class Skrill extends PaymentModule
         $string = $merchantId.$transactionId.$secretWord.$mbAmount.$mbCurrency.$status;
 
         return Tools::strtoupper(md5($string));
-    }
-
-    public function processFraudPayment($paymentResponse)
-    {
-        $cartId = $this->context->cart->id;
-        $refId = '';
-        PrestaShopLogger::addLog('Skrill - process refund (fraud payment)', 3, null, 'Cart', $cartId, true);
-
-        $isFraud = true;
-        $refundResult = $this->refundOrder($paymentResponse, $refId, $isFraud);
-
-        $refundStatus = (string) $refundResult->status;
-        if ($refundStatus == $this->processedStatus) {
-            PrestaShopLogger::addLog('Skrill - payment is fraud and refunded', 3, null, 'Cart', $cartId, true);
-        } else {
-            PrestaShopLogger::addLog('Skrill - payament is fraud but not refunded', 3, null, 'Cart', $cartId, true);
-        }
-
-        return $refundStatus;
     }
 
     public function getOrderByTransactionId($transactionId)
@@ -1159,17 +1206,34 @@ class Skrill extends PaymentModule
                 break;
             case 'SKRILL_FRONTEND_PM_ADB':
                 if ($this->l('SKRILL_FRONTEND_PM_ADB') == "SKRILL_FRONTEND_PM_ADB") {
-                    $paymentLocale = "Astropay";
+                    $paymentLocale = "Direct Bank Transfer (Supported Banks)";
                 } else {
                     $paymentLocale = $this->l('SKRILL_FRONTEND_PM_ADB');
                 }
                 break;
-            default:
-                if ($this->l('SKRILL_FRONTEND_PM_FLEXIBLE') == "SKRILL_FRONTEND_PM_FLEXIBLE") {
-                    $paymentLocale = "All Cards and Alternative Payment Methods";
+            case 'SKRILL_FRONTEND_PM_AOB':
+                if ($this->l('SKRILL_FRONTEND_PM_AOB') == "SKRILL_FRONTEND_PM_AOB") {
+                    $paymentLocale = "Manual Bank Transfer (Supported Banks)";
                 } else {
-                    $paymentLocale = $this->l('SKRILL_FRONTEND_PM_FLEXIBLE');
+                    $paymentLocale = $this->l('SKRILL_FRONTEND_PM_AOB');
                 }
+                break;
+            case 'SKRILL_FRONTEND_PM_ACI':
+                if ($this->l('SKRILL_FRONTEND_PM_ACI') == "SKRILL_FRONTEND_PM_ACI") {
+                    $paymentLocale = "Cash / Invoice (Supported Banks)";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_FRONTEND_PM_ACI');
+                }
+                break;
+            case 'SKRILL_FRONTEND_PM_AUP':
+                if ($this->l('SKRILL_FRONTEND_PM_AUP') == "SKRILL_FRONTEND_PM_AUP") {
+                    $paymentLocale = "Unionpay";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_FRONTEND_PM_AUP');
+                }
+                break;
+            default:
+                $paymentLocale = "UNDEFINED";
                 break;
         }
 
@@ -1377,17 +1441,216 @@ class Skrill extends PaymentModule
                 break;
             case 'SKRILL_BACKEND_PM_ADB':
                 if ($this->l('SKRILL_BACKEND_PM_ADB') == "SKRILL_BACKEND_PM_ADB") {
-                    $paymentLocale = "Astropay";
+                    $paymentLocale = "Direct Bank Transfer";
                 } else {
                     $paymentLocale = $this->l('SKRILL_BACKEND_PM_ADB');
                 }
                 break;
-            default:
-                if ($this->l('SKRILL_BACKEND_PM_FLEXIBLE') == "SKRILL_BACKEND_PM_FLEXIBLE") {
-                    $paymentLocale = "All Cards and Alternative Payment Methods";
+            case 'SKRILL_BACKEND_PM_AOB':
+                if ($this->l('SKRILL_BACKEND_PM_AOB') == "SKRILL_BACKEND_PM_AOB") {
+                    $paymentLocale = "Manual Bank Transfer";
                 } else {
-                    $paymentLocale = $this->l('SKRILL_BACKEND_PM_FLEXIBLE');
+                    $paymentLocale = $this->l('SKRILL_BACKEND_PM_AOB');
                 }
+                break;
+            case 'SKRILL_BACKEND_PM_ACI':
+                if ($this->l('SKRILL_BACKEND_PM_ACI') == "SKRILL_BACKEND_PM_ACI") {
+                    $paymentLocale = "Cash / Invoice";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_PM_ACI');
+                }
+                break;
+            case 'SKRILL_BACKEND_PM_AUP':
+                if ($this->l('SKRILL_BACKEND_PM_AUP') == "SKRILL_BACKEND_PM_AUP") {
+                    $paymentLocale = "Unionpay";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_PM_AUP');
+                }
+                break;
+            case 'SKRILL_BACKEND_AB_ACI_REDLINK':
+                if ($this->l('SKRILL_BACKEND_AB_ACI_REDLINK') == "SKRILL_BACKEND_AB_ACI_REDLINK") {
+                    $paymentLocale = "RedLink";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_AB_ACI_REDLINK');
+                }
+                break;
+            case 'SKRILL_BACKEND_AB_ACI_PAGOFACIL':
+                if ($this->l('SKRILL_BACKEND_AB_ACI_PAGOFACIL') == "SKRILL_BACKEND_AB_ACI_PAGOFACIL") {
+                    $paymentLocale = "Pago Fácil";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_AB_ACI_PAGOFACIL');
+                }
+                break;
+            case 'SKRILL_BACKEND_AB_ACI_BOLETOBANCARIO':
+                if ($this->l('SKRILL_BACKEND_AB_ACI_BOLETOBANCARIO') == "SKRILL_BACKEND_AB_ACI_BOLETOBANCARIO") {
+                    $paymentLocale = "Boleto Bancário";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_AB_ACI_BOLETOBANCARIO');
+                }
+                break;
+            case 'SKRILL_BACKEND_AB_ACI_SERVIPAG':
+                if ($this->l('SKRILL_BACKEND_AB_ACI_SERVIPAG') == "SKRILL_BACKEND_AB_ACI_SERVIPAG") {
+                    $paymentLocale = "Servi Pag";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_AB_ACI_SERVIPAG');
+                }
+                break;
+            case 'SKRILL_BACKEND_AB_ACI_EFECTY':
+                if ($this->l('SKRILL_BACKEND_AB_ACI_EFECTY') == "SKRILL_BACKEND_AB_ACI_EFECTY") {
+                    $paymentLocale = "Efecty";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_AB_ACI_EFECTY');
+                }
+                break;
+            case 'SKRILL_BACKEND_AB_ACI_DAVIVIENDA':
+                if ($this->l('SKRILL_BACKEND_AB_ACI_DAVIVIENDA') == "SKRILL_BACKEND_AB_ACI_DAVIVIENDA") {
+                    $paymentLocale = "Davivienda";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_AB_ACI_DAVIVIENDA');
+                }
+                break;
+            case 'SKRILL_BACKEND_AB_ACI_ÉXITO':
+                if ($this->l('SKRILL_BACKEND_AB_ACI_ÉXITO') == "SKRILL_BACKEND_AB_ACI_ÉXITO") {
+                    $paymentLocale = "Éxito";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_AB_ACI_ÉXITO');
+                }
+                break;
+            case 'SKRILL_BACKEND_AB_ACI_BANCODEOCCIDENTE':
+                if ($this->l('SKRILL_BACKEND_AB_ACI_BANCODEOCCIDENTE') == "SKRILL_BACKEND_AB_ACI_BANCODEOCCIDENTE") {
+                    $paymentLocale = "Banco de Occidente";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_AB_ACI_BANCODEOCCIDENTE');
+                }
+                break;
+            case 'SKRILL_BACKEND_AB_ACI_CARULLA':
+                if ($this->l('SKRILL_BACKEND_AB_ACI_CARULLA') == "SKRILL_BACKEND_AB_ACI_CARULLA") {
+                    $paymentLocale = "Carulla";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_AB_ACI_CARULLA');
+                }
+                break;
+            case 'SKRILL_BACKEND_AB_ACI_EDEQ':
+                if ($this->l('SKRILL_BACKEND_AB_ACI_EDEQ') == "SKRILL_BACKEND_AB_ACI_EDEQ") {
+                    $paymentLocale = "EDEQ";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_AB_ACI_EDEQ');
+                }
+                break;
+            case 'SKRILL_BACKEND_AB_ACI_SURTIMAX':
+                if ($this->l('SKRILL_BACKEND_AB_ACI_SURTIMAX') == "SKRILL_BACKEND_AB_ACI_SURTIMAX") {
+                    $paymentLocale = "SurtiMax";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_AB_ACI_SURTIMAX');
+                }
+                break;
+            case 'SKRILL_BACKEND_AB_ACI_BBVABANCOMER':
+                if ($this->l('SKRILL_BACKEND_AB_ACI_BBVABANCOMER') == "SKRILL_BACKEND_AB_ACI_BBVABANCOMER") {
+                    $paymentLocale = "BBVA Bancomer";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_AB_ACI_BBVABANCOMER');
+                }
+                break;
+            case 'SKRILL_BACKEND_AB_ACI_OXXO':
+                if ($this->l('SKRILL_BACKEND_AB_ACI_OXXO') == "SKRILL_BACKEND_AB_ACI_OXXO") {
+                    $paymentLocale = "OXXO";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_AB_ACI_OXXO');
+                }
+                break;
+            case 'SKRILL_BACKEND_AB_ACI_BANAMEX':
+                if ($this->l('SKRILL_BACKEND_AB_ACI_BANAMEX') == "SKRILL_BACKEND_AB_ACI_BANAMEX") {
+                    $paymentLocale = "Banamex";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_AB_ACI_BANAMEX');
+                }
+                break;
+            case 'SKRILL_BACKEND_AB_ACI_BANCOSANTANDER':
+                if ($this->l('SKRILL_BACKEND_AB_ACI_BANCOSANTANDER') == "SKRILL_BACKEND_AB_ACI_BANCOSANTANDER") {
+                    $paymentLocale = "Banco Santander";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_AB_ACI_BANCOSANTANDER');
+                }
+                break;
+            case 'SKRILL_BACKEND_AB_ACI_REDPAGOS':
+                if ($this->l('SKRILL_BACKEND_AB_ACI_REDPAGOS') == "SKRILL_BACKEND_AB_ACI_REDPAGOS") {
+                    $paymentLocale = "Redpagos";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_AB_ACI_REDPAGOS');
+                }
+                break;
+            case 'SKRILL_BACKEND_AB_ADB_BANCOSANTANDERRIO':
+                if ($this->l('SKRILL_BACKEND_AB_ADB_BANCOSANTANDERRIO') == "SKRILL_BACKEND_AB_ADB_BANCOSANTANDERRIO") {
+                    $paymentLocale = "Banco Santander Río";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_AB_ADB_BANCOSANTANDERRIO');
+                }
+                break;
+            case 'SKRILL_BACKEND_AB_ADB_BANCOITAU':
+                if ($this->l('SKRILL_BACKEND_AB_ADB_BANCOITAU') == "SKRILL_BACKEND_AB_ADB_BANCOITAU") {
+                    $paymentLocale = "Banco Itaú";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_AB_ADB_BANCOITAU');
+                }
+                break;
+            case 'SKRILL_BACKEND_AB_ADB_BANCODOBRASIL':
+                if ($this->l('SKRILL_BACKEND_AB_ADB_BANCODOBRASIL') == "SKRILL_BACKEND_AB_ADB_BANCODOBRASIL") {
+                    $paymentLocale = "Banco do Brasil";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_AB_ADB_BANCODOBRASIL');
+                }
+                break;
+            case 'SKRILL_BACKEND_AB_ADB_BANCOBRADESCO':
+                if ($this->l('SKRILL_BACKEND_AB_ADB_BANCOBRADESCO') == "SKRILL_BACKEND_AB_ADB_BANCOBRADESCO") {
+                    $paymentLocale = "Banco Bradesco";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_AB_ADB_BANCOBRADESCO');
+                }
+                break;
+            case 'SKRILL_BACKEND_AB_AOB_HSBC':
+                if ($this->l('SKRILL_BACKEND_AB_AOB_HSBC') == "SKRILL_BACKEND_AB_AOB_HSBC") {
+                    $paymentLocale = "HSBC";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_AB_AOB_HSBC');
+                }
+                break;
+            case 'SKRILL_BACKEND_AB_AOB_CAIXA':
+                if ($this->l('SKRILL_BACKEND_AB_AOB_CAIXA') == "SKRILL_BACKEND_AB_AOB_CAIXA") {
+                    $paymentLocale = "Caixa";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_AB_AOB_CAIXA');
+                }
+                break;
+            case 'SKRILL_BACKEND_AB_AOB_SANTANDER':
+                if ($this->l('SKRILL_BACKEND_AB_AOB_SANTANDER') == "SKRILL_BACKEND_AB_AOB_SANTANDER") {
+                    $paymentLocale = "Santander";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_AB_AOB_SANTANDER');
+                }
+                break;
+            case 'SKRILL_BACKEND_AB_AOB_PSEI':
+                if ($this->l('SKRILL_BACKEND_AB_AOB_PSEI') == "SKRILL_BACKEND_AB_AOB_PSEI") {
+                    $paymentLocale = "PSEi";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_AB_AOB_PSEI');
+                }
+                break;
+            case 'SKRILL_BACKEND_AB_AOB_WEBPAY':
+                if ($this->l('SKRILL_BACKEND_AB_AOB_WEBPAY') == "SKRILL_BACKEND_AB_AOB_WEBPAY") {
+                    $paymentLocale = "WebPay";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_AB_AOB_WEBPAY');
+                }
+                break;
+            case 'SKRILL_BACKEND_AB_AOB_BANCOLOMBIA':
+                if ($this->l('SKRILL_BACKEND_AB_AOB_BANCOLOMBIA') == "SKRILL_BACKEND_AB_AOB_BANCOLOMBIA") {
+                    $paymentLocale = "Bancolombia";
+                } else {
+                    $paymentLocale = $this->l('SKRILL_BACKEND_AB_AOB_BANCOLOMBIA');
+                }
+                break;
+            default:
+                $paymentLocale = "UNDEFINED";
                 break;
         }
 
@@ -1451,6 +1714,13 @@ class Skrill extends PaymentModule
                     $trnStatus = "Refund failed";
                 } else {
                     $trnStatus = $this->l('BACKEND_TT_REFUNDED_FAILED');
+                }
+                break;
+            case 'BACKEND_TT_INVALID_CREDENTIAL':
+                if ($this->l('BACKEND_TT_INVALID_CREDENTIAL') == "BACKEND_TT_INVALID_CREDENTIAL") {
+                    $trnStatus = "Invalid credential";
+                } else {
+                    $trnStatus = $this->l('BACKEND_TT_INVALID_CREDENTIAL');
                 }
                 break;
             case 'BACKEND_TT_FRAUD':
@@ -1808,7 +2078,7 @@ class Skrill extends PaymentModule
         if (isset($this->context->cookie->skrillConfigMessage)) {
             $tplVars['message']['success'] = $this->context->cookie->skrillMessageSuccess;
             $tplVars['message']['text'] = $this->context->cookie->skrillConfigMessage;
-            unset ($this->context->cookie->skrillConfigMessage);
+            unset($this->context->cookie->skrillConfigMessage);
         } else {
             $tplVars['message'] = false;
         }
@@ -1901,7 +2171,8 @@ class Skrill extends PaymentModule
         $locale = $this->getPaymentConfigurationLocale();
         $i = 0;
         $payments = array();
-        foreach (array_keys(SkrillPaymentCore::getPaymentMethods()) as $paymentType) {
+        $paymentMethods = SkrillPaymentCore::getPaymentMethods();
+        foreach (array_keys($paymentMethods) as $paymentType) {
             $paymentTypeLowerCase = Tools::strtolower($paymentType);
             $activeConfigName = Configuration::get('SKRILL_'.$paymentType.'_ACTIVE');
             $modeConfigName = Configuration::get('SKRILL_'.$paymentType.'_MODE');
@@ -1916,9 +2187,17 @@ class Skrill extends PaymentModule
             } else {
                 $payments[$i]['tooltips'] = '';
             }
+            if (isset($paymentMethods[$paymentType]['banks'])) {
+                $j=0;
+                foreach ($paymentMethods[$paymentType]['banks'] as $bank) {
+                    $bankName = 'SKRILL_BACKEND_AB_'.$paymentType."_".str_replace(' ', '', Tools::strtoupper($bank));
+                    $payments[$i]['banks'][$j] = $this->getBackendPaymentLocale($bankName);
+                    $j++;
+                }
+            }
             $i++;
         }
-
+        
         $tplVars = array(
             'panelTitle' => $locale['paymentsConfig'],
             'payments' => $payments,
@@ -1929,7 +2208,7 @@ class Skrill extends PaymentModule
             'button' => $locale['button']
         );
         $this->context->smarty->assign($tplVars);
-
+        
         return $this->display(__FILE__, 'views/templates/admin/paymentConfiguration.tpl');
     }
 
@@ -2341,7 +2620,8 @@ class Skrill extends PaymentModule
         $locale['dnk']['tooltips'] = 'Denmark';
         $locale['psp']['tooltips'] = 'Italy';
         $locale['csi']['tooltips'] = 'Italy';
-        $locale['obt']['tooltips'] = 'Germany, United Kingdom, France, Italy, Spain, Hungary and Austria';
+        $locale['obt']['tooltips'] = 'Germany, United Kingdom, France, Italy, Spain, Hungary, Austria, Sweden, 
+            Finland, and Denmark';
         $locale['gir']['tooltips'] = 'Germany';
         $locale['did']['tooltips'] = 'Germany';
         $locale['sft']['tooltips'] = 'Germany, Austria, Belgium, Netherlands, Italy, France, Poland and United Kingdom';
@@ -2352,7 +2632,7 @@ class Skrill extends PaymentModule
         $locale['pwy']['tooltips'] = 'Poland';
         $locale['epy']['tooltips'] = 'Bulgaria';
         $locale['glu']['tooltips'] = 'Sweden, Finland, Estonia, Denmark, Spain, Poland, Italy, France, Germany,
-            Portugal, Austria, Latvia, Lithuania, Netherlands';
+            Portugal, Austria, Latvia, Lithuania, Netherlands, United Kingdom, and Norway';
 
         if ($this->l('SKRILL_BACKEND_TT_ALI') == "SKRILL_BACKEND_TT_ALI") {
             $locale['ali']['tooltips'] = 'Consumer location: China only.
@@ -2375,7 +2655,10 @@ class Skrill extends PaymentModule
             Sierra Leone, Somalia, Zimbabwe, Sudan, Syria,
             Tajikistan, Turkmenistan, Uganda, United
             States, US Virgin Islands, Uzbekistan, and Yemen";
-        $locale['adb']['tooltips'] = "Brazil, Mexico, Argentina, Chile, Colombia, Uruguay";
+        $locale['adb']['tooltips'] = "Argentina and Brazil";
+        $locale['aob']['tooltips'] = "Brazil, Chile, and Colombia";
+        $locale['aci']['tooltips'] = "Argentina, Brazil, Chile, Colombia, Mexico, Peru, and Uruguay";
+        $locale['aup']['tooltips'] = "China";
 
         $locale['button']['save'] =
             $this->l('BACKEND_CH_SAVE') == "BACKEND_CH_SAVE" ? "Save" : $this->l('BACKEND_CH_SAVE');
@@ -2417,16 +2700,16 @@ class Skrill extends PaymentModule
     {
         $selectForm =
             array(
-                'type'		=> 'select',
-                'label'		=> $locale['label'],
-                'name'		=> 'SKRILL_'.$pm,
-                'desc'		=> $locale['desc'],
-                'options'	=>
+                'type'      => 'select',
+                'label'         => $locale['label'],
+                'name'      => 'SKRILL_'.$pm,
+                'desc'      => $locale['desc'],
+                'options'   =>
                    array(
                    'query' => $selectList,
-                   'id'	=> 'id',
-                   'name'	=> 'name'
-        )
+                   'id'     => 'id',
+                   'name'   => 'name'
+            )
             );
 
         return $selectForm;
@@ -2436,12 +2719,12 @@ class Skrill extends PaymentModule
     {
         $displayList = array (
             array(
-               'id'	=> 'IFRAME',
-               'name' 	=> $display['iframe']
+               'id'     => 'IFRAME',
+               'name'   => $display['iframe']
             ),
             array(
-               'id' 	=> "REDIRECT",
-               'name' 	=> $display['redirect']
+               'id'     => "REDIRECT",
+               'name'   => $display['redirect']
             )
         );
 
@@ -2487,7 +2770,6 @@ class Skrill extends PaymentModule
                 $customizationText = '';
                 $customizedDatas = $customizedDatas[$product['product_id']][$product['product_attribute_id']];
                 if (isset($customizedDatas)) {
-
                     foreach ($customizedDatas as $customization) {
                         if (isset($customization['datas'][_CUSTOMIZE_TEXTFIELD_])) {
                             foreach ($customization['datas'][_CUSTOMIZE_TEXTFIELD_] as $text) {

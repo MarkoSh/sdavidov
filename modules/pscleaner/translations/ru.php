@@ -2,7 +2,6 @@
 
 global $_MODULE;
 $_MODULE = array();
-
 $_MODULE['<{pscleaner}prestashop>pscleaner_e5a8af934462c05509c7de5f2f2c18a3'] = 'Очистка PrestaShop';
 $_MODULE['<{pscleaner}prestashop>pscleaner_4bcb9cc248b7f6c8dc7f5c323bde76de'] = 'Проверка и исправление проблем функционала, удаление демо-данных';
 $_MODULE['<{pscleaner}prestashop>pscleaner_752369f18aebeed9ae8384d8f1b5dc5e'] = 'Будьте осторожны с данным инструментом - отменить действия невозможно!';
@@ -13,7 +12,7 @@ $_MODULE['<{pscleaner}prestashop>pscleaner_53d097f11855337bb74f1444d6c47c99'] = 
 $_MODULE['<{pscleaner}prestashop>pscleaner_098c3581a731f08d24311bbf515adbbb'] = 'Очистка не требуется';
 $_MODULE['<{pscleaner}prestashop>pscleaner_1bb7c5eb8682aeada82c407b40ec09c8'] = 'Каталог очищен';
 $_MODULE['<{pscleaner}prestashop>pscleaner_ed6ecb7169d5476ef5251524bb17552a'] = 'Заказы и клиенты очищены';
-$_MODULE['<{pscleaner}prestashop>pscleaner_43364f357f96e8b70be4a44d44196807'] = 'Пожалуйста, прочтите отказ  от ответственности и нажмите "Да"';
+$_MODULE['<{pscleaner}prestashop>pscleaner_43364f357f96e8b70be4a44d44196807'] = 'Пожалуйста, прочтите отказ  от ответственности и нажмите \"Да\"';
 $_MODULE['<{pscleaner}prestashop>pscleaner_6c69628e1d57fa6e39162b039a82133b'] = 'Вы точно хотите удалить все данные из каталога?';
 $_MODULE['<{pscleaner}prestashop>pscleaner_6a68264705f23c8e3d505fd2c93a87ba'] = 'Вы точно хотите удалить всю  информацию о продажах?';
 $_MODULE['<{pscleaner}prestashop>pscleaner_c32516babc5b6c47eb8ce1bfc223253c'] = 'Каталог';
@@ -28,6 +27,3 @@ $_MODULE['<{pscleaner}prestashop>pscleaner_3535aa31bd9005bde626ad4312b67d6b'] = 
 $_MODULE['<{pscleaner}prestashop>pscleaner_e84c6595e849214a70b35ed8f95d7d16'] = 'Проверить и исправить';
 $_MODULE['<{pscleaner}prestashop>pscleaner_ccc27439e3e08c444690af3bed668e2d'] = 'Очистка базы данных';
 $_MODULE['<{pscleaner}prestashop>pscleaner_39707b9cfefe433d64f695623d2d3fd7'] = 'Очистка и Оптимизация';
-
-
-return $_MODULE;

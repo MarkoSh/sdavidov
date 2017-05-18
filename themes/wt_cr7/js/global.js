@@ -118,6 +118,13 @@ $(document).ready(function(){
 			h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
 		})(window,document,'https://cdn.bitrix24.ru/b3726477/crm/site_button/loader_2_7vyyzo.js');
 	}
+
+	$("form").submit(function () {
+		var $this = $(this);
+		ga('set', 'dimension1', $this.serialize());
+		ga('send', 'event', 'Форма', $this.attr('id'), window.location.href);
+		ga('send', 'pageview');
+	});
 });
 
 function highdpiInit()

@@ -1,12 +1,12 @@
 #cnpIframe {
-	border: none;
-	display: none !important;
+    border: none;
+    display: none !important;
 }
 .cnpForm {
-	display: block !important;
+    display: block !important;
 }
 div.payment_module {
-	margin-bottom: 10px; }
+    margin-bottom: 10px; }
 div.payment_module {
     display: block;
     border: 1px solid #d6d4d4;
@@ -19,12 +19,15 @@ div.payment_module {
     font-weight: bold;
     padding: 30px 40px 12px 99px;
     letter-spacing: -1px;
-    position: relative; 
+    position: relative;
 }
 div.payment_module:hover {
-	background-color: #f6f6f6; 
+    background-color: #f6f6f6;
 }
 div.payment_module button {
     font-weight: bold;
     font-size: 17px;
 }
+
+
+

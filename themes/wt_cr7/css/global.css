@@ -5462,7 +5462,7 @@ a:visited, a:focus {
     padding-left: 0;
     padding-right: 0; } }
 body {
-  font-family: Didact Gothic, Helvetica, sans-serif;
+  /*font-family: Didact Gothic, Helvetica, sans-serif;*/
   min-width: 320px;
   height: 100%;
   line-height: 18px;
@@ -5486,8 +5486,8 @@ textarea {
   width: 100%; }
 
 .g-header {
-  background: url(../img/bg_cate.jpg) no-repeat center center;
-  background-size: 100% 100%; }
+  background: url(../img/bg_cate.jpg) no-repeat top center;
+  background-size: cover; }
 
 .columns-container {
   background: #fff; }
@@ -5495,7 +5495,12 @@ textarea {
 #index .columns-container, #index .bn-top-home, #index .footer-section {
   position: relative;
   z-index: 20; }
-
+.bn-top-home h3 {
+  margin: -45px 0 0;
+  padding: 10px 20px;
+  color: white;
+  text-align: center;
+}
 #page > .banner {
   position: relative;
   z-index: 10200; }
@@ -6824,7 +6829,6 @@ div.star a:hover {
     .breadcrumb a.home {
       text-align: center;
       padding: 0;
-      z-index: 99;
       display: inline-block; }
       .breadcrumb a.home i {
         vertical-align: -1px; }
@@ -8835,7 +8839,8 @@ div.selector {
   .index #header {
     position: relative;
     top: auto;
-    background: #0f0f0f; }
+    background: url(../img/bg_cate.jpg) no-repeat top center;
+    background-size: cover; }
 
   .wt-top-menu {
     text-align: center; }

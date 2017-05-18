@@ -138,9 +138,6 @@
 								{/if}
 							{else}
 								{if $filter.filter_type == 0}
-									<label for="{$filter.type}">
-										{l s='Range:' mod='blocklayered'}
-									</label> 
 									<span id="layered_{$filter.type}_range"></span>
 									<div class="layered_slider_container">
 										<div class="layered_slider" id="layered_{$filter.type}_slider" data-type="{$filter.type}" data-format="{$filter.format}" data-unit="{$filter.unit}"></div>

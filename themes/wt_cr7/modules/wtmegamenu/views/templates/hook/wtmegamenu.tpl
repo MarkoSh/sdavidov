@@ -33,7 +33,7 @@
 			{if isset($menu.type) && $menu.type == 'CAT' && $menu.dropdown == 1}
 				{$menu.sub_menu}
 			{else}
-				<li class="level-1 {$menu.class|escape}{if count($menu.sub_menu) > 0} parent{/if}">
+				<li class="level-1 {$menu.class|escape}{if count($menu.sub_menu) > 0}parent{/if}">
 					{if $menu.type_icon == 0 && $menu.icon != ''}
 						<img class="img-icon" src="{$icon_path}{$menu.icon}" alt=""/>
 					{elseif  $menu.type_icon == 1 && $menu.icon != ''}

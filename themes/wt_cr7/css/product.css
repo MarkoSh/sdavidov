@@ -615,11 +615,11 @@ table.table-product-discounts {
 #availability_value,
 #last_quantities {
   color: #e2e2e2;
+  background: #fe9126;
   font-weight: 500;
   line-height: 18px;
   display: inline-block;
-  background: none;
-  padding: 0;
+  padding: 4px 8px 3px;
   border: none;
   text-align: left;
   margin-left: 5px; }

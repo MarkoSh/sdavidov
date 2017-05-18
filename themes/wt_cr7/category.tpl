@@ -26,7 +26,7 @@
 {if isset($category)}
 	{if $category->id AND $category->active}
     	{if $scenes || $category->description || $category->id_image}
-			<div class="content_scene_cat">
+			<div class="content_scene_cat hidden">
             	 {if $scenes}
                  	<div class="content_scene">
                         <!-- Scenes -->

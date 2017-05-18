@@ -251,6 +251,7 @@ $(document).on('click', '.color_pick', function(e){
 	e.preventDefault();
 	colorPickerClick($(this));
 	getProductAttribute();
+	selectAvailable();
 });
 
 $(document).on('change', '.attribute_select', function(e){
@@ -264,6 +265,71 @@ $(document).on('click', '.attribute_radio', function(e){
 	findCombination();
 	getProductAttribute();
 });
+
+$(document).ready(function () {
+
+	selectAvailable();
+
+	refreshProductImages(0);
+
+});
+
+function selectAvailable() {
+	//create a temporary 'choice' array containing the choices of the customer
+	var choice = [];
+	var radio_inputs = parseInt($('#attributes .checked > input[type=radio]').length);
+	if (radio_inputs)
+		radio_inputs = '#attributes .checked > input[type=radio]';
+	else
+		radio_inputs = '#attributes input[type=radio]:checked';
+
+	$('#attributes input[type=hidden], ' + radio_inputs).each(function(){
+		choice.push(parseInt($(this).val()));
+	});
+
+	$('#attributes select').each(function () {
+		var $this = $(this);
+		$this.find("option").css({
+			display: 'block'
+		}).each(function (i, option) {
+			var $option = $(option);
+			var choice_ = [$option.val()];
+			choice_.push.apply(choice_, choice);
+			for (var combination = 0; combination < combinations.length; ++combination) {
+
+				//verify if this combinaison is the same that the user's choice
+				var combinationMatchForm = true;
+				$.each(combinations[combination]['idsAttributes'], function(key, value)
+				{
+					if (!in_array(parseInt(value), choice_))
+						combinationMatchForm = false;
+				});
+
+				if (combinationMatchForm) {
+					return
+				}
+			}
+			$option.css({
+				display: 'none'
+			});
+		});
+	});
+	$('#attributes select').each(function() {
+		var $this = $(this);
+		var options = $this.find("option");
+		for (var i = 0; i < options.length; i++) {
+			var $option = $(options[i]);
+			if ($option.css('display') == 'block') {
+				$this
+					.prop('selectedIndex', $option.index())
+					.trigger("change");
+				findCombination();
+				getProductAttribute();
+				return;
+			}
+		}
+	});
+}
 
 $(document).on('click', 'button[name=saveCustomization]', function(e){
 	saveCustomization();
@@ -403,6 +469,7 @@ function findCombination()
 
 	if (typeof combinations == 'undefined' || !combinations)
 		combinations = [];
+
 	//testing every combination to find the conbination's attributes' case of the user
 	for (var combination = 0; combination < combinations.length; ++combination)
 	{

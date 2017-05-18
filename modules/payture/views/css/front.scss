@@ -1,0 +1,13 @@
+a {
+  &.payture {
+    background: url("../../payture_logo.png") 20px center no-repeat;
+    background-size: 80px;
+    span {
+      &.payture-payment-first {
+        color: black;
+        font-size: 20px;
+        display: block;
+      }
+    }
+  }
+}

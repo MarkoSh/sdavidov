@@ -35,6 +35,8 @@
             <button type="button" class="close" data-dismiss="alert">×</button>
             {if $warningMessage == "refund"}
                 {if {l s='SUCCESS_GENERAL_REFUND_PAYMENT_PENDING' mod='skrill'} == "SUCCESS_GENERAL_REFUND_PAYMENT_PENDING"}Your attempt to refund the payment is pending.{else}{l s='SUCCESS_GENERAL_REFUND_PAYMENT_PENDING' mod='skrill'}{/if}
+            {elseif $warningMessage == "updateOrder"}
+                {if {l s='ERROR_INVALID_CREDENTIAL_BACKEND' mod='skrill'} == "ERROR_INVALID_CREDENTIAL_BACKEND"}Transaction can not be accepted because of invalid credential.{else}{l s='ERROR_INVALID_CREDENTIAL_BACKEND' mod='skrill'}{/if}
             {/if}
         </div>
     {/if}

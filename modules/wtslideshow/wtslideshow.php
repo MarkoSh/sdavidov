@@ -804,7 +804,7 @@ class WtSlideshow extends Module
 				'languages' => $languages,
 				'id_language' => $this->context->language->id,
 				'token' => Tools::getAdminTokenLite('AdminModules'),
-				'cs_ajax_link' => _PS_BASE_URL_.__PS_BASE_URI__.'modules/wtslideshow/ajax_wtslideshow.php',
+				'cs_ajax_link' => _PS_BASE_URL_SSL_.__PS_BASE_URI__.'modules/wtslideshow/ajax_wtslideshow.php',
 				'slier_option_arr' => $slier_option_arr,
 				'layer_style' => $layer_style,
 				'layer_easing' => $layer_easing,

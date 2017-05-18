@@ -1396,7 +1396,7 @@ class WtVerticalMegamenu extends Module
 		if (isset($children) && count($children))
 		{
 			$this->respMenu .= '<span class="icon-drop-mobile"></span>';
-			$this->respMenu .= '<ul class="menu-dropdown cat-drop-menu '.$sub_align.'">';
+			$this->respMenu .= '<ul class="menu-dropdown col-xs-12 cat-drop-menu '.$sub_align.'">';
 			
 			foreach ($children as $child)
 				$this->getRespCategories((int)$child['id_category'], (int)$id_lang, (int)$child['id_shop'], $level_root);

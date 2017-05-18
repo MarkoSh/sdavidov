@@ -45,13 +45,13 @@
 		{foreach from=$payments key=sort item=payment}
 			{if ($sort != 0)}
 			<div class="form-group">
-				<div class="col-lg-2 logo-wrapper">
-					<img src="{$thisPath|escape:'htmlall':'UTF-8'}views/img/{$payment.type|escape:'htmlall':'UTF-8'}.png" alt="{$payment.type|escape:'htmlall':'UTF-8'}" class="payment-config-logo">
-				</div>
+					<div class="col-lg-2 logo-wrapper">
+						<img src="{$thisPath|escape:'htmlall':'UTF-8'}views/img/{$payment.type|escape:'htmlall':'UTF-8'}.png" alt="{$payment.type|escape:'htmlall':'UTF-8'}" class="payment-config-logo">
+					</div>
 				<label class="payment-label col-lg-3">
 					{$payment.title|escape:'htmlall':'UTF-8'}
 					{if !empty($payment.tooltips)}
-						<img src="{$thisPath|escape:'htmlall':'UTF-8'}views/img/questionmark.png" alt="{$payment.type|escape:'htmlall':'UTF-8'}" data-toggle="tooltip" title="{$payment.tooltips|escape:'htmlall':'UTF-8'}" class="payment-config-tooltip">
+						<img src="{$thisPath|escape:'htmlall':'UTF-8'}views/img/questionmark.png" alt="{$payment.type|escape:'htmlall':'UTF-8'}" data-toggle="tooltip" title="{$payment.tooltips|escape:'htmlall':'UTF-8'}" class="payment-config-tooltip skrill-{$payment.type|escape:'htmlall':'UTF-8'}-tooltip">
 					{/if}
 				</label>
 				<div class="col-lg-3">
@@ -64,7 +64,7 @@
 						<a class="slide-button btn"></a>
 					</div>
 				</div>
-				<div class="col-lg-3">
+				<div class="col-lg-4">
 					<div class="col-lg-4 control-label switch-label">{$label.mode|escape:'htmlall':'UTF-8'}</div>
 					<div class="col-lg-6 switch prestashop-switch fixed-width-lg">
 						<input type="radio" name="SKRILL_{$payment.brand|escape:'htmlall':'UTF-8'}_MODE" id="SKRILL_{$payment.brand|escape:'htmlall':'UTF-8'}_MODE_on" value="1" {if ($payment.mode == 1)}checked="checked"{/if}>
@@ -74,7 +74,23 @@
 						<a class="slide-button btn"></a>
 					</div>
 				</div>
+
 				<div style="clear: both"></div>
+				{if $payment.banks}
+					<div class="col-lg-12 well skrill-{$payment.type|escape:'htmlall':'UTF-8'}-logos" style="display: none;">
+						<div class="col-lg-1"></div>
+						<div class="col-lg-2">
+						<ul>
+						{foreach from=$payment.banks key=i item=bank}
+							<li>
+								{$bank|escape:'htmlall':'UTF-8'}
+							</li>
+						{/foreach}
+						</ul>
+						</div>
+						
+					</div>
+				{/if}
 			</div>
 			<div style="clear: both"></div>
 			{/if}

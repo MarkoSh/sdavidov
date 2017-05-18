@@ -85,7 +85,7 @@ class SkrillCustomMailAlert extends ObjectModel
     public static function getMailAlerts($id_customer, $id_lang, Shop $shop = null)
     {
         if (!Validate::isUnsignedId($id_customer) || !Validate::isUnsignedId($id_lang)) {
-            die (Tools::displayError());
+            die(Tools::displayError());
         }
 
         if (!$shop) {
@@ -93,7 +93,7 @@ class SkrillCustomMailAlert extends ObjectModel
         }
 
         $customer = new Customer($id_customer);
-        $products = CustomMailAlert::getProducts($customer, $id_lang);
+        $products = self::getProducts($customer, $id_lang);
         $products_number = count($products);
 
         if (empty($products) === true || !$products_number) {
@@ -194,7 +194,6 @@ class SkrillCustomMailAlert extends ObjectModel
                     null,
                     dirname(__FILE__).'/mails/'
                 );
-
             }
 
             if (is_array($product->name)) {

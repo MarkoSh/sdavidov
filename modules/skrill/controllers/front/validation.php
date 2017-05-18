@@ -19,7 +19,6 @@
 */
 
 require_once(dirname(__FILE__).'/../../core/core.php');
-require_once(dirname(__FILE__).'/../../core/versiontracker.php');
 
 class SkrillValidationModuleFrontController extends ModuleFrontController
 {
@@ -27,12 +26,18 @@ class SkrillValidationModuleFrontController extends ModuleFrontController
     protected $orderConfirmationUrl = 'index.php?controller=order-confirmation&id_cart=';
     protected $statusUrl = false;
     protected $refundType = 'fraud';
+    protected $statusToSuccessPage = array();
 
     public function postProcess()
     {
-        sleep(3);
         $cartId = (int)Tools::getValue('cart_id');
         $orderId = Order::getOrderByCartId($cartId);
+        $this->statusToSuccessPage = array(
+            $this->module->processedStatus,
+            $this->module->pendingStatus,
+            $this->module->invalidCredentialStatus,
+            $this->module->fraudStatus,
+        );
 
         $transactionId = Tools::getValue('transaction_id');
         $order = $this->module->getOrderByTransactionId($transactionId);
@@ -48,7 +53,7 @@ class SkrillValidationModuleFrontController extends ModuleFrontController
     {
         $orderStatus = $order['order_status'];
 
-        if ($orderStatus == $this->module->processedStatus || $orderStatus == $this->module->pendingStatus) {
+        if (in_array($orderStatus, $this->statusToSuccessPage)) {
             $this->redirectSuccess($cartId);
         } else {
             if ($orderStatus == $this->module->refundedStatus || $orderStatus == $this->module->refundFailedStatus) {

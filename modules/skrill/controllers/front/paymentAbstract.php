@@ -81,7 +81,7 @@ class SkrillPaymentAbstractModuleFrontController extends ModuleFrontController
         }
         $this->context->smarty->assign(array(
             'fullname' => $this->context->customer->firstname ." ". $this->context->customer->lastname,
-            'lang'	  => $this->getLang(),
+            'lang'    => $this->getLang(),
             'redirectUrl' => $redirectUrl,
             'total' => $this->context->cart->getOrderTotal(true, Cart::BOTH),
             'this_path' => $this->module->getPathUri(),
@@ -126,10 +126,19 @@ class SkrillPaymentAbstractModuleFrontController extends ModuleFrontController
             array('cart_id' => $cart->id, 'payment_method' => $this->paymentMethod, 'secure_key' => $secureKey),
             true
         );
+        $antiFraudHash = $this->module->generateAntiFraudHash(
+            $this->context->cart->id,
+            $this->paymentMethod,
+            $cart->date_add
+        );
         $postParameters['status_url'] = $this->context->link->getModuleLink(
             'skrill',
             'paymentStatus',
-            array('cart_id' => $this->context->cart->id, 'payment_method' => $this->paymentMethod),
+            array(
+                'cart_id' => $this->context->cart->id,
+                'payment_method' => $this->paymentMethod,
+                'secure_payment' => $antiFraudHash
+            ),
             true
         );
         $postParameters['status_url2'] = 'mailto:'.$skrillSettings['merchant_email'];

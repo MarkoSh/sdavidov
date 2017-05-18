@@ -30,12 +30,12 @@
 		<span>{l s='Category' mod='wtverticalmegamenu'}</span>
 	</div>
 	<div class="category-left">
-	<ul class="menu-content">
+	<ul class="menu-content 2">
 		{foreach from=$menus item=menu name=menus}
 			{if isset($menu.type) && $menu.type == 'CAT' && $menu.dropdown == 1}
 				{$menu.sub_menu|escape:'quotes':'UTF-8'}
 			{else}
-				<li class="level-1 {$menu.class|escape:'html':'UTF-8'}{if count($menu.sub_menu) > 0} parent{/if}">
+				<li class="level-1 {$menu.class|escape:'html':'UTF-8'}{if count($menu.sub_menu) > 0}parent{/if}">
 					
 					<a href="{$menu.link|escape:'html':'UTF-8'}">
 					    {if $menu.type_icon == 0 && $menu.icon != ''}

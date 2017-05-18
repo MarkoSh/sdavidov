@@ -22,5 +22,5 @@ require_once(dirname(__FILE__).'/paymentAbstract.php');
  
 class SkrillPaymentAdbModuleFrontController extends SkrillPaymentAbstractModuleFrontController
 {
-    protected $paymentMethod = 'ADB,AOB,ACI,AUP';
+    protected $paymentMethod = 'ADB';
 }
