@@ -1,0 +1,99 @@
+<?php
+/**
+ * 2007-2017 PrestaShop
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@prestashop.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
+ * versions in the future. If you wish to customize PrestaShop for your
+ * needs please refer to http://www.prestashop.com for more information.
+ *
+ *  @author    SeoSA<885588@bk.ru>
+ *  @copyright 2012-2017 SeoSA
+ *  @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ *  International Registered Trademark & Property of PrestaShop SA
+ */
+
+/**
+ * @param int $level
+ * @param array $trace
+ * @param bool $debug
+ * @return string
+ * @throws Exception
+ */
+function get_called_class($level = 1, $trace = null, $debug = false) {
+	if (!$trace)
+		$trace = debug_backtrace();
+
+	if (!isset($trace[$level]))
+		throw new RuntimeException('Cannot find called class: stack level too deep');
+
+	if (!isset($trace[$level]['type']))
+		throw new RuntimeException ('Cannot find called class: type not set');
+
+	switch ($trace[$level]['type']) {
+		case '::':
+			if (!isset($trace[$level]['file']))
+			{
+				$prev = $trace[$level + 1];
+				if (isset($prev['function']))
+				{
+					$function = $prev['function'];
+					if ($function === 'call_user_func' || $function === 'call_user_func_array')
+					{
+						$arg0 = isset($prev['args'][0]) ? $prev['args'][0] : null;
+						if (is_array($arg0) && !empty($arg0))
+							return $arg0[0];
+					}
+				}
+
+				throw new RuntimeException('Cannot find called class: originating method call is obscured');
+			}
+
+			$lines = file($trace[$level]['file']);
+			$i = 0;
+			$callerLine = '';
+
+			while (stripos($callerLine, $trace[$level]['function']) === false) {
+				$i++;
+				$callerLine = $lines[$trace[$level]['line'] - $i] . $callerLine;
+			}
+
+			$pattern = '/([a-zA-Z0-9\_]+)::' . $trace[$level]['function'] . '/';
+			preg_match($pattern, $callerLine, $matches);
+
+			if (!isset($matches[1]))
+				throw new RuntimeException('Cannot find called class: originating method call is obscured');
+
+			switch ($matches[1]) {
+				case 'self':
+				case 'parent':
+					return get_called_class($level + 1, $trace, $debug);
+				default:
+					return $matches[1];
+			}
+
+		case '->':
+			switch ($trace[$level]['function']) {
+				case '__get':
+					if (!is_object($trace[$level]['object']))
+						throw new RuntimeException('Edge case fail. __get called on non object');
+					return get_class($trace[$level]['object']);
+				default: return $trace[$level]['class'];
+			}
+
+		default:
+			throw new RuntimeException('Unknown backtrace method type '.var_export($trace[$level], 1));
+	}
+}
+

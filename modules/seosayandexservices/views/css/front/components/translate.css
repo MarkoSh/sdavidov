@@ -1,0 +1,96 @@
+.yandex-translate-popup {
+  position: absolute;
+  z-index: 90000;
+  right: 0;
+  top: -40px;
+  white-space: nowrap;
+  padding-bottom: 10px; }
+  .yandex-translate-popup > .triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 7.5px 0 7.5px;
+    border-color: #2C6CCC transparent transparent transparent;
+    position: absolute;
+    bottom: 1px;
+    left: 5px; }
+  .yandex-translate-popup > .trigger {
+    border: 1px solid #2C6CCC;
+    background: #fff;
+    padding-right: 10px;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden; }
+    .yandex-translate-popup > .trigger > .text {
+      position: relative;
+      overflow: hidden; }
+      .yandex-translate-popup > .trigger > .text:after {
+        position: absolute;
+        content: '';
+        display: block;
+        width: 8px;
+        height: 4px;
+        bottom: 0;
+        left: -8px;
+        background: #00FF00; }
+    .yandex-translate-popup > .trigger > span {
+      position: relative;
+      display: inline-block;
+      height: 31px;
+      vertical-align: middle;
+      line-height: 31px; }
+    .yandex-translate-popup > .trigger > .logo {
+      width: 58px;
+      overflow: hidden;
+      background: url("../../../img/translate/icon.png") no-repeat;
+      margin-right: 10px; }
+      .yandex-translate-popup > .trigger > .logo:before {
+        position: absolute;
+        content: '';
+        display: block;
+        height: 31px;
+        width: 0;
+        top: 0;
+        left: -10px;
+        background: rgba(255, 255, 255, 0.5);
+        -webkit-box-shadow: 0 0 8px 6px rgba(255, 255, 255, 0.5);
+        -moz-box-shadow: 0 0 8px 6px rgba(255, 255, 255, 0.5);
+        -ms-box-shadow: 0 0 8px 6px rgba(255, 255, 255, 0.5);
+        -o-box-shadow: 0 0 8px 6px rgba(255, 255, 255, 0.5);
+        box-shadow: 0 0 8px 6px rgba(255, 255, 255, 0.5); }
+    .yandex-translate-popup > .trigger:hover > .logo:before {
+      left: 68px;
+      -webkit-transition: left 0.7s ease-in-out;
+      -moz-transition: left 0.7s ease-in-out;
+      -ms-transition: left 0.7s ease-in-out;
+      -o-transition: left 0.7s ease-in-out;
+      transition: left 0.7s ease-in-out; }
+  .yandex-translate-popup.loading > .trigger > .text:after {
+    -webkit-animation: loading 0.7s infinite;
+    -moz-animation: loading 0.7s infinite;
+    -ms-animation: loading 0.7s infinite;
+    -o-animation: loading 0.7s infinite;
+    animation: loading 0.7s infinite; }
+@-webkit-keyframes loading {
+  0% {
+    left: 0; }
+  50% {
+    left: 100%; }
+  100% {
+    left: 0; } }
+@-moz-keyframes loading {
+  0% {
+    left: 0; }
+  50% {
+    left: 100%; }
+  100% {
+    left: 0; } }
+@keyframes loading {
+  0% {
+    left: 0; }
+  50% {
+    left: 100%; }
+  100% {
+    left: 0; } }
+
+/*# sourceMappingURL=translate.css.map */

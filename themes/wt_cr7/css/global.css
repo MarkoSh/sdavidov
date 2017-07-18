@@ -547,6 +547,7 @@ pre {
   overflow-y: scroll; }
 
 .container {
+  position: relative;
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
@@ -6022,7 +6023,7 @@ table.table_block td {
   text-decoration: line-through; }
 
 .old-price.product-price {
-  font-size: 18px;
+  font-size: 14px;
   margin-left: 10px; }
 
 .content_price {
@@ -6102,6 +6103,9 @@ table.table_block td {
   margin-bottom: 5px; }
 
 .sale-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: url(../img/hot.png) no-repeat; }
 
 .new-label, .sale-label {
@@ -6111,7 +6115,7 @@ table.table_block td {
   text-transform: uppercase; }
 
 .sale-label {
-  font-size: 14px; }
+  font-size: 10px; }
 
 .box {
   background: #fbfbfb;

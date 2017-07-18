@@ -100,6 +100,7 @@
 								</span>
 								{if isset($product.specific_prices) && $product.specific_prices && isset($product.specific_prices.reduction) && $product.specific_prices.reduction > 0}
 									{hook h="displayProductPriceBlock" product=$product type="old_price"}
+									<br />
 									<span class="old-price product-price">
 										{displayWtPrice p=$product.price_without_reduction}
 									</span>

@@ -1,0 +1,22 @@
+p.payment_module a.yandex-money-payment {
+  cursor: pointer;
+  background: #fbfbfb 15px 15px no-repeat;
+  background-size: 64px 64px; }
+  p.payment_module a.yandex-money-payment.yandex-money-wallet {
+    background-image: url("../../../img/yandex-money-logo.png"); }
+  p.payment_module a.yandex-money-payment.yandex-money-card {
+    background-image: url("../../../img/yandex-money-logo.png"); }
+  p.payment_module a.yandex-money-payment:after {
+    display: block;
+    content: "\f054";
+    position: absolute;
+    right: 15px;
+    margin-top: -11px;
+    top: 50%;
+    font-family: "FontAwesome";
+    font-size: 25px;
+    height: 22px;
+    width: 14px;
+    color: #777; }
+
+/*# sourceMappingURL=money.css.map */

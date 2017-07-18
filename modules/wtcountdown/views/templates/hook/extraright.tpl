@@ -50,7 +50,7 @@
 		</script>
 	</div>
 	{elseif ($specific_prices.to == '0000-00-00 00:00:00') && ($specific_prices.from == '0000-00-00 00:00:00')}
-		<div class="wt-count-down">
+		<div class="wt-count-down hidden">
 			 <b>{l s='Limited Special Offer' mod='wtcountdown'}</b>
 		</div>
 	{/if}

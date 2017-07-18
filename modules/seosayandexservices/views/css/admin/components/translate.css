@@ -1,0 +1,69 @@
+.icon-yandex-translate {
+  width: 58px;
+  height: 31px;
+  background: url("../../../img/translate/icon.png") no-repeat;
+  border: none;
+  position: relative;
+  padding: 0;
+  overflow: hidden; }
+  .icon-yandex-translate:disabled {
+    opacity: 0.7; }
+  .icon-yandex-translate:not(:disabled):before {
+    position: absolute;
+    content: '';
+    display: block;
+    height: 31px;
+    width: 0;
+    top: 0;
+    left: -10px;
+    background: rgba(255, 255, 255, 0.5);
+    -webkit-box-shadow: 0 0 8px 6px rgba(255, 255, 255, 0.5);
+    -moz-box-shadow: 0 0 8px 6px rgba(255, 255, 255, 0.5);
+    -ms-box-shadow: 0 0 8px 6px rgba(255, 255, 255, 0.5);
+    -o-box-shadow: 0 0 8px 6px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 8px 6px rgba(255, 255, 255, 0.5); }
+  .icon-yandex-translate:not(:disabled):hover:before {
+    left: 68px;
+    -webkit-transition: left 0.7s ease-in-out;
+    -moz-transition: left 0.7s ease-in-out;
+    -ms-transition: left 0.7s ease-in-out;
+    -o-transition: left 0.7s ease-in-out;
+    transition: left 0.7s ease-in-out; }
+  .icon-yandex-translate:after {
+    position: absolute;
+    content: '';
+    display: block;
+    width: 8px;
+    height: 4px;
+    bottom: 0;
+    left: -8px;
+    background: #00FF00; }
+  .icon-yandex-translate.loading:after {
+    -webkit-animation: loading 0.7s infinite;
+    -moz-animation: loading 0.7s infinite;
+    -ms-animation: loading 0.7s infinite;
+    -o-animation: loading 0.7s infinite;
+    animation: loading 0.7s infinite; }
+@-webkit-keyframes loading {
+  0% {
+    left: 0; }
+  50% {
+    left: 50px; }
+  100% {
+    left: 0; } }
+@-moz-keyframes loading {
+  0% {
+    left: 0; }
+  50% {
+    left: 50px; }
+  100% {
+    left: 0; } }
+@keyframes loading {
+  0% {
+    left: 0; }
+  50% {
+    left: 50px; }
+  100% {
+    left: 0; } }
+
+/*# sourceMappingURL=translate.css.map */
